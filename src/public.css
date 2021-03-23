@@ -1,93 +1,93 @@
 :root {
-    --border-radius-base: 4px;
+	--border-radius-base: 4px;
 }
 
 .wp-block-[prefix]-container {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+	position: relative;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 
-.is-style-card& {
-    border-radius: var(--border-radius-base);
-    margin-left: -20px ?if media (--screen-medium);
-    margin-right: -20px ?if media (--screen-medium);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.05) ?if media (--screen-medium-min);
+	.is-style-card& {
+		border-radius: var(--border-radius-base);
+		margin-left: -20px ?if media (--screen-medium);
+		margin-right: -20px ?if media (--screen-medium);
+		box-shadow: 0 0 30px rgba(0, 0, 0, 0.05) ?if media (--screen-medium-min);
 
-^&__content {
-    margin-left: auto;
-    margin-right: auto;
-}
-}
+		^&__content {
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
 
-&__content {
-     z-index: 1;
-     position: relative;
+	&__content {
+		z-index: 1;
+		position: relative;
 
-.alignfull > & {
-    margin: 0 auto;
-}
-}
+		.alignfull > & {
+			margin: 0 auto;
+		}
+	}
 
-&__video-background {
-     position: absolute 0;
-     size: 100%;
-     object-fit: cover;
- }
+	&__video-background {
+		position: absolute 0;
+		size: 100%;
+		object-fit: cover;
+	}
 
-&__gradient-background {
-     z-index: 1;
-     position: absolute 0 0 0 0;
-     border-radius: inherit;
+	&__gradient-background {
+		z-index: 1;
+		position: absolute 0 0 0 0;
+		border-radius: inherit;
 
-@for $i from 10 to 100 by 10 {
+		@for $i from 10 to 100 by 10 {
 
-    .has-background-dim-$i & {
-        opacity: calc($(i) / 100);
-    }
-}
-}
+			.has-background-dim-$i & {
+				opacity: calc($(i) / 100);
+			}
+		}
+	}
 }
 
 .has-parallax {
-    background-attachment: fixed;
+	background-attachment: fixed;
 
-@supports (-webkit-overflow-scrolling: touch) {
-    background-attachment: scroll;
-}
+	@supports (-webkit-overflow-scrolling: touch) {
+		background-attachment: scroll;
+	}
 
-@media (prefers-reduced-motion: reduce) {
-    background-attachment: scroll;
-}
+	@media (prefers-reduced-motion: reduce) {
+		background-attachment: scroll;
+	}
 }
 
 .is-repeated {
-    background-repeat: repeat;
-    background-size: auto;
+	background-repeat: repeat;
+	background-size: auto;
 }
 
 .has-background-dim {
 
-& {
+	& {
 
-&::before {
-     background-color: inherit;
-     z-index: 1;
-     position: absolute 0 0 0 0;
-     border-radius: inherit;
-     opacity: 0.5;
+		&::before {
+			background-color: inherit;
+			z-index: 1;
+			position: absolute 0 0 0 0;
+			border-radius: inherit;
+			opacity: 0.5;
 
-:not(.has-background-gradient)& {
-    content: "";
-}
-}
+			:not(.has-background-gradient)& {
+				content: "";
+			}
+		}
 
-@for $i from 10 to 100 by 10 {
+		@for $i from 10 to 100 by 10 {
 
-&-$i::before {
-    opacity: calc($(i) / 100);
-}
-}
-}
+			&-$i::before {
+				opacity: calc($(i) / 100);
+			}
+		}
+	}
 }
 
