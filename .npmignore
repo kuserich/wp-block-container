@@ -1,4 +1,6 @@
 babel.config.js
 postcss.config.js
 rollup.config.js
+.stylelintrc.js
+.eslintrc.js
 src

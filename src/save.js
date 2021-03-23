@@ -10,13 +10,17 @@ import {
 	focalPointPosition,
 	backgroundImageStyles,
 	dimRatioToClassName,
-	normalizeSpacingStyles
+	normalizeSpacingStyles,
 } from '@sixa/wp-block-utils';
 
 /**
  * WordPress dependencies
  */
-const { InnerBlocks, getColorClassName, __experimentalGetGradientClass } = wp.blockEditor;
+const {
+	InnerBlocks,
+	getColorClassName,
+	__experimentalGetGradientClass,
+} = wp.blockEditor;
 
 const BLOCK_CLASSNAME = `wp-block-${ PREFIX }-container`;
 
@@ -40,7 +44,10 @@ const save = ( { attributes } ) => {
 			margin,
 		} = attributes,
 		textColorClass = getColorClassName( 'color', textColor ),
-		overlayColorClass = getColorClassName( 'background-color', overlayColor ),
+		overlayColorClass = getColorClassName(
+			'background-color',
+			overlayColor
+		),
 		gradientClass = __experimentalGetGradientClass( gradient ),
 		isImageBackground = isEqual( backgroundType, IMAGE_TYPE ),
 		isVideoBackground = isEqual( backgroundType, VIDEO_TYPE ),
@@ -88,13 +95,22 @@ const save = ( { attributes } ) => {
 			} ) }
 			style={ { ...styles } }
 		>
-			{ url && ( gradient || customGradient ) && ! isEqual( dimRatio, 0 ) && (
-				<span
-					aria-hidden="true"
-					className={ classnames( `${ BLOCK_CLASSNAME }__gradient-background`, gradientClass ) }
-					style={ customGradient ? { background: customGradient } : noop }
-				/>
-			) }
+			{ url &&
+				( gradient || customGradient ) &&
+				! isEqual( dimRatio, 0 ) && (
+					<span
+						aria-hidden="true"
+						className={ classnames(
+							`${ BLOCK_CLASSNAME }__gradient-background`,
+							gradientClass
+						) }
+						style={
+							customGradient
+								? { background: customGradient }
+								: noop
+						}
+					/>
+				) }
 			{ isVideoBackground && url && (
 				<video
 					className={ `${ BLOCK_CLASSNAME }__video-background` }
@@ -108,7 +124,9 @@ const save = ( { attributes } ) => {
 			) }
 			<div
 				className={ `${ BLOCK_CLASSNAME }__content` }
-				style={ { maxWidth: width ? `${ parseFloat( width ) }px` : noop() } }
+				style={ {
+					maxWidth: width ? `${ parseFloat( width ) }px` : noop(),
+				} }
 			>
 				<InnerBlocks.Content />
 			</div>

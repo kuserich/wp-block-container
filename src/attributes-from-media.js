@@ -22,7 +22,10 @@ export const attributesFromMedia = ( setAttributes ) => {
 			}
 		} else {
 			// for media selections originated from existing files in the media library.
-			if ( ! isEqual( get( media, 'type' ), IMAGE_TYPE ) && ! isEqual( get( media, 'type' ), VIDEO_TYPE ) ) {
+			if (
+				! isEqual( get( media, 'type' ), IMAGE_TYPE ) &&
+				! isEqual( get( media, 'type' ), VIDEO_TYPE )
+			) {
 				return;
 			}
 			mediaType = get( media, 'type' );
@@ -33,7 +36,9 @@ export const attributesFromMedia = ( setAttributes ) => {
 			url: get( media, 'url' ),
 			id: get( media, 'id' ),
 			backgroundType: mediaType,
-			...( isEqual( mediaType, VIDEO_TYPE ) ? { focalPoint: noop(), hasParallax: noop() } : {} ),
+			...( isEqual( mediaType, VIDEO_TYPE )
+				? { focalPoint: noop(), hasParallax: noop() }
+				: {} ),
 		} );
 	};
 };

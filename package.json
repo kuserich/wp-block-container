@@ -13,6 +13,8 @@
     "build:css": "postcss --config ./postcss.config.js src/style -d dist",
     "lint:css": "./node_modules/stylelint/bin/stylelint.js \"src/**/*.css\"",
     "lint:css-fix": "./node_modules/stylelint/bin/stylelint.js \"src/**/*.css\" --fix",
+    "lint:js": "./node_modules/eslint/bin/eslint.js src",
+    "lint:js-fix": "./node_modules/eslint/bin/eslint.js src --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -40,8 +42,10 @@
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
     "@rollup/plugin-replace": "^2.4.1",
+    "@wordpress/eslint-plugin": "^9.0.1",
     "@wordpress/stylelint-config": "^19.0.1",
     "autoprefixer": "^10.2.5",
+    "eslint": "^7.22.0",
     "husky": "^4.3.8",
     "postcss": "^8.2.8",
     "postcss-cli": "^8.3.1",

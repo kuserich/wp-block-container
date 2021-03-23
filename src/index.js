@@ -28,7 +28,10 @@ const icon = get( icons, 'box' );
  */
 const settings = {
 	title,
-	description: __( 'Wrap several blocks in a parent wrapper and do more styling as well.', 'snusclub-extras' ),
+	description: __(
+		'Wrap several blocks in a parent wrapper and do more styling as well.',
+		'snusclub-extras'
+	),
 	keywords: [
 		'sixa-wp-blocks',
 		__( 'section', 'sixa-wp-blocks' ),

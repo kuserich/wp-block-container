@@ -8,7 +8,10 @@ import { IMAGE_TYPE, VIDEO_TYPE } from '@sixa/wp-block-utils';
  * WordPress dependencies
  */
 const { __ } = wp.i18n;
-const { InspectorControls, __experimentalPanelColorGradientSettings: PanelColorGradientSettings } = wp.blockEditor;
+const {
+	InspectorControls,
+	__experimentalPanelColorGradientSettings: PanelColorGradientSettings,
+} = wp.blockEditor;
 const {
 	PanelBody,
 	PanelRow,
@@ -26,11 +29,30 @@ const MIN_OPACITY = 0;
 const MAX_OPACITY = 100;
 
 export default function Inspector( { attributes, setAttributes, colors } ) {
-	const { textColor, setTextColor, overlayColor, setOverlayColor, setGradient, gradientValue } = colors,
-		{ width, url, dimRatio, hasParallax, isRepeated, focalPoint, backgroundType, margin, padding } = attributes,
+	const {
+			textColor,
+			setTextColor,
+			overlayColor,
+			setOverlayColor,
+			setGradient,
+			gradientValue,
+		} = colors,
+		{
+			width,
+			url,
+			dimRatio,
+			hasParallax,
+			isRepeated,
+			focalPoint,
+			backgroundType,
+			margin,
+			padding,
+		} = attributes,
 		isImageBackground = isEqual( backgroundType, IMAGE_TYPE ),
 		isVideoBackground = isEqual( backgroundType, VIDEO_TYPE ),
-		showFocalPointPicker = isVideoBackground || ( isImageBackground && ( ! hasParallax || isRepeated ) );
+		showFocalPointPicker =
+			isVideoBackground ||
+			( isImageBackground && ( ! hasParallax || isRepeated ) );
 
 	return (
 		<>
@@ -51,21 +73,32 @@ export default function Inspector( { attributes, setAttributes, colors } ) {
 					/>
 				</PanelBody>
 				{ !! url && (
-					<PanelBody title={ __( 'Media Settings', 'snusclub-extras' ) } initialOpen={ true }>
+					<PanelBody
+						title={ __( 'Media Settings', 'snusclub-extras' ) }
+						initialOpen={ true }
+					>
 						{ isImageBackground && (
 							<>
 								<ToggleControl
-									label={ __( 'Fixed background', 'snusclub-extras' ) }
+									label={ __(
+										'Fixed background',
+										'snusclub-extras'
+									) }
 									checked={ hasParallax }
 									onChange={ () =>
 										setAttributes( {
 											hasParallax: ! hasParallax,
-											...( ! hasParallax ? { focalPoint: noop() } : {} ),
+											...( ! hasParallax
+												? { focalPoint: noop() }
+												: {} ),
 										} )
 									}
 								/>
 								<ToggleControl
-									label={ __( 'Repeated background', 'snusclub-extras' ) }
+									label={ __(
+										'Repeated background',
+										'snusclub-extras'
+									) }
 									checked={ isRepeated }
 									onChange={ () =>
 										setAttributes( {
@@ -77,7 +110,10 @@ export default function Inspector( { attributes, setAttributes, colors } ) {
 						) }
 						{ showFocalPointPicker && (
 							<FocalPointPicker
-								label={ __( 'Focal point picker', 'snusclub-extras' ) }
+								label={ __(
+									'Focal point picker',
+									'snusclub-extras'
+								) }
 								url={ url }
 								value={ focalPoint }
 								onChange={ ( value ) =>
@@ -109,23 +145,33 @@ export default function Inspector( { attributes, setAttributes, colors } ) {
 						</PanelRow>
 					</PanelBody>
 				) }
-				<PanelBody title={ __( 'Margin Settings', 'snusclub-extras' ) } initialOpen={ false }>
+				<PanelBody
+					title={ __( 'Margin Settings', 'snusclub-extras' ) }
+					initialOpen={ false }
+				>
 					<BoxControl
 						values={ margin }
 						inputProps={ { min: -999 } }
 						onChange={ ( value ) =>
 							setAttributes( {
-								margin: pickBy( value, ( item ) => identity( item ) ),
+								margin: pickBy( value, ( item ) =>
+									identity( item )
+								),
 							} )
 						}
 					/>
 				</PanelBody>
-				<PanelBody title={ __( 'Padding Settings', 'snusclub-extras' ) } initialOpen={ false }>
+				<PanelBody
+					title={ __( 'Padding Settings', 'snusclub-extras' ) }
+					initialOpen={ false }
+				>
 					<BoxControl
 						values={ padding }
 						onChange={ ( value ) =>
 							setAttributes( {
-								padding: pickBy( value, ( item ) => identity( item ) ),
+								padding: pickBy( value, ( item ) =>
+									identity( item )
+								),
 							} )
 						}
 					/>

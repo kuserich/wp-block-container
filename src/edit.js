@@ -12,7 +12,7 @@ import {
 	focalPointPosition,
 	backgroundImageStyles,
 	dimRatioToClassName,
-	normalizeSpacingStyles
+	normalizeSpacingStyles,
 } from '@sixa/wp-block-utils';
 
 /**
@@ -53,7 +53,11 @@ const Edit = ( {
 			margin,
 			padding,
 		} = attributes,
-		{ gradientClass, setGradient, gradientValue } = __experimentalUseGradient(),
+		{
+			gradientClass,
+			setGradient,
+			gradientValue,
+		} = __experimentalUseGradient(),
 		isImageBackground = isEqual( backgroundType, IMAGE_TYPE ),
 		isVideoBackground = isEqual( backgroundType, VIDEO_TYPE ),
 		textColorClass = get( textColor, 'class' ),
@@ -69,11 +73,14 @@ const Edit = ( {
 		innerBlocksProps = useInnerBlocksProps(
 			{
 				className: `${ BLOCK_CLASSNAME }__content`,
-				style: { maxWidth: width ? `${ parseFloat( width ) }px` : noop() },
+				style: {
+					maxWidth: width ? `${ parseFloat( width ) }px` : noop(),
+				},
 			},
 			{
 				templateLock: false,
-				renderAppender: ! hasInnerBlocks && InnerBlocks.ButtonBlockAppender,
+				renderAppender:
+					! hasInnerBlocks && InnerBlocks.ButtonBlockAppender,
 			}
 		),
 		styles = {
@@ -104,22 +111,30 @@ const Edit = ( {
 	return (
 		<>
 			<div
-				className={ classnames( className, dimRatioToClassName( dimRatio ), {
-					'has-parallax': hasParallax,
-					'is-repeated': isRepeated,
-					'has-background-dim': !! url && ! isEqual( dimRatio, 0 ),
-					[ `align${ align }` ]: align,
-					[ textColorClass ]: textColorClass,
-					[ overlayColorClass ]: overlayColorClass,
-					'has-background-gradient': gradientValue,
-					[ gradientClass ]: ! url && gradientClass,
-				} ) }
+				className={ classnames(
+					className,
+					dimRatioToClassName( dimRatio ),
+					{
+						'has-parallax': hasParallax,
+						'is-repeated': isRepeated,
+						'has-background-dim':
+							!! url && ! isEqual( dimRatio, 0 ),
+						[ `align${ align }` ]: align,
+						[ textColorClass ]: textColorClass,
+						[ overlayColorClass ]: overlayColorClass,
+						'has-background-gradient': gradientValue,
+						[ gradientClass ]: ! url && gradientClass,
+					}
+				) }
 				style={ { ...styles } }
 			>
 				{ url && gradientValue && ! isEqual( dimRatio, 0 ) && (
 					<span
 						aria-hidden="true"
-						className={ classnames( `${ BLOCK_CLASSNAME }__gradient-background`, gradientClass ) }
+						className={ classnames(
+							`${ BLOCK_CLASSNAME }__gradient-background`,
+							gradientClass
+						) }
 						style={ { background: gradientValue } }
 					/>
 				) }
@@ -137,7 +152,10 @@ const Edit = ( {
 			</div>
 			{ isSelected && (
 				<>
-					<Controls attributes={ attributes } setAttributes={ setAttributes } />
+					<Controls
+						attributes={ attributes }
+						setAttributes={ setAttributes }
+					/>
 					<Inspector
 						attributes={ attributes }
 						setAttributes={ setAttributes }
