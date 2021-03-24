@@ -45,8 +45,8 @@ export default function Inspector( { attributes, setAttributes, colors } ) {
 				<PanelBody initialOpen={ true }>
 					<RangeControl
 						allowReset
-						label={ __( 'Width', 'sixa-extras' ) }
-						help={ __( 'in pixels', 'sixa-extras' ) }
+						label={ __( 'Width', 'sixa' ) }
+						help={ __( 'in pixels', 'sixa' ) }
 						min={ MIN_WIDTH }
 						max={ MAX_WIDTH }
 						value={ width }
@@ -58,11 +58,11 @@ export default function Inspector( { attributes, setAttributes, colors } ) {
 					/>
 				</PanelBody>
 				{ !! url && (
-					<PanelBody title={ __( 'Media Settings', 'sixa-extras' ) } initialOpen={ true }>
+					<PanelBody title={ __( 'Media Settings', 'sixa' ) } initialOpen={ true }>
 						{ isImageBackground && (
 							<>
 								<ToggleControl
-									label={ __( 'Fixed background', 'sixa-extras' ) }
+									label={ __( 'Fixed background', 'sixa' ) }
 									checked={ hasParallax }
 									onChange={ () =>
 										setAttributes( {
@@ -72,7 +72,7 @@ export default function Inspector( { attributes, setAttributes, colors } ) {
 									}
 								/>
 								<ToggleControl
-									label={ __( 'Repeated background', 'sixa-extras' ) }
+									label={ __( 'Repeated background', 'sixa' ) }
 									checked={ isRepeated }
 									onChange={ () =>
 										setAttributes( {
@@ -84,7 +84,7 @@ export default function Inspector( { attributes, setAttributes, colors } ) {
 						) }
 						{ showFocalPointPicker && (
 							<FocalPointPicker
-								label={ __( 'Focal point picker', 'sixa-extras' ) }
+								label={ __( 'Focal point picker', 'sixa' ) }
 								url={ url }
 								value={ focalPoint }
 								onChange={ ( value ) =>
@@ -111,12 +111,12 @@ export default function Inspector( { attributes, setAttributes, colors } ) {
 									} )
 								}
 							>
-								{ __( 'Clear Media', 'sixa-extras' ) }
+								{ __( 'Clear Media', 'sixa' ) }
 							</Button>
 						</PanelRow>
 					</PanelBody>
 				) }
-				<PanelBody title={ __( 'Margin Settings', 'sixa-extras' ) } initialOpen={ false }>
+				<PanelBody title={ __( 'Margin Settings', 'sixa' ) } initialOpen={ false }>
 					<BoxControl
 						values={ margin }
 						inputProps={ { min: -999 } }
@@ -127,7 +127,7 @@ export default function Inspector( { attributes, setAttributes, colors } ) {
 						}
 					/>
 				</PanelBody>
-				<PanelBody title={ __( 'Padding Settings', 'sixa-extras' ) } initialOpen={ false }>
+				<PanelBody title={ __( 'Padding Settings', 'sixa' ) } initialOpen={ false }>
 					<BoxControl
 						values={ padding }
 						onChange={ ( value ) =>
@@ -138,16 +138,16 @@ export default function Inspector( { attributes, setAttributes, colors } ) {
 					/>
 				</PanelBody>
 				<PanelColorGradientSettings
-					title={ __( 'Color Settings', 'sixa-extras' ) }
+					title={ __( 'Color Settings', 'sixa' ) }
 					initialOpen={ false }
 					settings={ [
 						{
-							label: __( 'Text', 'sixa-extras' ),
+							label: __( 'Text', 'sixa' ),
 							colorValue: get( textColor, 'color' ),
 							onColorChange: setTextColor,
 						},
 						{
-							label: __( 'Overlay', 'sixa-extras' ),
+							label: __( 'Overlay', 'sixa' ),
 							colorValue: get( overlayColor, 'color' ),
 							gradientValue,
 							onColorChange: setOverlayColor,
@@ -157,7 +157,7 @@ export default function Inspector( { attributes, setAttributes, colors } ) {
 				>
 					{ !! url && (
 						<RangeControl
-							label={ __( 'Opacity', 'sixa-extras' ) }
+							label={ __( 'Opacity', 'sixa' ) }
 							value={ dimRatio }
 							onChange={ ( value ) =>
 								setAttributes( {

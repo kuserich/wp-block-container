@@ -10,18 +10,19 @@ import edit from './edit';
 import save from './save';
 import attributes from './attributes';
 import transforms from './transforms';
-import { icons } from "@sixa/wp-block-utils";
+import { icons, PREFIX, blockName } from "@sixa/wp-block-utils";
 
 /**
  * WordPress dependencies
  */
 const { __, _x } = wp.i18n;
+const { registerBlockType } = wp.blocks;
 
 /**
  * Block meta-data
  */
 const name = 'container';
-const title = __( 'Container', 'sixa-extras' );
+const title = __( 'Container', 'sixa' );
 const category = 'design';
 const icon = get( icons, 'box' );
 
@@ -30,12 +31,14 @@ const icon = get( icons, 'box' );
  */
 const settings = {
 	title,
-	description: __( 'Wrap several blocks in a parent wrapper and do more styling as well.', 'sixa-extras' ),
+	description: __( 'Wrap several blocks in a parent wrapper and do more styling as well.', 'sixa' ),
 	keywords: [
-		'sixa-extras',
-		_x( 'section', 'block keyword', 'sixa-extras' ),
-		_x( 'group', 'block keyword', 'sixa-extras' ),
-		_x( 'wrapper', 'block keyword', 'sixa-extras' ),
+		'sixa',
+		'sixa-block',
+		'sixa-blocks',
+		_x( 'section', 'block keyword', 'sixa' ),
+		_x( 'group', 'block keyword', 'sixa' ),
+		_x( 'wrapper', 'block keyword', 'sixa' ),
 	],
 	supports: {
 		anchor: true,
@@ -48,4 +51,14 @@ const settings = {
 	save,
 };
 
-export { name, title, category, icon, settings };
+const registerBlock = () => {
+	registerBlockType( blockName( name ), {
+		category,
+		icon: {
+			src: icon,
+		},
+		...settings,
+	} );
+};
+
+export { name, title, category, icon, settings, registerBlock, PREFIX };

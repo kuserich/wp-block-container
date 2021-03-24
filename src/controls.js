@@ -27,7 +27,7 @@ export default function Controls( { attributes, setAttributes } ) {
 		<>
 			<BlockControls>
 				<BlockAlignmentMatrixToolbar
-					label={ __( 'Change content position', 'sixa-extras' ) }
+					label={ __( 'Change content position', 'sixa' ) }
 					value={ contentPosition }
 					onChange={ ( value ) =>
 						setAttributes( {
