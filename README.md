@@ -7,12 +7,12 @@ The block includes a default stylesheet that can be imported in a project.
 ## Installation
 Before installing from NPM, make sure to add the sixa enterprise registry and sign in with your NPM user.
 ```
-npm i @sixa/sixa-wp-block-container
+npm i @sixa/wp-bock-container
 ```
 
 or
 ```
-npm i @sixa/sixa-wp-block-container --save-dev
+npm i @sixa/wp-bock-container --save-dev
 ```
 if you are using this library inside an extras plugin.
 
@@ -20,8 +20,8 @@ if you are using this library inside an extras plugin.
 After installing the package, the component and it's reference stylesheets can be included with:
 
 ```
-import * as container from '@sixa/sixa-wp-block-container';
-import '@sixa/sixa-wp-block-container/dist/editor.css';
+import * as container from '@sixa/wp-bock-container';
+import '@sixa/wp-bock-container/dist/editor.css';
 
 export function registerBlocks() {
 	forEach( [ container, spacer ], ( block ) => {

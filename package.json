@@ -1,6 +1,6 @@
 {
-  "name": "@sixa/sixa-wp-block-container",
-  "version": "0.0.13",
+  "name": "@sixa/wp-block-container",
+  "version": "1.0.0",
   "description": "Container block for WordPress Gutenberg",
   "main": "dist/index.js",
   "browser": "dist/wp-block-container.min.js",
