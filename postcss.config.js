@@ -22,7 +22,6 @@ module.exports = () => ( {
 		require('postcss-important-startstop'),
 		require('postcss-custom-media'),
 		require('postcss-quantity-queries'),
-		require('postcss-start-to-end'),
 		require('postcss-calc'),
 		require('postcss-size'),
 		require('postcss-flexbox'),
