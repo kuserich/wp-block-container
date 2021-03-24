@@ -10,7 +10,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:css",
     "build:js": "rollup -c",
-    "build:css": "postcss --config ./postcss.config.js src/style -d dist",
+    "build:css": "postcss --config ./postcss.config.js src/**/*.css -d dist",
     "lint:css": "./node_modules/stylelint/bin/stylelint.js \"src/**/*.css\"",
     "lint:css-fix": "./node_modules/stylelint/bin/stylelint.js \"src/**/*.css\" --fix",
     "lint:js": "./node_modules/eslint/bin/eslint.js src",
