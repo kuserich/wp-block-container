@@ -1,32 +1,26 @@
-:root {
-	--border-radius-base: 4px;
-}
-
 .wp-block-[prefix]-container {
 	position: relative;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
+	box: middle center;
 
-	.is-style-card& {
-		border-radius: var(--border-radius-base);
-		margin-left: -20px ?if media (--screen-medium);
-		margin-right: -20px ?if media (--screen-medium);
-		box-shadow: 0 0 30px rgba(0, 0, 0, 0.05) ?if media (--screen-medium-min);
+	&:not(.is-repeated) {
+		background-size: cover;
+	}
 
-		^&__content {
-			margin-left: auto;
-			margin-right: auto;
+	&[style*="margin-left"] {
+
+		.entry-content > & {
+
+			body:not(.has-sidebar)  & {
+				left: auto;
+				width: auto;
+			}
 		}
 	}
 
 	&__content {
+		width: 100%;
 		z-index: 1;
 		position: relative;
-
-		.alignfull > & {
-			margin: 0 auto;
-		}
 	}
 
 	&__video-background {
@@ -38,7 +32,7 @@
 	&__gradient-background {
 		z-index: 1;
 		position: absolute 0 0 0 0;
-		border-radius: inherit;
+		opacity: 0.5;
 
 		@for $i from 10 to 100 by 10 {
 
@@ -47,39 +41,25 @@
 			}
 		}
 	}
-}
 
-.has-parallax {
-	background-attachment: fixed;
-
-	@supports (-webkit-overflow-scrolling: touch) {
-		background-attachment: scroll;
+	.has-parallax {
+		background-attachment: fixed;
 	}
 
-	@media (prefers-reduced-motion: reduce) {
-		background-attachment: scroll;
-	}
-}
+	.has-background-dim {
 
-.is-repeated {
-	background-repeat: repeat;
-	background-size: auto;
-}
+		&:not(.has-background-gradient) {
 
-.has-background-dim {
-
-	& {
-
-		&::before {
-			background-color: inherit;
-			z-index: 1;
-			position: absolute 0 0 0 0;
-			border-radius: inherit;
-			opacity: 0.5;
-
-			:not(.has-background-gradient)& {
+			&::before {
+				background-color: inherit;
+				z-index: 1;
+				position: absolute 0 0 0 0;
 				content: "";
 			}
+		}
+
+		&::before {
+			opacity: 0.5;
 		}
 
 		@for $i from 10 to 100 by 10 {
@@ -90,4 +70,3 @@
 		}
 	}
 }
-

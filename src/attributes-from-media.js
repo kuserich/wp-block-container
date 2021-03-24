@@ -1,10 +1,14 @@
 /**
+ * Upload and identify given/selected media-type.
+ */
+
+/**
  * External dependencies
  */
 import { isEqual, get, has, noop } from 'lodash-es';
 import { IMAGE_TYPE, VIDEO_TYPE } from '@sixa/wp-block-utils';
 
-export const attributesFromMedia = ( setAttributes ) => {
+const attributesFromMedia = ( setAttributes ) => {
 	return ( media ) => {
 		if ( ! media || ! get( media, 'url' ) ) {
 			setAttributes( { url: noop(), id: noop() } );
@@ -22,10 +26,7 @@ export const attributesFromMedia = ( setAttributes ) => {
 			}
 		} else {
 			// for media selections originated from existing files in the media library.
-			if (
-				! isEqual( get( media, 'type' ), IMAGE_TYPE ) &&
-				! isEqual( get( media, 'type' ), VIDEO_TYPE )
-			) {
+			if ( ! isEqual( get( media, 'type' ), IMAGE_TYPE ) && ! isEqual( get( media, 'type' ), VIDEO_TYPE ) ) {
 				return;
 			}
 			mediaType = get( media, 'type' );
@@ -36,9 +37,9 @@ export const attributesFromMedia = ( setAttributes ) => {
 			url: get( media, 'url' ),
 			id: get( media, 'id' ),
 			backgroundType: mediaType,
-			...( isEqual( mediaType, VIDEO_TYPE )
-				? { focalPoint: noop(), hasParallax: noop() }
-				: {} ),
+			...( isEqual( mediaType, VIDEO_TYPE ) ? { focalPoint: noop(), hasParallax: noop() } : {} ),
 		} );
 	};
 };
+
+export default attributesFromMedia;

@@ -1,28 +1,28 @@
 /**
- * External dependencies
+ * Defines the way in which the different attributes should be combined into the final markup.
  */
+
 import { isEqual, noop, set } from 'lodash-es';
 import classnames from 'classnames';
+import { IMAGE_TYPE, VIDEO_TYPE} from "@sixa/wp-block-utils";
+import { isPositionCenter, positionToClassName } from "@sixa/wp-block-utils";
+import { blockClassName } from "@sixa/wp-block-utils";
 import {
-	PREFIX,
-	IMAGE_TYPE,
-	VIDEO_TYPE,
-	focalPointPosition,
-	backgroundImageStyles,
-	dimRatioToClassName,
-	normalizeSpacingStyles,
-} from '@sixa/wp-block-utils';
+	normalizeDimRatio,
+	normalizeFocalPointPosition,
+	normalizeBackgroundUrl,
+	normalizeSpacingStyles
+} from "@sixa/wp-block-utils";
+
+/**
+ * Constants
+ */
+const BLOCK_CLASSNAME = blockClassName( 'container' );
 
 /**
  * WordPress dependencies
  */
-const {
-	InnerBlocks,
-	getColorClassName,
-	__experimentalGetGradientClass,
-} = wp.blockEditor;
-
-const BLOCK_CLASSNAME = `wp-block-${ PREFIX }-container`;
+const { useBlockProps, InnerBlocks, getColorClassName, __experimentalGetGradientClass } = wp.blockEditor;
 
 const save = ( { attributes } ) => {
 	let positionValue = noop;
@@ -37,24 +37,22 @@ const save = ( { attributes } ) => {
 			customOverlayColor,
 			dimRatio,
 			focalPoint,
-			hasParallax,
+			contentPosition,
 			isRepeated,
+			hasParallax,
 			url,
 			padding,
 			margin,
 		} = attributes,
 		textColorClass = getColorClassName( 'color', textColor ),
-		overlayColorClass = getColorClassName(
-			'background-color',
-			overlayColor
-		),
+		overlayColorClass = getColorClassName( 'background-color', overlayColor ),
 		gradientClass = __experimentalGetGradientClass( gradient ),
 		isImageBackground = isEqual( backgroundType, IMAGE_TYPE ),
 		isVideoBackground = isEqual( backgroundType, VIDEO_TYPE ),
 		styles = {
 			...normalizeSpacingStyles( margin, 'margin' ),
 			...normalizeSpacingStyles( padding, 'padding' ),
-			...( isImageBackground ? backgroundImageStyles( url ) : {} ),
+			...( isImageBackground ? normalizeBackgroundUrl( url ) : {} ),
 		},
 		videoStyles = {};
 
@@ -71,7 +69,7 @@ const save = ( { attributes } ) => {
 	}
 
 	if ( focalPoint ) {
-		positionValue = focalPointPosition( focalPoint );
+		positionValue = normalizeFocalPointPosition( focalPoint );
 
 		if ( isImageBackground && ! hasParallax ) {
 			set( styles, 'backgroundPosition', positionValue );
@@ -84,33 +82,27 @@ const save = ( { attributes } ) => {
 
 	return (
 		<div
-			className={ classnames( dimRatioToClassName( dimRatio ), {
-				'has-parallax': hasParallax,
-				'is-repeated': isRepeated,
-				'has-background-dim': !! url && ! isEqual( dimRatio, 0 ),
-				'has-background-gradient': gradient || customGradient,
-				[ textColorClass ]: textColorClass,
-				[ overlayColorClass ]: overlayColorClass,
-				[ gradientClass ]: ! url && gradientClass,
+			{ ...useBlockProps.save( {
+				className: classnames( normalizeDimRatio( dimRatio ), positionToClassName( contentPosition ), {
+					'has-parallax': hasParallax,
+					'is-repeated': isRepeated,
+					'has-background-dim': !! url && ! isEqual( dimRatio, 0 ),
+					'has-background-gradient': gradient || customGradient,
+					'has-custom-content-position': ! isPositionCenter( contentPosition ),
+					[ textColorClass ]: textColorClass,
+					[ overlayColorClass ]: overlayColorClass,
+					[ gradientClass ]: ! url && gradientClass,
+				} ),
+				style: { ...styles },
 			} ) }
-			style={ { ...styles } }
 		>
-			{ url &&
-				( gradient || customGradient ) &&
-				! isEqual( dimRatio, 0 ) && (
-					<span
-						aria-hidden="true"
-						className={ classnames(
-							`${ BLOCK_CLASSNAME }__gradient-background`,
-							gradientClass
-						) }
-						style={
-							customGradient
-								? { background: customGradient }
-								: noop
-						}
-					/>
-				) }
+			{ url && ( gradient || customGradient ) && ! isEqual( dimRatio, 0 ) && (
+				<span
+					aria-hidden="true"
+					className={ classnames( `${ BLOCK_CLASSNAME }__gradient-background`, gradientClass ) }
+					style={ customGradient ? { background: customGradient } : noop }
+				/>
+			) }
 			{ isVideoBackground && url && (
 				<video
 					className={ `${ BLOCK_CLASSNAME }__video-background` }
@@ -124,9 +116,7 @@ const save = ( { attributes } ) => {
 			) }
 			<div
 				className={ `${ BLOCK_CLASSNAME }__content` }
-				style={ {
-					maxWidth: width ? `${ parseFloat( width ) }px` : noop(),
-				} }
+				style={ { maxWidth: width ? `${ parseFloat( width ) }px` : noop() } }
 			>
 				<InnerBlocks.Content />
 			</div>

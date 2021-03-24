@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/sixach/sixa-wp-block-container#readme",
   "dependencies": {
-    "@sixa/wp-block-utils": "^0.1.0",
+    "@sixa/wp-block-utils": "^0.2.0",
     "classnames": "^2.2.6",
     "lodash-es": "^4.17.21",
     "rename-keys": "^2.0.1"

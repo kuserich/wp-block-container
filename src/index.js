@@ -1,25 +1,27 @@
-// import './public.css';
-// import './editor.css';
+/**
+ * Define meta-data for registering block type.
+ */
 
 /**
  * Internal dependencies & components
  */
-import get from 'lodash-es/get';
-import attributes from './attributes';
+import { get } from 'lodash-es';
 import edit from './edit';
 import save from './save';
-import { icons } from '@sixa/wp-block-utils';
+import attributes from './attributes';
+import transforms from './transforms';
+import { icons } from "@sixa/wp-block-utils";
 
 /**
  * WordPress dependencies
  */
-const { __ } = wp.i18n;
+const { __, _x } = wp.i18n;
 
 /**
- * Meta-data for registering block type
+ * Block meta-data
  */
 const name = 'container';
-const title = __( 'Container', 'sixa-wp-blocks' );
+const title = __( 'Container', 'sixa-extras' );
 const category = 'design';
 const icon = get( icons, 'box' );
 
@@ -28,21 +30,12 @@ const icon = get( icons, 'box' );
  */
 const settings = {
 	title,
-	description: __(
-		'Wrap several blocks in a parent wrapper and do more styling as well.',
-		'snusclub-extras'
-	),
+	description: __( 'Wrap several blocks in a parent wrapper and do more styling as well.', 'sixa-extras' ),
 	keywords: [
-		'sixa-wp-blocks',
-		__( 'section', 'sixa-wp-blocks' ),
-		__( 'group', 'sixa-wp-blocks' ),
-		__( 'wrapper', 'sixa-wp-blocks' ),
-	],
-	styles: [
-		{
-			name: 'card',
-			label: __( 'Card', 'sixa-wp-blocks' ),
-		},
+		'sixa-extras',
+		_x( 'section', 'block keyword', 'sixa-extras' ),
+		_x( 'group', 'block keyword', 'sixa-extras' ),
+		_x( 'wrapper', 'block keyword', 'sixa-extras' ),
 	],
 	supports: {
 		anchor: true,
@@ -50,6 +43,7 @@ const settings = {
 		align: [ 'wide', 'full' ],
 	},
 	attributes,
+	transforms,
 	edit,
 	save,
 };

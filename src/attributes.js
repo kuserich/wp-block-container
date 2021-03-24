@@ -1,7 +1,11 @@
 /**
+ * Define structured data of this block.
+ */
+
+/**
  * External dependencies
  */
-import { spacingProperties } from '@sixa/wp-block-utils';
+import { spacingProperties } from "@sixa/wp-block-utils";
 
 const attributes = {
 	url: {
@@ -28,17 +32,16 @@ const attributes = {
 	focalPoint: {
 		type: 'object',
 	},
+	contentPosition: {
+		type: 'string',
+	},
 	margin: {
 		type: 'object',
-		default: {
-			...spacingProperties,
-		},
+		default: spacingProperties,
 	},
 	padding: {
 		type: 'object',
-		default: {
-			...spacingProperties,
-		},
+		default: spacingProperties,
 	},
 	backgroundType: {
 		type: 'string',
