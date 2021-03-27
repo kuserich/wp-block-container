@@ -6,22 +6,14 @@
  * External dependencies
  */
 import { get, pickBy, identity, isEqual, noop } from 'lodash-es';
-import { IMAGE_TYPE, VIDEO_TYPE } from "@sixa/wp-block-utils";
+import { IMAGE_TYPE, VIDEO_TYPE } from '@sixa/wp-block-utils';
 
 /**
  * WordPress dependencies
  */
 const { __ } = wp.i18n;
 const { InspectorControls, __experimentalPanelColorGradientSettings: PanelColorGradientSettings } = wp.blockEditor;
-const {
-	PanelBody,
-	PanelRow,
-	RangeControl,
-	ToggleControl,
-	FocalPointPicker,
-	Button,
-	__experimentalBoxControl: BoxControl,
-} = wp.components;
+const { PanelBody, PanelRow, RangeControl, ToggleControl, FocalPointPicker, Button, __experimentalBoxControl: BoxControl } = wp.components;
 
 /**
  * Constants

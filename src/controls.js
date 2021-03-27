@@ -12,11 +12,7 @@ import { IMAGE_TYPE, VIDEO_TYPE } from '@sixa/wp-block-utils';
  * WordPress dependencies
  */
 const { __ } = wp.i18n;
-const {
-	BlockControls,
-	MediaReplaceFlow,
-	__experimentalBlockAlignmentMatrixToolbar: BlockAlignmentMatrixToolbar,
-} = wp.blockEditor;
+const { BlockControls, MediaReplaceFlow, __experimentalBlockAlignmentMatrixToolbar: BlockAlignmentMatrixToolbar } = wp.blockEditor;
 const ALLOWED_MEDIA_TYPES = [ IMAGE_TYPE, VIDEO_TYPE ];
 
 export default function Controls( { attributes, setAttributes } ) {

@@ -9,15 +9,17 @@ import { isEqual, noop, get, set } from 'lodash-es';
 import classnames from 'classnames';
 import Controls from './controls';
 import Inspector from './inspector';
-import { IMAGE_TYPE, VIDEO_TYPE } from '@sixa/wp-block-utils';
-import { isPositionCenter, positionToClassName } from "@sixa/wp-block-utils";
-import { blockClassName } from "@sixa/wp-block-utils";
 import {
+	IMAGE_TYPE,
+	VIDEO_TYPE,
+	isPositionCenter,
+	positionToClassName,
+	blockClassName,
 	normalizeDimRatio,
 	normalizeFocalPointPosition,
 	normalizeBackgroundUrl,
-	normalizeSpacingStyles
-} from "@sixa/wp-block-utils";
+	normalizeSpacingStyles,
+} from '@sixa/wp-block-utils';
 
 /**
  * WordPress dependencies
@@ -37,16 +39,7 @@ const { useSelect } = wp.data;
  */
 const BLOCK_CLASSNAME = blockClassName( 'container' );
 
-const Edit = ( {
-	clientId,
-	attributes,
-	isSelected,
-	setAttributes,
-	textColor,
-	setTextColor,
-	overlayColor,
-	setOverlayColor,
-} ) => {
+const Edit = ( { clientId, attributes, isSelected, setAttributes, textColor, setTextColor, overlayColor, setOverlayColor } ) => {
 	let positionValue = noop();
 	const {
 			align,
@@ -167,7 +160,4 @@ const Edit = ( {
 	);
 };
 
-export default compose( [
-	withColors( { textColor: 'color' }, { overlayColor: 'background-color' } ),
-	withInstanceId,
-] )( Edit );
+export default compose( [ withColors( { textColor: 'color' }, { overlayColor: 'background-color' } ), withInstanceId ] )( Edit );

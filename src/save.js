@@ -4,15 +4,17 @@
 
 import { isEqual, noop, set } from 'lodash-es';
 import classnames from 'classnames';
-import { IMAGE_TYPE, VIDEO_TYPE} from "@sixa/wp-block-utils";
-import { isPositionCenter, positionToClassName } from "@sixa/wp-block-utils";
-import { blockClassName } from "@sixa/wp-block-utils";
 import {
+	IMAGE_TYPE,
+	VIDEO_TYPE,
+	isPositionCenter,
+	positionToClassName,
+	blockClassName,
 	normalizeDimRatio,
 	normalizeFocalPointPosition,
 	normalizeBackgroundUrl,
-	normalizeSpacingStyles
-} from "@sixa/wp-block-utils";
+	normalizeSpacingStyles,
+} from '@sixa/wp-block-utils';
 
 /**
  * Constants
@@ -114,10 +116,7 @@ const save = ( { attributes } ) => {
 					style={ { ...videoStyles } }
 				/>
 			) }
-			<div
-				className={ `${ BLOCK_CLASSNAME }__content` }
-				style={ { maxWidth: width ? `${ parseFloat( width ) }px` : noop() } }
-			>
+			<div className={ `${ BLOCK_CLASSNAME }__content` } style={ { maxWidth: width ? `${ parseFloat( width ) }px` : noop() } }>
 				<InnerBlocks.Content />
 			</div>
 		</div>

@@ -6,7 +6,7 @@
  * External dependencies
  */
 import { gt, map, get, noop, reduce, indexOf } from 'lodash-es';
-import { blockName } from "@sixa/wp-block-utils";
+import { blockName } from '@sixa/wp-block-utils';
 
 /**
  * WordPress dependencies
@@ -30,9 +30,7 @@ const transforms = {
 						blocks,
 						( accumulator, block ) => {
 							const { align } = get( block, 'attributes' );
-							return gt( indexOf( alignments, align ), indexOf( alignments, accumulator ) )
-								? align
-								: accumulator;
+							return gt( indexOf( alignments, align ), indexOf( alignments, accumulator ) ) ? align : accumulator;
 						},
 						noop()
 					);

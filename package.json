@@ -11,11 +11,11 @@
     "build": "npm run build:js && npm run build:css",
     "build:js": "rollup -c",
     "build:css": "postcss --config ./postcss.config.js src/**/*.css -d dist",
-    "lint:css": "./node_modules/stylelint/bin/stylelint.js \"src/**/*.css\"",
-    "lint:css-fix": "./node_modules/stylelint/bin/stylelint.js \"src/**/*.css\" --fix",
-    "lint:js": "./node_modules/eslint/bin/eslint.js src",
-    "lint:js-fix": "./node_modules/eslint/bin/eslint.js src --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint:css": "stylelint 'src/**/*.css'",
+    "lint:css-fix": "stylelint 'src/**/*.css' --fix",
+    "lint:js": "eslint src/ --ext=js,jsx",
+    "lint:js-fix": "eslint src/ --ext=js,jsx --fix",
+    "format:js": "prettier --ignore-path .eslintignore --write \"**/*.{js,jsx,json,ts,tsx}\""
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/sixach/sixa-wp-block-container#readme",
   "dependencies": {
-    "@sixa/wp-block-utils": "^0.2.0",
+    "@sixa/wp-block-utils": "^0.3.3",
     "classnames": "^2.2.6",
     "lodash-es": "^4.17.21",
     "rename-keys": "^2.0.1"
@@ -47,6 +47,7 @@
     "autoprefixer": "^10.2.5",
     "eslint": "^7.22.0",
     "husky": "^4.3.8",
+    "lint-staged": "^10.5.4",
     "postcss": "^8.2.8",
     "postcss-cli": "^8.3.1",
     "postcss-color-mod-function": "^3.0.3",
@@ -87,5 +88,19 @@
     "rollup-plugin-postcss": "^4.0.0",
     "rollup-plugin-terser": "^7.0.2",
     "stylelint": "^13.12.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.css": [
+      "npm run lint:css"
+    ],
+    "*.{js,ts,tsx}": [
+      "npm run lint:js",
+      "npm run format:js"
+    ]
   }
 }

@@ -5,7 +5,7 @@
 /**
  * External dependencies
  */
-import { spacingProperties } from "@sixa/wp-block-utils";
+import { spacingProperties } from '@sixa/wp-block-utils';
 
 const attributes = {
 	url: {

@@ -10,7 +10,7 @@ import edit from './edit';
 import save from './save';
 import attributes from './attributes';
 import transforms from './transforms';
-import { icons, PREFIX, blockName } from "@sixa/wp-block-utils";
+import { icons, PREFIX, blockName } from '@sixa/wp-block-utils';
 
 /**
  * WordPress dependencies
