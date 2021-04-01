@@ -1,0 +1,72 @@
+{
+	"name": "@sixa/wp-block-container",
+	"version": "0.1.0",
+	"description": "Container block for WordPress editor.",
+	"keywords": [
+		"section",
+		"group",
+		"wrapper"
+	],
+	"homepage": "https://github.com/sixach/sixa-wp-block-container#readme",
+	"bugs": {
+		"url": "https://github.com/sixach/sixa-wp-block-container/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sixach/sixa-wp-block-container.git"
+	},
+	"license": "GPL-3.0-or-later",
+	"author": "sixa AG",
+	"main": "build/index.js",
+	"scripts": {
+		"dev": "wp-scripts start",
+		"build": "wp-scripts build",
+		"format:js": "wp-scripts format-js",
+		"lint:css": "wp-scripts lint-style",
+		"lint:css-fix": "wp-scripts lint-style --fix",
+		"lint:js": "wp-scripts lint-js",
+		"lint:js-fix": "wp-scripts lint-js --fix",
+		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"packages-update": "wp-scripts packages-update"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.css": [
+			"npm run lint:css"
+		],
+		"*.{js,ts,tsx}": [
+			"npm run lint:js",
+			"npm run format:js"
+		]
+	},
+	"dependencies": {
+		"@wordpress/block-editor": "^5.3.0",
+		"@wordpress/blocks": "^8.0.0",
+		"@wordpress/components": "^13.0.0",
+		"@wordpress/data": "^4.27.0",
+		"@wordpress/element": "^2.20.0",
+		"@wordpress/hooks": "^2.12.0",
+		"@wordpress/i18n": "^3.19.0"
+	},
+	"devDependencies": {
+		"@babel/plugin-proposal-class-properties": "^7.12.1",
+		"@babel/plugin-proposal-object-rest-spread": "^7.12.1",
+		"@sixa/wp-block-utils": "^0.3.4",
+		"@wordpress/scripts": "^14.0.1",
+		"autoprefixer": "^9.8.6",
+		"classnames": "^2.2.6",
+		"husky": "^4.3.8",
+		"lint-staged": "^10.5.4",
+		"lodash": "^4.17.21",
+		"postcss-import": "^12.0.1",
+		"postcss-loader": "^3.0.0",
+		"postcss-nested": "^4.2.1",
+		"postcss-nested-ancestors": "^2.0.0",
+		"postcss-position": "^1.1.0",
+		"postcss-selector-replace": "^1.0.2"
+	}
+}
