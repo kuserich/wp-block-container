@@ -1,0 +1,75 @@
+{
+	"apiVersion": 2,
+	"name": "sixa/wp-block-container",
+	"title": "Container",
+	"category": "design",
+	"icon": "smiley",
+	"description": "Container block for WordPress editor.",
+	"keywords": [
+		"sixa",
+		"section",
+		"group",
+		"wrapper"
+	],
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"alignWide": true,
+		"alignFull": true
+	},
+	"attributes": {
+		"url": {
+			"type": "string"
+		},
+		"id": {
+			"type": "number"
+		},
+		"width": {
+			"type": "number"
+		},
+		"hasParallax": {
+			"type": "boolean",
+			"default": false
+		},
+		"isRepeated": {
+			"type": "boolean",
+			"default": false
+		},
+		"dimRatio": {
+			"type": "number",
+			"default": 50
+		},
+		"focalPoint": {
+			"type": "object"
+		},
+		"contentPosition": {
+			"type": "object"
+		},
+		"backgroundType": {
+			"type": "string",
+			"default": "image"
+		},
+		"textColor": {
+			"type": "string"
+		},
+		"customTextColor": {
+			"type": "string"
+		},
+		"overlayColor": {
+			"type": "string"
+		},
+		"customOverlayColor": {
+			"type": "string"
+		},
+		"gradient": {
+			"type": "string"
+		},
+		"customGradient": {
+			"type": "string"
+		}
+	},
+	"textdomain": "sixa",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}
