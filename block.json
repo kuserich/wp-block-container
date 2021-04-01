@@ -1,9 +1,9 @@
 {
 	"apiVersion": 2,
-	"name": "sixa/wp-block-container",
+	"name": "sixa/container",
 	"title": "Container",
 	"category": "design",
-	"icon": "smiley",
+	"icon": "block-default",
 	"description": "Container block for WordPress editor.",
 	"keywords": [
 		"sixa",
@@ -32,6 +32,10 @@
 			"default": false
 		},
 		"isRepeated": {
+			"type": "boolean",
+			"default": false
+		},
+		"isFullHeight": {
 			"type": "boolean",
 			"default": false
 		},
@@ -70,6 +74,5 @@
 	},
 	"textdomain": "sixa",
 	"editorScript": "file:./build/index.js",
-	"editorStyle": "file:./build/index.css",
 	"style": "file:./build/style-index.css"
 }
