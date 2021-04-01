@@ -103,7 +103,7 @@
 		}
 	}
 
-	.is-position {
+	&.is-position {
 
 		@each $horizontal, $justify in (left, center, right), (flex-start, center, flex-end) {
 
