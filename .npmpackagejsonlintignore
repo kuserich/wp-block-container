@@ -1,6 +1,0 @@
-# By default, all `node_modules` are ignored.
-
-dist
-build
-vendor
-wordpress
