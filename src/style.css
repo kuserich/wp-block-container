@@ -1,0 +1,119 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ */
+
+.wp-block-[prefix]-container {
+	position: relative;
+	background-size: cover;
+	background-position: center center;
+	box: middle center;
+	/* This block has customizable padding, border-box makes that more predictable. */
+	box-sizing: border-box;
+
+
+	&.has-parallax {
+		background-attachment: fixed;
+
+		/*
+         * Mobile Safari does not support fixed background attachment properly.
+         * See also https://stackoverflow.com/questions/24154666/background-size-cover-not-working-on-ios
+         * Chrome on Android does not appear to support the attachment at all: https://issuetracker.google.com/issues/36908439
+         */
+		@supports (-webkit-overflow-scrolling: touch) {
+			background-attachment: scroll;
+		}
+
+		/* Remove the appearance of scrolling based on OS-level animation preferences. */
+		@media (prefers-reduced-motion: reduce) {
+			background-attachment: scroll;
+		}
+	}
+
+	&.is-repeated {
+		background-repeat: repeat;
+		background-size: auto;
+	}
+
+	/**
+	 * Set a default background color for has-background-dim _unless_ it includes another
+	 * background-color class (e.g. has-green-background-color). The presence of another
+	 * background-color class implies that another style will provide the background color
+	 * for the overlay.
+	 *
+	 * See:
+	 *   - Issue with background color specificity: https://github.com/WordPress/gutenberg/issues/26545
+	 *   - Issue with alternative fix: https://github.com/WordPress/gutenberg/issues/26545
+	 */
+	&.has-background-dim:not([class*="-background-color"]) {
+		background-color: #000;
+	}
+
+	&__content {
+		width: 100%;
+		z-index: 1;
+		position: relative;
+	}
+
+	&__video-background {
+		position: absolute 0;
+		size: 100%;
+		object-fit: cover;
+		max-width: none;
+		max-height: none;
+		outline: none;
+		border: none;
+		box-shadow: none;
+	}
+
+	&__gradient-background {
+		z-index: 1;
+		position: absolute 0 0 0 0;
+		opacity: 0.5;
+
+		@for $i from 10 to 100 by 10 {
+
+			.has-background-dim-$i & {
+				opacity: calc($(i) / 100);
+			}
+		}
+	}
+
+	&.has-background-dim {
+
+		&:not(.has-background-gradient) {
+
+			&::before {
+				background-color: inherit;
+				z-index: 1;
+				position: absolute 0 0 0 0;
+				content: "";
+			}
+		}
+
+		&::before {
+			opacity: 0.5;
+		}
+
+		@for $i from 10 to 100 by 10 {
+
+			&-$i::before {
+				opacity: calc($(i) / 100);
+			}
+		}
+	}
+
+	.is-position {
+
+		@each $horizontal, $justify in (left, center, right), (flex-start, center, flex-end) {
+
+			@each $vertical, $align in (top, center, bottom), (flex-start, center, flex-end) {
+				&-$(vertical)-$(horizontal) {
+					align-items: $(align);
+					justify-content: $(justify);
+				}
+			}
+		}
+	}
+
+}
