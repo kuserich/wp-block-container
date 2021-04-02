@@ -79,6 +79,10 @@
 		}
 	}
 
+	&.is-full-height {
+		height: 100vh;
+	}
+
 	&.has-background-dim {
 
 		&:not(.has-background-gradient) {
