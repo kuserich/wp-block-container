@@ -14,8 +14,7 @@
 	"supports": {
 		"html": false,
 		"anchor": true,
-		"alignWide": true,
-		"alignFull": true
+		"align": [ "wide", "full" ]
 	},
 	"attributes": {
 		"url": {
