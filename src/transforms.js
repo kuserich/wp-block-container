@@ -1,7 +1,7 @@
 /**
  * Utility for libraries from the `Lodash`.
  */
-import { gt, map, get, noop, isEqual, reduce, indexOf } from 'lodash';
+import { gt, map, nth, get, noop, isEqual, reduce, indexOf } from 'lodash';
 
 /**
  * Utility helper methods specific for Sixa projects.
@@ -27,7 +27,7 @@ const transforms = {
 			blocks: [ '*' ],
 			__experimentalConvert( blocks ) {
 				// Avoid transforming a single `sixa/container` Block
-				if ( isEqual( 1, blocks.length ) && isEqual( blockName( 'container' ), blocks[ 0 ].name ) ) {
+				if ( isEqual( 1, blocks.length ) && isEqual( blockName( 'container' ), get( nth( blocks, 0 ), 'name' ) ) ) {
 					return;
 				}
 
