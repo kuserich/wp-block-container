@@ -17,6 +17,7 @@ import './style.css';
 /**
  * Internal dependencies
  */
+import './enhancements';
 import Edit from './edit';
 import save from './save';
 
