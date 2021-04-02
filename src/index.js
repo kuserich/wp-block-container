@@ -20,6 +20,7 @@ import './style.css';
 import './enhancements';
 import Edit from './edit';
 import save from './save';
+import transforms from './transforms';
 
 /**
  * Every block starts by registering a new block type definition.
@@ -31,6 +32,11 @@ registerBlockType( 'sixa/container', {
 	 * @see https://make.wordpress.org/core/2020/11/18/block-api-version-2/
 	 */
 	apiVersion: 2,
+
+	/**
+	 * @see ./transforms.js
+	 */
+	transforms,
 
 	/**
 	 * @see ./edit.js
