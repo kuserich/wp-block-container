@@ -1,6 +1,11 @@
 /* eslint-disable @wordpress/no-unsafe-wp-apis */
 
 /**
+ * Utility helper methods specific for Sixa projects.
+ */
+import { BackgroundImageSizeControl } from '@sixa/wp-block-utils';
+
+/**
  * Utility for libraries from the `Lodash`.
  */
 import { get, noop } from 'lodash';
@@ -62,7 +67,7 @@ export default function Inspector( {
 	utils,
 } ) {
 	const thresholds = get( utils, 'thresholds' );
-	const { url, width, hasParallax, isRepeated, dimRatio, focalPoint } = attributes;
+	const { url, width, hasParallax, isRepeated, dimRatio, focalPoint, backgroundSize, backgroundWidth, backgroundHeight } = attributes;
 	const { setGradient, gradientValue } = useGradient;
 	const showFocalPointPicker = isVideoBackground || ( isImageBackground && ( ! hasParallax || isRepeated ) );
 
@@ -97,6 +102,14 @@ export default function Inspector( {
 								label={ __( 'Repeated background', 'sixa' ) }
 								checked={ isRepeated }
 								onChange={ () => setAttributes( { isRepeated: ! isRepeated } ) }
+							/>
+							<BackgroundImageSizeControl
+								backgroundSize={ backgroundSize }
+								backgroundWidth={ backgroundWidth }
+								backgroundHeight={ backgroundHeight }
+								onChangeSize={ ( newSize ) => setAttributes( { backgroundSize: newSize } ) }
+								onChangeWidth={ ( newWidth ) => setAttributes( { backgroundWidth: newWidth } ) }
+								onChangeHeight={ ( newHeight ) => setAttributes( { backgroundHeight: newHeight } ) }
 							/>
 						</>
 					) }

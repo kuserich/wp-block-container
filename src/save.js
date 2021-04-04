@@ -22,6 +22,7 @@ import {
 	positionToClassName,
 	normalizeBackgroundUrl,
 	normalizeFocalPointPosition,
+	normalizeBackgroundSizeStyle,
 } from '@sixa/wp-block-utils';
 
 /**
@@ -65,6 +66,9 @@ export default function save( { attributes } ) {
 		customOverlayColor,
 		gradient,
 		customGradient,
+		backgroundSize,
+		backgroundWidth,
+		backgroundHeight,
 	} = attributes;
 	const textColorClass = getColorClassName( 'color', textColor );
 	const overlayColorClass = getColorClassName( 'background-color', overlayColor );
@@ -99,6 +103,10 @@ export default function save( { attributes } ) {
 		if ( isVideoBackground ) {
 			set( videoStyles, 'objectPosition', positionValue );
 		}
+	}
+
+	if ( backgroundSize !== 'auto' ) {
+		set( styles, 'backgroundSize', normalizeBackgroundSizeStyle( backgroundSize, backgroundWidth, backgroundHeight ) );
 	}
 
 	return (

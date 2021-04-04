@@ -22,6 +22,7 @@ import {
 	positionToClassName,
 	normalizeBackgroundUrl,
 	normalizeFocalPointPosition,
+	normalizeBackgroundSizeStyle,
 } from '@sixa/wp-block-utils';
 
 /**
@@ -95,7 +96,19 @@ function Edit( props ) {
 		isImageBackground,
 		isVideoBackground,
 	} = props;
-	const { url, width, hasParallax, isRepeated, isFullHeight, dimRatio, focalPoint, contentPosition } = attributes;
+	const {
+		url,
+		width,
+		hasParallax,
+		isRepeated,
+		isFullHeight,
+		dimRatio,
+		focalPoint,
+		contentPosition,
+		backgroundSize,
+		backgroundWidth,
+		backgroundHeight,
+	} = attributes;
 	const { gradientClass, gradientValue } = useGradient;
 	const textColorClass = get( textColor, 'class' );
 	const overlayColorClass = get( overlayColor, 'class' );
@@ -138,6 +151,10 @@ function Edit( props ) {
 		if ( isImageBackground ) {
 			set( styles, 'backgroundPosition', positionValue );
 		}
+	}
+
+	if ( backgroundSize !== 'auto' ) {
+		set( styles, 'backgroundSize', normalizeBackgroundSizeStyle( backgroundSize, backgroundWidth, backgroundHeight ) );
 	}
 
 	return (
