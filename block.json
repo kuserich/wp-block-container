@@ -35,16 +35,12 @@
 			"default": false
 		},
 	    "backgroundSize": {
-		  	"type": "string",
-		  	"default": "auto"
-		},
-		"backgroundWidth": {
-			"type": "string",
-			"default": "0px"
-		},
-		"backgroundHeight": {
-			"type": "string",
-			"default": "0px"
+		  	"type": "object",
+		  	"default": {
+			  "selection": "auto",
+			  "width": "0%",
+			  "height": "0%"
+			}
 		},
 		"isFullHeight": {
 			"type": "boolean",

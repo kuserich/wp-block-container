@@ -67,7 +67,7 @@ export default function Inspector( {
 	utils,
 } ) {
 	const thresholds = get( utils, 'thresholds' );
-	const { url, width, hasParallax, isRepeated, dimRatio, focalPoint, backgroundSize, backgroundWidth, backgroundHeight } = attributes;
+	const { url, width, hasParallax, isRepeated, dimRatio, focalPoint, backgroundSize } = attributes;
 	const { setGradient, gradientValue } = useGradient;
 	const showFocalPointPicker = isVideoBackground || ( isImageBackground && ( ! hasParallax || isRepeated ) );
 
@@ -105,11 +105,13 @@ export default function Inspector( {
 							/>
 							<BackgroundImageSizeControl
 								backgroundSize={ backgroundSize }
-								backgroundWidth={ backgroundWidth }
-								backgroundHeight={ backgroundHeight }
-								onChangeSize={ ( newSize ) => setAttributes( { backgroundSize: newSize } ) }
-								onChangeWidth={ ( newWidth ) => setAttributes( { backgroundWidth: newWidth } ) }
-								onChangeHeight={ ( newHeight ) => setAttributes( { backgroundHeight: newHeight } ) }
+								onChangeSelection={ ( selection ) => setAttributes( { backgroundSize: { ...backgroundSize, selection } } ) }
+								onChangeWidth={ ( newWidth ) =>
+									setAttributes( { backgroundSize: { ...backgroundSize, width: newWidth } } )
+								}
+								onChangeHeight={ ( newHeight ) =>
+									setAttributes( { backgroundSize: { ...backgroundSize, height: newHeight } } )
+								}
 							/>
 						</>
 					) }

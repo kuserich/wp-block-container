@@ -96,19 +96,7 @@ function Edit( props ) {
 		isImageBackground,
 		isVideoBackground,
 	} = props;
-	const {
-		url,
-		width,
-		hasParallax,
-		isRepeated,
-		isFullHeight,
-		dimRatio,
-		focalPoint,
-		contentPosition,
-		backgroundSize,
-		backgroundWidth,
-		backgroundHeight,
-	} = attributes;
+	const { url, width, hasParallax, isRepeated, isFullHeight, dimRatio, focalPoint, contentPosition, backgroundSize } = attributes;
 	const { gradientClass, gradientValue } = useGradient;
 	const textColorClass = get( textColor, 'class' );
 	const overlayColorClass = get( overlayColor, 'class' );
@@ -153,8 +141,8 @@ function Edit( props ) {
 		}
 	}
 
-	if ( backgroundSize !== 'auto' ) {
-		set( styles, 'backgroundSize', normalizeBackgroundSizeStyle( backgroundSize, backgroundWidth, backgroundHeight ) );
+	if ( backgroundSize.selection !== 'auto' ) {
+		set( styles, 'backgroundSize', normalizeBackgroundSizeStyle( backgroundSize ) );
 	}
 
 	return (

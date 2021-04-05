@@ -67,8 +67,6 @@ export default function save( { attributes } ) {
 		gradient,
 		customGradient,
 		backgroundSize,
-		backgroundWidth,
-		backgroundHeight,
 	} = attributes;
 	const textColorClass = getColorClassName( 'color', textColor );
 	const overlayColorClass = getColorClassName( 'background-color', overlayColor );
@@ -105,8 +103,8 @@ export default function save( { attributes } ) {
 		}
 	}
 
-	if ( backgroundSize !== 'auto' ) {
-		set( styles, 'backgroundSize', normalizeBackgroundSizeStyle( backgroundSize, backgroundWidth, backgroundHeight ) );
+	if ( backgroundSize.selection !== 'auto' ) {
+		set( styles, 'backgroundSize', normalizeBackgroundSizeStyle( backgroundSize ) );
 	}
 
 	return (
