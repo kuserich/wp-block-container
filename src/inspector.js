@@ -105,7 +105,9 @@ export default function Inspector( {
 							/>
 							<BackgroundImageSizeControl
 								backgroundSize={ backgroundSize }
-								onChangeSelection={ ( value ) => setAttributes( { backgroundSize: { ...backgroundSize, value } } ) }
+								onChangeSelection={ ( value ) =>
+									setAttributes( { backgroundSize: { ...backgroundSize, selection: value } } )
+								}
 								onChangeWidth={ ( value ) => setAttributes( { backgroundSize: { ...backgroundSize, width: value } } ) }
 								onChangeHeight={ ( value ) => setAttributes( { backgroundSize: { ...backgroundSize, height: value } } ) }
 							/>
