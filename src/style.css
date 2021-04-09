@@ -46,7 +46,7 @@
 	 *   - Issue with background color specificity: https://github.com/WordPress/gutenberg/issues/26545
 	 *   - Issue with alternative fix: https://github.com/WordPress/gutenberg/issues/26545
 	 */
-	&.has-background-dim:not([class*="-background-color"], [class*="no-overlay"]) {
+	&.has-background-dim:not([class*="-background-color"]) {
 		background-color: #000;
 	}
 

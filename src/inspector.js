@@ -67,7 +67,7 @@ export default function Inspector( {
 	utils,
 } ) {
 	const thresholds = get( utils, 'thresholds' );
-	const { url, width, hasParallax, isRepeated, hasOverlay, dimRatio, focalPoint, backgroundSize } = attributes;
+	const { url, width, hasParallax, isRepeated, dimRatio, focalPoint, backgroundSize } = attributes;
 	const { setGradient, gradientValue } = useGradient;
 	const showFocalPointPicker = isVideoBackground || ( isImageBackground && ( ! hasParallax || isRepeated ) );
 
@@ -181,17 +181,14 @@ export default function Inspector( {
 						readonly={ true }
 						label={ __( 'Opacity', 'sixa' ) }
 						value={ dimRatio }
+						allowReset={ true }
+						resetFallbackValue={ get( thresholds, 'dim.min' ) }
 						min={ get( thresholds, 'dim.min' ) }
 						max={ get( thresholds, 'dim.max' ) }
 						step={ get( thresholds, 'dim.step' ) }
 						onChange={ ( value ) => setAttributes( { dimRatio: value } ) }
 					/>
 				) }
-				<ToggleControl
-					label={ __( 'Disable overlay', 'sixa' ) }
-                	checked={ hasOverlay }
-                	onChange={ () => setAttributes( { hasOverlay: ! hasOverlay } ) }
-            	/>
 			</PanelColorGradientSettings>
 		</InspectorControls>
 	);
