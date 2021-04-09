@@ -96,7 +96,7 @@ function Edit( props ) {
 		isImageBackground,
 		isVideoBackground,
 	} = props;
-	const { url, width, hasParallax, isRepeated, isFullHeight, dimRatio, focalPoint, contentPosition, backgroundSize } = attributes;
+	const { url, width, hasParallax, isRepeated, hasOverlay, isFullHeight, dimRatio, focalPoint, contentPosition, backgroundSize } = attributes;
 	const { gradientClass, gradientValue } = useGradient;
 	const textColorClass = get( textColor, 'class' );
 	const overlayColorClass = get( overlayColor, 'class' );
@@ -154,6 +154,7 @@ function Edit( props ) {
 						'is-repeated': isRepeated,
 						'is-full-height': isFullHeight,
 						'has-background-dim': !! url && ! isDimRatio,
+						'no-overlay': hasOverlay,
 						'has-background-gradient': gradientValue,
 						'has-custom-content-position': ! isPositionCenter( contentPosition ),
 						[ textColorClass ]: textColorClass,

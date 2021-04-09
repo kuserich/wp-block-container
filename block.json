@@ -30,6 +30,10 @@
 			"type": "boolean",
 			"default": false
 		},
+		"hasOverlay": {
+            "type": "boolean",
+            "default": false
+        },
 		"isRepeated": {
 			"type": "boolean",
 			"default": false

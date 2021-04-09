@@ -67,7 +67,7 @@ export default function Inspector( {
 	utils,
 } ) {
 	const thresholds = get( utils, 'thresholds' );
-	const { url, width, hasParallax, isRepeated, dimRatio, focalPoint, backgroundSize } = attributes;
+	const { url, width, hasParallax, isRepeated, hasOverlay, dimRatio, focalPoint, backgroundSize } = attributes;
 	const { setGradient, gradientValue } = useGradient;
 	const showFocalPointPicker = isVideoBackground || ( isImageBackground && ( ! hasParallax || isRepeated ) );
 
@@ -151,14 +151,28 @@ export default function Inspector( {
 						label: __( 'Text', 'sixa' ),
 						colorValue: get( textColor, 'color' ),
 						onColorChange: setTextColor,
-					},
+					}
+				] }
+			>
+				<ContrastChecker
+					{ ...{
+						textColor: get( textColor, 'color' ),
+						backgroundColor: get( overlayColor, 'color' ),
+					} }
+					isLargeText={ false }
+				/>
+			</PanelColorGradientSettings>
+			<PanelColorGradientSettings
+				title={ __( 'Overlay Settings', 'sixa' ) }
+				initialOpen={ false }
+				settings={ [
 					{
 						label: __( 'Overlay', 'sixa' ),
 						colorValue: get( overlayColor, 'color' ),
 						gradientValue,
 						onColorChange: setOverlayColor,
 						onGradientChange: setGradient,
-					},
+					}
 				] }
 			>
 				{ !! url && (
@@ -173,13 +187,11 @@ export default function Inspector( {
 						onChange={ ( value ) => setAttributes( { dimRatio: value } ) }
 					/>
 				) }
-				<ContrastChecker
-					{ ...{
-						textColor: get( textColor, 'color' ),
-						backgroundColor: get( overlayColor, 'color' ),
-					} }
-					isLargeText={ false }
-				/>
+				<ToggleControl
+					label={ __( 'Disable overlay', 'sixa' ) }
+                	checked={ hasOverlay }
+                	onChange={ () => setAttributes( { hasOverlay: ! hasOverlay } ) }
+            	/>
 			</PanelColorGradientSettings>
 		</InspectorControls>
 	);
