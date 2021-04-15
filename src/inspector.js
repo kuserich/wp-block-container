@@ -73,7 +73,7 @@ export default function Inspector( {
 
 	return (
 		<InspectorControls>
-			<PanelBody initialOpen={ true }>
+			<PanelBody initialOpen>
 				<RangeControl
 					allowReset
 					value={ width }
@@ -85,7 +85,7 @@ export default function Inspector( {
 				/>
 			</PanelBody>
 			{ !! url && (
-				<PanelBody title={ __( 'Media Settings', 'sixa' ) } initialOpen={ true }>
+				<PanelBody title={ __( 'Media Settings', 'sixa' ) } initialOpen>
 					{ isImageBackground && (
 						<>
 							<ToggleControl
@@ -152,6 +152,20 @@ export default function Inspector( {
 						colorValue: get( textColor, 'color' ),
 						onColorChange: setTextColor,
 					},
+				] }
+			>
+				<ContrastChecker
+					{ ...{
+						textColor: get( textColor, 'color' ),
+						backgroundColor: get( overlayColor, 'color' ),
+					} }
+					isLargeText={ false }
+				/>
+			</PanelColorGradientSettings>
+			<PanelColorGradientSettings
+				title={ __( 'Overlay Settings', 'sixa' ) }
+				initialOpen={ false }
+				settings={ [
 					{
 						label: __( 'Overlay', 'sixa' ),
 						colorValue: get( overlayColor, 'color' ),
@@ -163,23 +177,18 @@ export default function Inspector( {
 			>
 				{ !! url && (
 					<RangeControl
-						required={ true }
-						readonly={ true }
+						allowReset
+						required
+						readonly
 						label={ __( 'Opacity', 'sixa' ) }
 						value={ dimRatio }
+						resetFallbackValue={ get( thresholds, 'dim.min' ) }
 						min={ get( thresholds, 'dim.min' ) }
 						max={ get( thresholds, 'dim.max' ) }
 						step={ get( thresholds, 'dim.step' ) }
 						onChange={ ( value ) => setAttributes( { dimRatio: value } ) }
 					/>
 				) }
-				<ContrastChecker
-					{ ...{
-						textColor: get( textColor, 'color' ),
-						backgroundColor: get( overlayColor, 'color' ),
-					} }
-					isLargeText={ false }
-				/>
 			</PanelColorGradientSettings>
 		</InspectorControls>
 	);
