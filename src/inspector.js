@@ -73,7 +73,7 @@ export default function Inspector( {
 
 	return (
 		<InspectorControls>
-			<PanelBody initialOpen={ true }>
+			<PanelBody initialOpen>
 				<RangeControl
 					allowReset
 					value={ width }
@@ -85,7 +85,7 @@ export default function Inspector( {
 				/>
 			</PanelBody>
 			{ !! url && (
-				<PanelBody title={ __( 'Media Settings', 'sixa' ) } initialOpen={ true }>
+				<PanelBody title={ __( 'Media Settings', 'sixa' ) } initialOpen>
 					{ isImageBackground && (
 						<>
 							<ToggleControl
@@ -151,7 +151,7 @@ export default function Inspector( {
 						label: __( 'Text', 'sixa' ),
 						colorValue: get( textColor, 'color' ),
 						onColorChange: setTextColor,
-					}
+					},
 				] }
 			>
 				<ContrastChecker
@@ -172,16 +172,16 @@ export default function Inspector( {
 						gradientValue,
 						onColorChange: setOverlayColor,
 						onGradientChange: setGradient,
-					}
+					},
 				] }
 			>
 				{ !! url && (
 					<RangeControl
-						required={ true }
-						readonly={ true }
+						allowReset
+						required
+						readonly
 						label={ __( 'Opacity', 'sixa' ) }
 						value={ dimRatio }
-						allowReset={ true }
 						resetFallbackValue={ get( thresholds, 'dim.min' ) }
 						min={ get( thresholds, 'dim.min' ) }
 						max={ get( thresholds, 'dim.max' ) }
