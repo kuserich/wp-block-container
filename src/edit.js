@@ -61,7 +61,7 @@ import {
 import utils from './utils';
 
 /**
- * Inspector Controls sidebar settings.
+ * Block Toolbar controls settings.
  */
 import Controls from './controls';
 
