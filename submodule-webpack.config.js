@@ -7,26 +7,25 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/#provide-your-own-webpack-config
  */
 
-const fs = require( 'fs' );
-const defaultConfig = require( fs.existsSync( './webpack.config.js' )
+const fs = require('fs');
+const defaultConfig = require(fs.existsSync('./webpack.config.js')
 	? './webpack.config.js'
-	: './node_modules/@wordpress/scripts/config/webpack.config.js' );
-const childProc = require( 'child_process' );
+	: './node_modules/@wordpress/scripts/config/webpack.config.js');
+const childProc = require('child_process');
 
 module.exports = {
 	...defaultConfig,
 	plugins: [
 		...defaultConfig.plugins,
 		{
-			apply: ( compiler ) => {
-				compiler.hooks.afterEmit.tap( 'AfterEmitPlugin', () => {
-					childProc.exec( '../../prepare-blocks.sh', ( err, stdout, stderr ) => {
+			apply: (compiler) => {
+				compiler.hooks.afterEmit.tap('AfterEmitPlugin', () => {
+					childProc.exec('../../prepare-blocks.sh', (err, stdout, stderr) => {
 						if (err) {
-							console.error(`Execution error: ${err}`);
-							return;
-						};
-						if ( stdout ) process.stdout.write( stdout );
-						if ( stderr ) process.stderr.write( stderr );
+							throw new Error(`Execution error: ${err}`);
+						}
+						if (stdout) process.stdout.write(stdout);
+						if (stderr) process.stderr.write(stderr);
 					});
 				});
 			},
