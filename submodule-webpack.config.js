@@ -20,7 +20,11 @@ module.exports = {
 		{
 			apply: ( compiler ) => {
 				compiler.hooks.afterEmit.tap( 'AfterEmitPlugin', () => {
-					childProc.exec( '../../prepare-blocks.sh', ( stdout, stderr ) => {
+					childProc.exec( '../../prepare-blocks.sh', ( err, stdout, stderr ) => {
+						if (err) {
+							console.error(`Execution error: ${err}`);
+							return;
+						};
 						if ( stdout ) process.stdout.write( stdout );
 						if ( stderr ) process.stderr.write( stderr );
 					});
