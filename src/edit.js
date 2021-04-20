@@ -122,10 +122,16 @@ function Edit( props ) {
 			hasInnerBlocks: !! ( block && block.innerBlocks.length ),
 		};
 	} );
+
+	const contentStyles = {};
+	if ( !! width ) {
+		set( contentStyles, 'maxWidth', `${ parseFloat( width ) }px` );
+	}
+
 	const innerBlocksProps = useInnerBlocksProps(
 		{
 			className: `${ CLASSNAME }__content`,
-			style: { maxWidth: width ? `${ parseFloat( width ) }px` : noop() },
+			style: contentStyles,
 		},
 		{
 			templateLock: false,

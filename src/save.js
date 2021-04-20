@@ -79,6 +79,11 @@ export default function save( { attributes } ) {
 		...( isImageBackground ? normalizeBackgroundUrl( url ) : {} ),
 	};
 	const videoStyles = {};
+	const contentStyles = {};
+
+	if ( !! width ) {
+		set( contentStyles, 'maxWidth', `${ parseFloat( width ) }px` );
+	}
 
 	if ( ! textColorClass ) {
 		set( styles, 'color', customTextColor );
@@ -147,7 +152,7 @@ export default function save( { attributes } ) {
 					className={ `${ CLASSNAME }__video-background` }
 				/>
 			) }
-			<div className={ `${ CLASSNAME }__content` } style={ { maxWidth: width ? `${ parseFloat( width ) }px` : noop() } }>
+			<div className={ `${ CLASSNAME }__content` } style={ contentStyles }>
 				<InnerBlocks.Content />
 			</div>
 		</div>
