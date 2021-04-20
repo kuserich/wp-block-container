@@ -67,7 +67,7 @@ export default function Inspector( {
 	utils,
 } ) {
 	const thresholds = get( utils, 'thresholds' );
-	const { url, width, hasParallax, isRepeated, dimRatio, focalPoint, backgroundSize } = attributes;
+	const { url, width, hasParallax, isRepeated, dimRatio, focalPoint, backgroundSize, minHeight } = attributes;
 	const { setGradient, gradientValue } = useGradient;
 	const showFocalPointPicker = isVideoBackground || ( isImageBackground && ( ! hasParallax || isRepeated ) );
 
@@ -82,6 +82,15 @@ export default function Inspector( {
 					min={ get( thresholds, 'width.min' ) }
 					max={ get( thresholds, 'width.max' ) }
 					onChange={ ( value ) => setAttributes( { width: value } ) }
+				/>
+				<RangeControl
+					allowReset
+					value={ minHeight }
+					label={ __( 'Min. Height', 'sixa' ) }
+					help={ __( 'in pixels', 'sixa' ) }
+					min={ get( thresholds, 'height.min' ) }
+					max={ get( thresholds, 'height.max' ) }
+					onChange={ ( value ) => setAttributes( { minHeight: value } ) }
 				/>
 			</PanelBody>
 			{ !! url && (
