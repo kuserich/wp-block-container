@@ -96,7 +96,7 @@ function Edit( props ) {
 		isImageBackground,
 		isVideoBackground,
 	} = props;
-	const { url, width, hasParallax, isRepeated, isFullHeight, dimRatio, focalPoint, contentPosition, backgroundSize } = attributes;
+	const { url, width, hasParallax, isRepeated, isFullHeight, dimRatio, focalPoint, contentPosition, backgroundSize, minHeight } = attributes;
 	const { gradientClass, gradientValue } = useGradient;
 	const textColorClass = get( textColor, 'class' );
 	const overlayColorClass = get( overlayColor, 'class' );
@@ -114,7 +114,10 @@ function Edit( props ) {
 	const innerBlocksProps = useInnerBlocksProps(
 		{
 			className: `${ CLASSNAME }__content`,
-			style: { maxWidth: width ? `${ parseFloat( width ) }px` : noop() },
+			style: {
+				maxWidth: width ? `${ parseFloat( width ) }px` : noop(),
+				minHeight: minHeight ? `${ parseFloat( minHeight ) }px` : noop(),
+			},
 		},
 		{
 			templateLock: false,
