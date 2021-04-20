@@ -67,6 +67,7 @@ export default function save( { attributes } ) {
 		gradient,
 		customGradient,
 		backgroundSize,
+		minHeight,
 	} = attributes;
 	const textColorClass = getColorClassName( 'color', textColor );
 	const overlayColorClass = getColorClassName( 'background-color', overlayColor );
@@ -78,6 +79,10 @@ export default function save( { attributes } ) {
 		...( isImageBackground ? normalizeBackgroundUrl( url ) : {} ),
 	};
 	const videoStyles = {};
+	const contentStyles = {
+		maxWidth: width ? `${ parseFloat( width ) }px` : noop(),
+		minHeight: minHeight ? `${ parseFloat( minHeight ) }px` : noop(),
+	}
 
 	if ( ! textColorClass ) {
 		set( styles, 'color', customTextColor );
@@ -142,7 +147,7 @@ export default function save( { attributes } ) {
 					className={ `${ CLASSNAME }__video-background` }
 				/>
 			) }
-			<div className={ `${ CLASSNAME }__content` } style={ { maxWidth: width ? `${ parseFloat( width ) }px` : noop() } }>
+			<div className={ `${ CLASSNAME }__content` } style={ contentStyles }>
 				<InnerBlocks.Content />
 			</div>
 		</div>
