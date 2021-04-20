@@ -82,7 +82,7 @@ export default function save( { attributes } ) {
 	const contentStyles = {};
 
 	if ( !! width ) {
-		set( contentStyles, 'maxWidth', `${ parseFloat( width ) }px` );
+		set( contentStyles, 'maxWidth', `${ width }px` );
 	}
 
 	if ( ! textColorClass ) {
