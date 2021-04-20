@@ -82,7 +82,7 @@ export default function save( { attributes } ) {
 	const contentStyles = {
 		maxWidth: width ? `${ parseFloat( width ) }px` : noop(),
 		minHeight: minHeight ? `${ parseFloat( minHeight ) }px` : noop(),
-	}
+	};
 
 	if ( ! textColorClass ) {
 		set( styles, 'color', customTextColor );

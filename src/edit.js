@@ -96,7 +96,18 @@ function Edit( props ) {
 		isImageBackground,
 		isVideoBackground,
 	} = props;
-	const { url, width, hasParallax, isRepeated, isFullHeight, dimRatio, focalPoint, contentPosition, backgroundSize, minHeight } = attributes;
+	const {
+		url,
+		width,
+		hasParallax,
+		isRepeated,
+		isFullHeight,
+		dimRatio,
+		focalPoint,
+		contentPosition,
+		backgroundSize,
+		minHeight,
+	} = attributes;
 	const { gradientClass, gradientValue } = useGradient;
 	const textColorClass = get( textColor, 'class' );
 	const overlayColorClass = get( overlayColor, 'class' );
