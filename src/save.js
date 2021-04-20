@@ -79,10 +79,6 @@ export default function save( { attributes } ) {
 		...( isImageBackground ? normalizeBackgroundUrl( url ) : {} ),
 	};
 	const videoStyles = {};
-	const contentStyles = {
-		maxWidth: width ? `${ parseFloat( width ) }px` : noop(),
-		minHeight: minHeight ? `${ parseFloat( minHeight ) }px` : noop(),
-	};
 
 	if ( ! textColorClass ) {
 		set( styles, 'color', customTextColor );
@@ -110,6 +106,10 @@ export default function save( { attributes } ) {
 
 	if ( backgroundSize.selection !== 'auto' ) {
 		set( styles, 'backgroundSize', normalizeBackgroundSizeStyle( backgroundSize ) );
+	}
+
+	if ( !! minHeight ) {
+		set( styles, 'minHeight', `${ minHeight }px` );
 	}
 
 	return (
@@ -147,7 +147,7 @@ export default function save( { attributes } ) {
 					className={ `${ CLASSNAME }__video-background` }
 				/>
 			) }
-			<div className={ `${ CLASSNAME }__content` } style={ contentStyles }>
+			<div className={ `${ CLASSNAME }__content` } style={ { maxWidth: width ? `${ parseFloat( width ) }px` : noop() } }>
 				<InnerBlocks.Content />
 			</div>
 		</div>

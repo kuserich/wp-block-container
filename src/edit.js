@@ -125,10 +125,7 @@ function Edit( props ) {
 	const innerBlocksProps = useInnerBlocksProps(
 		{
 			className: `${ CLASSNAME }__content`,
-			style: {
-				maxWidth: width ? `${ parseFloat( width ) }px` : noop(),
-				minHeight: minHeight ? `${ parseFloat( minHeight ) }px` : noop(),
-			},
+			style: { maxWidth: width ? `${ parseFloat( width ) }px` : noop() },
 		},
 		{
 			templateLock: false,
@@ -157,6 +154,10 @@ function Edit( props ) {
 
 	if ( backgroundSize.selection !== 'auto' ) {
 		set( styles, 'backgroundSize', normalizeBackgroundSizeStyle( backgroundSize ) );
+	}
+
+	if ( !! minHeight ) {
+		set( styles, 'minHeight', `${ minHeight }px` );
 	}
 
 	return (
