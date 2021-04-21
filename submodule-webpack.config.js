@@ -11,7 +11,7 @@ const fs = require('fs');
 const defaultConfig = require(fs.existsSync('./webpack.config.js')
 	? './webpack.config.js'
 	: './node_modules/@wordpress/scripts/config/webpack.config.js');
-const childProc = require('child_process');
+const { spawn } = require('child_process');
 
 module.exports = {
 	...defaultConfig,
@@ -20,12 +20,22 @@ module.exports = {
 		{
 			apply: (compiler) => {
 				compiler.hooks.afterEmit.tap('AfterEmitPlugin', () => {
-					childProc.exec('../../prepare-blocks.sh', (err, stdout, stderr) => {
-						if (err) {
-							throw new Error(`Execution error: ${err}`);
-						}
-						if (stdout) process.stdout.write(stdout);
-						if (stderr) process.stderr.write(stderr);
+					const child = spawn('bash', ['../../prepare-blocks.sh']);
+
+					child.stdout.on('data', (data) => {
+						process.stdout.write(`stdout:\n${data}`);
+					});
+
+					child.stderr.on('data', (data) => {
+						process.stderr.write(`stderr:\n${data}`);
+					});
+
+					child.on('error', (error) => {
+						process.stderr.write(`error: ${error}`);
+					});
+
+					child.on('close', (code) => {
+						process.stdout.write(`child process exited with code ${code}`);
 					});
 				});
 			},
