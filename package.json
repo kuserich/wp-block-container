@@ -20,7 +20,9 @@
 	"main": "build/index.js",
 	"scripts": {
 		"dev": "wp-scripts start",
+		"module-dev": "wp-scripts start --config submodule-webpack.config.js",
 		"build": "wp-scripts build",
+		"module-build": "wp-scripts build --config submodule-webpack.config.js",
 		"format:js": "wp-scripts format-js",
 		"lint:css": "wp-scripts lint-style",
 		"lint:css-fix": "wp-scripts lint-style --fix",
