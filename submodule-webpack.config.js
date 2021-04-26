@@ -7,37 +7,37 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/#provide-your-own-webpack-config
  */
 
-const fs = require('fs');
-const defaultConfig = require(fs.existsSync('./webpack.config.js')
+const fs = require( 'fs' );
+const defaultConfig = require( fs.existsSync( './webpack.config.js' )
 	? './webpack.config.js'
-	: './node_modules/@wordpress/scripts/config/webpack.config.js');
-const { spawn } = require('child_process');
+	: './node_modules/@wordpress/scripts/config/webpack.config.js' );
+const { spawn } = require( 'child_process' );
 
 module.exports = {
 	...defaultConfig,
 	plugins: [
 		...defaultConfig.plugins,
 		{
-			apply: (compiler) => {
-				compiler.hooks.afterEmit.tap('AfterEmitPlugin', () => {
-					const child = spawn('bash', ['../../prepare-blocks.sh']);
+			apply: ( compiler ) => {
+				compiler.hooks.afterEmit.tap( 'AfterEmitPlugin', () => {
+					const child = spawn( 'bash', [ '../../prepare-blocks.sh' ] );
 
-					child.stdout.on('data', (data) => {
-						process.stdout.write(`stdout:\n${data}`);
-					});
+					child.stdout.on( 'data', ( data ) => {
+						process.stdout.write( `stdout:\n${ data }` );
+					} );
 
-					child.stderr.on('data', (data) => {
-						process.stderr.write(`stderr:\n${data}`);
-					});
+					child.stderr.on( 'data', ( data ) => {
+						process.stderr.write( `stderr:\n${ data }` );
+					} );
 
-					child.on('error', (error) => {
-						process.stderr.write(`error: ${error}`);
-					});
+					child.on( 'error', ( error ) => {
+						process.stderr.write( `error: ${ error }` );
+					} );
 
-					child.on('close', (code) => {
-						process.stdout.write(`child process exited with code ${code}`);
-					});
-				});
+					child.on( 'close', ( code ) => {
+						process.stdout.write( `child process exited with code ${ code }` );
+					} );
+				} );
 			},
 		},
 	],
