@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Sixa Container Block</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="Googlebot-News" content="noindex, nofollow" />
+		<meta name="googlebot" content="noindex, nofollow" />
+		<meta name="robots" content="noindex, nofollow" />
+		<meta name="robots" content="noimageindex" />
+		<meta name="googlebot" content="unavailable_after: 21-Mar-2020 15:00:00 EST" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css" title="docsify-darklight-theme" type="text/css" />
+	</head>
+	<body>
+		<div id="app"></div>
+		<script>
+			window.$docsify = {
+			name: 'Container Block',
+			auto2top: true,
+			coverpage: false,
+			loadSidebar: true,
+			maxLevel: 4,
+			subMaxLevel: 2,
+			formatUpdated: function( time ) {
+				return time;
+			},
+			plugins: [
+				function( hook ) {
+					hook.beforeEach( function( html ) {
+						return html + '\n\n----\n' + 'Last updated:  ' + '{docsify-updated}'
+					} )
+				}
+			],
+			darklightTheme: {
+				bodyFontSize: '17px',
+				dark: {
+					accent: '#FFB900',
+					textColor: '#A0A5AA',
+					blockQuoteColour: '#858585',
+					highlightColor: '#DC3232',
+					sidebarSublink: '#A0A5AA',
+				},
+				light: {
+					accent: '#0073AA',
+					blockQuoteColor: '#858585',
+					highlightColor: '#DC3232',
+					sidebarSublink: '#A0A5AA',
+				}
+			}
+		}
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+		<script src="https://unpkg.com/docsify-copy-code@2"></script>
+		<script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-php.min.js"></script>
+	</body>
+</html>
