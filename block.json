@@ -3,7 +3,7 @@
 	"name": "sixa/container",
 	"title": "Container",
 	"category": "design",
-	"icon": "block-default",
+	"icon": "insert",
 	"description": "Container block for WordPress editor.",
 	"keywords": [
 		"sixa",
