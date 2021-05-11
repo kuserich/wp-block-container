@@ -54,6 +54,10 @@
 		width: 100%;
 		z-index: 1;
 		position: relative;
+
+		> .block-list-appender {
+			max-width: 100%;
+		}
 	}
 
 	&__video-background {
