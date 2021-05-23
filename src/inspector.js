@@ -1,9 +1,9 @@
 /* eslint-disable @wordpress/no-unsafe-wp-apis */
 
 /**
- * Utility helper methods specific for Sixa projects.
- */
-import { BackgroundImageSizeControl } from '@sixa/wp-block-utils';
+  * Helper React components specific for Sixa projects.
+  */
+import { BackgroundSizeControl } from '@sixach/wp-block-components';
 
 /**
  * Utility for libraries from the `Lodash`.
@@ -112,13 +112,10 @@ export default function Inspector( {
 								checked={ isRepeated }
 								onChange={ () => setAttributes( { isRepeated: ! isRepeated } ) }
 							/>
-							<BackgroundImageSizeControl
-								backgroundSize={ backgroundSize }
-								onChangeSelection={ ( value ) =>
-									setAttributes( { backgroundSize: { ...backgroundSize, selection: value } } )
-								}
-								onChangeWidth={ ( value ) => setAttributes( { backgroundSize: { ...backgroundSize, width: value } } ) }
-								onChangeHeight={ ( value ) => setAttributes( { backgroundSize: { ...backgroundSize, height: value } } ) }
+							<BackgroundSizeControl
+								label={ __( 'Background Size', 'sixa' ) }
+								value={ backgroundSize }
+								onChange={ ( value ) => setAttributes( { backgroundSize: value } ) }
 							/>
 						</>
 					) }
