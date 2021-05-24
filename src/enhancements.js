@@ -22,3 +22,4 @@ function allowBlock( allowedBlocks ) {
 	return union( allowedBlocks, [ 'sixa/container' ] );
 }
 addFilter( 'sixa.extensionSpacingAllowedBlocks', 'sixa/addSpacingSupport', allowBlock );
+addFilter( 'sixa.extensionEmbedBackgroundVideoAllowedBlocks', 'sixa/addEmbedBackgroundVideoSupport', allowBlock );
