@@ -112,6 +112,17 @@
 		}
 	}
 
+	&.has-background-size {
+
+		&-auto {
+			background-size: auto;
+		}
+
+		&-contain {
+			background-size: contain;
+		}
+	}
+
 	&.is-position {
 
 		@each $horizontal, $justify in (left, center, right), (flex-start, center, flex-end) {
