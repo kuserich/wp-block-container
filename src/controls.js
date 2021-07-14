@@ -45,7 +45,6 @@ export default function Controls( { attributes, setAttributes, hasBackground } )
 				<BlockAlignmentMatrixToolbar
 					label={ __( 'Change content position', 'sixa' ) }
 					value={ contentPosition }
-					isDisabled={ ! hasBackground }
 					onChange={ ( value ) => setAttributes( { contentPosition: value } ) }
 				/>
 				<FullHeightAlignmentToolbar
