@@ -1,5 +1,32 @@
 {
-  "extends": [
-    "config:base"
-  ]
+	"extends": [ "config:base" ],
+	"lockFileMaintenance": { "enabled": true },
+	"ignoreDeps": [ "husky" ],
+	"schedule": [ "before 3am on wednesday" ],
+	"composer": {
+		"enabled": false
+	},
+	"labels": [ "type: dependencies", "skip-changelog" ],
+	"packageRules": [
+		{
+			"matchPackagePatterns": "^@wordpress",
+			"groupName": [ "wordpress packages" ],
+			"addLabels": [ "WordPress" ]
+		},
+		{
+			"matchPackagePatterns": "^postcss",
+			"groupName": [ "postcss packages" ],
+			"addLabels": [ "PostCSS" ]
+		},
+		{
+			"updateTypes": [ "minor", "patch", "pin", "digest" ],
+			"automerge": true,
+			"requiredStatusChecks": null
+		},
+		{
+			"updateTypes": [ "minor", "patch", "pin", "digest" ],
+			"depTypeList": [ "devDependencies" ],
+			"automerge": true
+		}
+	]
 }
