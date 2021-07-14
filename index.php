@@ -54,8 +54,8 @@ function render_block( array $attributes = array(), string $content ): string {
 	$node  = $xpath->query( "//div[contains(@class, 'wp-block-sixa-container')]" );
 
 	if ( $node ) {
-		$before_content = apply_filters( 'sixa_container_block_before_content', __return_empty_string() );
-		$after_content  = apply_filters( 'sixa_container_block_after_content', __return_empty_string() );
+		$before_content = apply_filters( 'sixa_container_block_before_content', __return_empty_string(), $attributes );
+		$after_content  = apply_filters( 'sixa_container_block_after_content', __return_empty_string(), $attributes );
 
 		if ( ! empty( $before_content ) ) {
 			$before_content_fragment = $dom->createDocumentFragment();
