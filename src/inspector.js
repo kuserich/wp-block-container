@@ -1,8 +1,8 @@
 /* eslint-disable @wordpress/no-unsafe-wp-apis */
 
 /**
-  * Helper React components specific for Sixa projects.
-  */
+ * Helper React components specific for Sixa projects.
+ */
 import { BackgroundSizeControl } from '@sixach/wp-block-components';
 
 /**
@@ -13,7 +13,7 @@ import { get, noop } from 'lodash';
 /**
  * Retrieves the translation of text.
  *
- * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
+ * @see    https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
 import { __ } from '@wordpress/i18n';
 
@@ -21,38 +21,34 @@ import { __ } from '@wordpress/i18n';
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
  *
- * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
+ * @see    https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
-import {
-	InspectorControls,
-	ContrastChecker,
-	__experimentalPanelColorGradientSettings as PanelColorGradientSettings,
-} from '@wordpress/block-editor';
+import { InspectorControls, ContrastChecker, __experimentalPanelColorGradientSettings as PanelColorGradientSettings } from '@wordpress/block-editor';
 
 /**
  * This packages includes a library of generic WordPress components to be used for
  * creating common UI elements shared between screens and features of the WordPress dashboard.
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-components/
+ * @see    https://developer.wordpress.org/block-editor/reference-guides/packages/packages-components/
  */
 import { PanelBody, PanelRow, Button, ToggleControl, RangeControl, FocalPointPicker } from '@wordpress/components';
 
 /**
  * Inspector Controls appear in the post settings sidebar when a block is being edited.
  *
- * @see     https://github.com/WordPress/gutenberg/blob/master/packages/block-editor/src/components/inspector-controls/README.md
- * @param   {Object}    props 					    Block meta-data properties.
- * @param   {Object}    props.attributes 		    Block attributes.
- * @param   {Function}  props.setAttributes 	    Update block attributes.
- * @param   {Object}    props.textColor 	        Color hex code and CSS class name.
- * @param   {Function}  props.setTextColor 	        Update color value.
- * @param   {Object}    props.overlayColor 	        Overlay background-color hex code and CSS class name.
- * @param   {Function}  props.setOverlayColor 	    Update background-color value.
- * @param   {Function}  props.useGradient 	        Update, get background gradient color.
- * @param   {boolean}  	props.isImageBackground 	Whether the background type is an image.
- * @param   {boolean}  	props.isVideoBackground 	Whether the background type is a video.
- * @param   {Object}  	props.utils 			    Utility helper methods/variables.
- * @return 	{WPElement} 						    Inspector element to render.
+ * @see       https://github.com/WordPress/gutenberg/blob/master/packages/block-editor/src/components/inspector-controls/README.md
+ * @param     {Object}    	 props 					    Block meta-data properties.
+ * @param     {Object}    	 props.attributes 		    Block attributes.
+ * @param     {Function}  	 props.setAttributes 	    Update block attributes.
+ * @param     {Object}    	 props.textColor 	        Color hex code and CSS class name.
+ * @param     {Function}  	 props.setTextColor 	    Update color value.
+ * @param     {Object}    	 props.overlayColor 	    Overlay background-color hex code and CSS class name.
+ * @param     {Function}  	 props.setOverlayColor 	    Update background-color value.
+ * @param     {Function}  	 props.useGradient 	        Update, get background gradient color.
+ * @param     {boolean}  	 props.isImageBackground 	Whether the background type is an image.
+ * @param     {boolean}  	 props.isVideoBackground    Whether the background type is a video.
+ * @param     {Object}  	 props.utils 			    Utility helper methods/variables.
+ * @return    {WPElement}     						    Inspector element to render.
  */
 export default function Inspector( {
 	attributes,
@@ -137,6 +133,7 @@ export default function Inspector( {
 									url: noop(),
 									id: noop(),
 									backgroundType: noop(),
+									backgroundSize: noop(),
 									dimRatio: noop(),
 									focalPoint: noop(),
 									hasParallax: noop(),
@@ -158,20 +155,6 @@ export default function Inspector( {
 						colorValue: get( textColor, 'color' ),
 						onColorChange: setTextColor,
 					},
-				] }
-			>
-				<ContrastChecker
-					{ ...{
-						textColor: get( textColor, 'color' ),
-						backgroundColor: get( overlayColor, 'color' ),
-					} }
-					isLargeText={ false }
-				/>
-			</PanelColorGradientSettings>
-			<PanelColorGradientSettings
-				title={ __( 'Overlay Settings', 'sixa' ) }
-				initialOpen={ false }
-				settings={ [
 					{
 						label: __( 'Overlay', 'sixa' ),
 						colorValue: get( overlayColor, 'color' ),
@@ -195,6 +178,13 @@ export default function Inspector( {
 						onChange={ ( value ) => setAttributes( { dimRatio: value } ) }
 					/>
 				) }
+				<ContrastChecker
+					{ ...{
+						textColor: get( textColor, 'color' ),
+						backgroundColor: get( overlayColor, 'color' ),
+					} }
+					isLargeText={ false }
+				/>
 			</PanelColorGradientSettings>
 		</InspectorControls>
 	);
