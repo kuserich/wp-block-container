@@ -4,14 +4,9 @@
 import { gt, map, nth, get, noop, isEqual, reduce, indexOf } from 'lodash';
 
 /**
- * Utility helper methods specific for Sixa projects.
- */
-import { blockName } from '@sixa/wp-block-utils';
-
-/**
  * Given a block object, returns a copy of the block object.
  *
- * @see https://github.com/WordPress/gutenberg/tree/HEAD/packages/blocks/README.md
+ * @see    https://github.com/WordPress/gutenberg/tree/HEAD/packages/blocks/README.md
  */
 import { createBlock } from '@wordpress/blocks';
 
@@ -27,7 +22,7 @@ const transforms = {
 			blocks: [ '*' ],
 			__experimentalConvert( blocks ) {
 				// Avoid transforming a single `sixa/container` Block
-				if ( isEqual( 1, blocks.length ) && isEqual( blockName( 'container' ), get( nth( blocks, 0 ), 'name' ) ) ) {
+				if ( isEqual( 1, blocks.length ) && isEqual( 'sixa/container', get( nth( blocks, 0 ), 'name' ) ) ) {
 					return;
 				}
 
@@ -45,7 +40,7 @@ const transforms = {
 				);
 
 				return createBlock(
-					blockName( 'container' ),
+					'sixa/container',
 					{
 						align: widestAlignment,
 					},
