@@ -14,6 +14,6 @@ module.exports = {
 		'postcss-size': {},
 		'postcss-flexbox': {},
 		'postcss-position': {},
-		autoprefixer: { grid: true },
+		autoprefixer: {},
 	},
 };

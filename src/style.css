@@ -112,17 +112,29 @@
 		}
 	}
 
-	&.is-position {
+	&.has-background-size {
 
-		@each $horizontal, $justify in (left, center, right), (flex-start, center, flex-end) {
+		&-auto {
+			background-size: auto;
+		}
 
-			@each $vertical, $align in (top, center, bottom), (flex-start, center, flex-end) {
-				&-$(vertical)-$(horizontal) {
-					align-items: $(align);
-					justify-content: $(justify);
-				}
-			}
+		&-contain {
+			background-size: contain;
 		}
 	}
 
+}
+
+@each $horizontal, $justify in (left, center, right), (flex-start, center, flex-end) {
+
+	@each $vertical, $align in (top, center, bottom), (flex-start, center, flex-end) {
+
+		.wp-block-[prefix]-container {
+
+			&.is-position-$(vertical)-$(horizontal) {
+				align-items: $(align);
+				justify-content: $(justify);
+			}
+		}
+	}
 }

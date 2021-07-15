@@ -8,9 +8,7 @@
  */
 
 const fs = require( 'fs' );
-const defaultConfig = require( fs.existsSync( './webpack.config.js' )
-	? './webpack.config.js'
-	: './node_modules/@wordpress/scripts/config/webpack.config.js' );
+const defaultConfig = require( fs.existsSync( './webpack.config.js' ) ? './webpack.config.js' : './node_modules/@wordpress/scripts/config/webpack.config.js' );
 const { spawn } = require( 'child_process' );
 
 module.exports = {

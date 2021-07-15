@@ -13,31 +13,36 @@ import classnames from 'classnames';
 /**
  * Utility helper methods specific for Sixa projects.
  */
-import {
-	IMAGE_TYPE,
-	VIDEO_TYPE,
-	blockClassName,
-	isPositionCenter,
-	normalizeDimRatio,
-	positionToClassName,
-	normalizeBackgroundUrl,
-	normalizeFocalPointPosition,
-	normalizeBackgroundSizeStyle,
-} from '@sixa/wp-block-utils';
+import { blockClassName, isPositionCenter, dimRatioClassName, positionToClassName, backgroundImageStyle, focalPointStyle } from '@sixach/wp-block-utils';
 
 /**
  * Data module to manage application state for both plugins and WordPress itself.
  * The data module is built upon and shares many of the same core principles of Redux.
  *
- * @see https://github.com/WordPress/gutenberg/tree/HEAD/packages/data/README.md
+ * @see    https://github.com/WordPress/gutenberg/tree/HEAD/packages/data/README.md
  */
 import { withSelect, useSelect } from '@wordpress/data';
+
+/**
+ * WordPress specific abstraction layer atop React.
+ *
+ * @see    https://github.com/WordPress/gutenberg/tree/HEAD/packages/element/README.md
+ */
+import { useState } from '@wordpress/element';
+
+/**
+ * EventManager for JavaScript.
+ * Hooks are used to manage component state and lifecycle.
+ *
+ * @see    https://github.com/WordPress/gutenberg/blob/trunk/packages/hooks/README.md
+ */
+import { applyFilters, doAction } from '@wordpress/hooks';
 
 /**
  * The compose package is a collection of handy Hooks and Higher Order Components (HOCs).
  * The compose function is an alias to `flowRight` from Lodash.
  *
- * @see https://github.com/WordPress/gutenberg/blob/trunk/packages/compose/README.md
+ * @see    https://github.com/WordPress/gutenberg/blob/trunk/packages/compose/README.md
  */
 import { compose, withInstanceId } from '@wordpress/compose';
 
@@ -71,49 +76,26 @@ import Controls from './controls';
 import Inspector from './inspector';
 
 /**
- * Constants.
- */
-const CLASSNAME = blockClassName( 'container' );
-
-/**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
  *
- * @see 	https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
- * @param 	{Object}  props 	Block meta-data properties.
- * @return 	{WPElement} 		Element to render.
+ * @see 	  https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+ * @param 	  {Object}       props    Block meta-data properties.
+ * @return    {WPElement} 			  Element to render.
  */
 function Edit( props ) {
 	let positionValue = noop();
-	const {
-		clientId,
-		getBlock,
-		isSelected,
-		attributes,
-		textColor,
-		overlayColor,
-		useGradient,
-		isImageBackground,
-		isVideoBackground,
-	} = props;
-	const {
-		url,
-		width,
-		hasParallax,
-		isRepeated,
-		isFullHeight,
-		dimRatio,
-		focalPoint,
-		contentPosition,
-		backgroundSize,
-		minHeight,
-	} = attributes;
+	const [ beforeContent, setBeforeContent ] = useState( null );
+	const [ afterContent, setAfterContent ] = useState( null );
+	const { clientId, getBlock, isSelected, attributes, textColor, overlayColor, useGradient, isImageBackground, isVideoBackground } = props;
+	const { url, width, hasParallax, isRepeated, isFullHeight, dimRatio, focalPoint, contentPosition, backgroundSize, minHeight } = attributes;
 	const { gradientClass, gradientValue } = useGradient;
 	const textColorClass = get( textColor, 'class' );
 	const overlayColorClass = get( overlayColor, 'class' );
 	const isDimRatio = isEqual( dimRatio, 0 );
+	const backgroundSizeSelection = backgroundSize?.selection;
 	const styles = {
-		...( isImageBackground ? normalizeBackgroundUrl( url ) : {} ),
+		...( isImageBackground ? backgroundImageStyle( url ) : {} ),
 	};
 	const { hasInnerBlocks } = useSelect( () => {
 		const block = getBlock( clientId );
@@ -122,22 +104,6 @@ function Edit( props ) {
 			hasInnerBlocks: !! ( block && block.innerBlocks.length ),
 		};
 	} );
-
-	const contentStyles = {};
-	if ( !! width ) {
-		set( contentStyles, 'maxWidth', `${ width }px` );
-	}
-
-	const innerBlocksProps = useInnerBlocksProps(
-		{
-			className: `${ CLASSNAME }__content`,
-			style: contentStyles,
-		},
-		{
-			templateLock: false,
-			renderAppender: ! hasInnerBlocks && InnerBlocks.ButtonBlockAppender,
-		}
-	);
 
 	if ( ! textColorClass ) {
 		set( styles, 'color', get( textColor, 'color' ) );
@@ -152,56 +118,69 @@ function Edit( props ) {
 	}
 
 	if ( focalPoint ) {
-		positionValue = normalizeFocalPointPosition( focalPoint );
+		positionValue = focalPointStyle( focalPoint );
 		if ( isImageBackground ) {
 			set( styles, 'backgroundPosition', positionValue );
 		}
 	}
 
-	if ( backgroundSize.selection !== 'auto' ) {
-		set( styles, 'backgroundSize', normalizeBackgroundSizeStyle( backgroundSize ) );
+	if ( 'custom' === backgroundSizeSelection ) {
+		set( styles, 'backgroundSize', `${ backgroundSize?.width } ${ backgroundSize?.height }` );
 	}
 
-	if ( !! minHeight ) {
+	if ( minHeight ) {
 		set( styles, 'minHeight', `${ minHeight }px` );
 	}
 
+	// To render the block element wrapper for the block’s `Edit` implementation.
+	const blockProps = useBlockProps( {
+		className: classnames( dimRatioClassName( dimRatio ), positionToClassName( contentPosition ), {
+			'has-parallax': hasParallax,
+			'is-repeated': isRepeated,
+			'is-full-height': isFullHeight,
+			'has-text-color': textColorClass,
+			'has-background': overlayColorClass,
+			'has-background-dim': !! url && ! isDimRatio,
+			'has-background-gradient': gradientValue,
+			'has-custom-content-position': ! isPositionCenter( contentPosition ),
+			[ `has-background-size-${ backgroundSizeSelection }` ]: backgroundSizeSelection,
+			[ textColorClass ]: textColorClass,
+			[ overlayColorClass ]: overlayColorClass,
+			[ gradientClass ]: ! url && gradientClass,
+		} ),
+		style: { ...styles },
+	} );
+	const className = blockClassName( get( blockProps, 'className' ) );
+	const innerBlocksProps = useInnerBlocksProps(
+		{
+			className: `${ className }__content`,
+			style: { maxWidth: width ? `${ width }px` : noop() },
+		},
+		{
+			templateLock: false,
+			renderAppender: ! hasInnerBlocks && InnerBlocks.ButtonBlockAppender,
+		}
+	);
+
+	doAction( 'sixa.containerBeforeContent', attributes, className, setBeforeContent );
+	doAction( 'sixa.containerAfterContent', attributes, className, setAfterContent );
+
 	return (
 		<>
-			<div
-				{ ...useBlockProps( {
-					className: classnames( normalizeDimRatio( dimRatio ), positionToClassName( contentPosition ), {
-						'has-parallax': hasParallax,
-						'is-repeated': isRepeated,
-						'is-full-height': isFullHeight,
-						'has-background-dim': !! url && ! isDimRatio,
-						'has-background-gradient': gradientValue,
-						'has-custom-content-position': ! isPositionCenter( contentPosition ),
-						[ textColorClass ]: textColorClass,
-						[ overlayColorClass ]: overlayColorClass,
-						[ gradientClass ]: ! url && gradientClass,
-					} ),
-					style: { ...styles },
-				} ) }
-			>
+			<div { ...blockProps }>
+				{ applyFilters( 'sixa.containerBeforeContent', beforeContent, attributes ) }
 				{ url && gradientValue && ! isEqual( dimRatio, 0 ) && (
 					<span
 						aria-hidden="true"
 						style={ { background: gradientValue } }
-						className={ classnames( `${ CLASSNAME }__gradient-background`, gradientClass ) }
+						className={ classnames( `${ className }__gradient-background`, gradientClass ) }
 					/>
 				) }
 				{ isVideoBackground && (
-					<video
-						loop
-						muted
-						autoPlay
-						src={ url }
-						style={ { objectPosition: positionValue } }
-						className={ `${ CLASSNAME }__video-background` }
-					/>
+					<video loop muted autoPlay src={ url } style={ { objectPosition: positionValue } } className={ `${ className }__video-background` } />
 				) }
 				<div { ...innerBlocksProps } />
+				{ applyFilters( 'sixa.containerAfterContent', afterContent, attributes ) }
 			</div>
 			{ isSelected && (
 				<>
@@ -223,8 +202,8 @@ export default compose( [
 		return {
 			getBlock,
 			useGradient: __experimentalUseGradient(),
-			isImageBackground: isEqual( backgroundType, IMAGE_TYPE ),
-			isVideoBackground: isEqual( backgroundType, VIDEO_TYPE ),
+			isImageBackground: isEqual( backgroundType, 'image' ),
+			isVideoBackground: isEqual( backgroundType, 'video' ),
 			hasBackground: !! ( url || get( overlayColor, 'color' ) ),
 		};
 	} ),
