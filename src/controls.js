@@ -32,10 +32,9 @@ import attributesFromMedia from './attributes-from-media';
  * @param     {Object}    	 props 					Block meta-data properties.
  * @param     {Object}    	 props.attributes 		Block attributes.
  * @param     {Function}  	 props.setAttributes 	Update block attributes.
- * @param     {boolean}   	 props.hasBackground    Whether a background image or color is applied.
  * @return    {WPElement} 						    Toolbar element to render.
  */
-export default function Controls( { attributes, setAttributes, hasBackground } ) {
+export default function Controls( { attributes, setAttributes } ) {
 	const { id, url, isFullHeight, contentPosition } = attributes;
 	const onSelectMedia = attributesFromMedia( setAttributes );
 
@@ -47,11 +46,7 @@ export default function Controls( { attributes, setAttributes, hasBackground } )
 					value={ contentPosition }
 					onChange={ ( value ) => setAttributes( { contentPosition: value } ) }
 				/>
-				<FullHeightAlignmentToolbar
-					isActive={ !! isFullHeight }
-					isDisabled={ ! hasBackground }
-					onToggle={ () => setAttributes( { isFullHeight: ! isFullHeight } ) }
-				/>
+				<FullHeightAlignmentToolbar isActive={ !! isFullHeight } onToggle={ () => setAttributes( { isFullHeight: ! isFullHeight } ) } />
 			</BlockControls>
 			<BlockControls group="other">
 				<MediaReplaceFlow
