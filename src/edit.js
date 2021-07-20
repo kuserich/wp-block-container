@@ -195,16 +195,15 @@ function Edit( props ) {
 export default compose( [
 	withInstanceId,
 	withColors( { textColor: 'color' }, { overlayColor: 'background-color' } ),
-	withSelect( ( select, { overlayColor, attributes } ) => {
+	withSelect( ( select, { attributes } ) => {
 		const { getBlock } = select( 'core/block-editor' );
-		const { url, backgroundType } = attributes;
+		const { backgroundType } = attributes;
 
 		return {
 			getBlock,
 			useGradient: __experimentalUseGradient(),
 			isImageBackground: isEqual( backgroundType, 'image' ),
 			isVideoBackground: isEqual( backgroundType, 'video' ),
-			hasBackground: !! ( url || get( overlayColor, 'color' ) ),
 		};
 	} ),
 ] )( Edit );
