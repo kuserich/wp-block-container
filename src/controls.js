@@ -16,8 +16,8 @@ import { __ } from '@wordpress/i18n';
 import {
 	BlockControls,
 	MediaReplaceFlow,
-	__experimentalBlockAlignmentMatrixToolbar as BlockAlignmentMatrixToolbar,
-	__experimentalBlockFullHeightAligmentToolbar as FullHeightAlignmentToolbar,
+	__experimentalBlockAlignmentMatrixControl as BlockAlignmentMatrixControl,
+	__experimentalBlockFullHeightAligmentControl as FullHeightAlignmentControl,
 } from '@wordpress/block-editor';
 
 /**
@@ -41,12 +41,12 @@ export default function Controls( { attributes, setAttributes } ) {
 	return (
 		<>
 			<BlockControls group="block">
-				<BlockAlignmentMatrixToolbar
+				<BlockAlignmentMatrixControl
 					label={ __( 'Change content position', 'sixa' ) }
 					value={ contentPosition }
 					onChange={ ( value ) => setAttributes( { contentPosition: value } ) }
 				/>
-				<FullHeightAlignmentToolbar isActive={ !! isFullHeight } onToggle={ () => setAttributes( { isFullHeight: ! isFullHeight } ) } />
+				<FullHeightAlignmentControl isActive={ !! isFullHeight } onToggle={ () => setAttributes( { isFullHeight: ! isFullHeight } ) } />
 			</BlockControls>
 			<BlockControls group="other">
 				<MediaReplaceFlow
