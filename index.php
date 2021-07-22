@@ -48,8 +48,9 @@ add_action( 'init', __NAMESPACE__ . '\register_block' );
  * @return    string
  */
 function render_block( array $attributes = array(), string $content ): string {
+	libxml_use_internal_errors( true );
 	$dom = new \DOMDocument();
-	$dom->loadXML( $content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+	$dom->loadHTML( $content, LIBXML_HTML_NODEFDTD | LIBXML_HTML_NOIMPLIED );
 	$xpath = new \DomXPath( $dom );
 	$node  = $xpath->query( "//div[contains(@class, 'wp-block-sixa-container')]" );
 
@@ -69,6 +70,7 @@ function render_block( array $attributes = array(), string $content ): string {
 			$node->item( 0 )->insertBefore( $after_content_fragment );
 		}
 
+		libxml_clear_errors();
 		$content = $dom->saveHTML();
 	}
 
