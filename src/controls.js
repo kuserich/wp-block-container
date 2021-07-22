@@ -52,7 +52,8 @@ export default function Controls( { attributes, setAttributes } ) {
 				<MediaReplaceFlow
 					mediaId={ id }
 					mediaURL={ url }
-					accept={ 'image/*,video/*' }
+					accept="image/*,video/*"
+					allowedTypes={ [ 'image', 'video' ] }
 					onSelect={ onSelectMedia }
 					allowedTypes={ [ 'image', 'video' ] }
 					name={ ! url ? __( 'Add Media', 'sixa' ) : __( 'Replace', 'sixa' ) }
