@@ -1,6 +1,6 @@
 {
 	"name": "@sixach/wp-block-container",
-	"version": "0.2.0",
+	"version": "1.0.0",
 	"description": "Container block for WordPress editor.",
 	"keywords": [
 		"section",
@@ -50,36 +50,24 @@
 		]
 	},
 	"dependencies": {
-		"@sixach/wp-block-components": "^1.2.1",
-		"@wordpress/blob": "^3.1.1",
-		"@wordpress/block-editor": "^6.1.10",
-		"@wordpress/blocks": "^9.1.5",
-		"@wordpress/components": "^14.1.7",
-		"@wordpress/compose": "^4.1.3",
-		"@wordpress/data": "^5.1.3",
-		"@wordpress/element": "^3.1.1",
-		"@wordpress/hooks": "^3.1.1",
-		"@wordpress/i18n": "^4.1.1"
+		"@sixach/wp-block-components": "^1.3.1",
+		"@wordpress/blob": "^3.2.0",
+		"@wordpress/block-editor": "^6.2.0",
+		"@wordpress/blocks": "^10.0.0",
+		"@wordpress/components": "^14.2.0",
+		"@wordpress/compose": "^4.2.0",
+		"@wordpress/data": "^5.2.0",
+		"@wordpress/element": "^3.2.0",
+		"@wordpress/hooks": "^3.2.0",
+		"@wordpress/i18n": "^4.2.0"
 	},
 	"devDependencies": {
-		"@sixach/wp-block-utils": "^1.0.0",
-		"@wordpress/scripts": "^16.1.4",
+		"@sixach/wp-block-utils": "^1.0.1",
+		"@wordpress/scripts": "^17.0.0",
 		"autoprefixer": "^10.3.1",
 		"classnames": "^2.3.1",
 		"husky": "^7.0.1",
-		"lint-staged": "^11.0.1",
-		"lodash": "^4.17.21",
-		"postcss": "8.3.5",
-		"postcss-calc": "^8.0.0",
-		"postcss-each": "^1.1.0",
-		"postcss-flexbox": "^1.0.3",
-		"postcss-for": "^2.1.1",
-		"postcss-import": "^14.0.2",
-		"postcss-important-startstop": "^2.0.0",
-		"postcss-nested": "^4.2.3",
-		"postcss-nested-ancestors": "^2.0.0",
-		"postcss-position": "^1.1.0",
-		"postcss-selector-replace": "^1.0.2",
-		"postcss-size": "^4.0.1"
+		"lint-staged": "^11.1.1",
+		"lodash": "^4.17.21"
 	}
 }
