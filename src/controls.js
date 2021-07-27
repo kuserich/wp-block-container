@@ -16,13 +16,9 @@ import { __ } from '@wordpress/i18n';
 import { BlockControls, MediaReplaceFlow } from '@wordpress/block-editor';
 
 /**
- * Following hotfix is merely placed until these packages
- * are stable enough to be pulled from the blockEditor package directly.
- * These components are slightly renamed in WordPress 5.8 release,
- * and we needed to add fallback support for older versions of WordPress.
+ * Helper React components specific for Sixa projects.
  */
-const BlockAlignmentMatrixControl = wp.blockEditor?.__experimentalBlockAlignmentMatrixToolbar || wp.blockEditor?.__experimentalBlockAlignmentMatrixControl;
-const FullHeightAlignmentControl = wp.blockEditor?.__experimentalBlockFullHeightAligmentToolbar || wp.blockEditor?.__experimentalBlockFullHeightAligmentControl;
+import { BlockAlignmentMatrixControl, FullHeightAlignmentControl } from '@sixach/wp-block-components';
 
 /**
  * Upload selected media file/type.
