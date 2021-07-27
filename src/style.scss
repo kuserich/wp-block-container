@@ -1,17 +1,21 @@
+@use "sass:math";
+
 /**
  * The following styles get applied both on the front of your site
  * and in the editor.
  */
 
-.wp-block-[prefix]-container {
+.wp-block-sixa-container {
 	position: relative;
 	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;
-	box: middle center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
 	/* This block has customizable padding, border-box makes that more predictable. */
 	box-sizing: border-box;
-
 
 	&.has-parallax {
 		background-attachment: fixed;
@@ -34,20 +38,6 @@
 	&.is-repeated {
 		background-repeat: repeat;
 		background-size: auto;
-	}
-
-	/**
-	 * Set a default background color for has-background-dim _unless_ it includes another
-	 * background-color class (e.g. has-green-background-color). The presence of another
-	 * background-color class implies that another style will provide the background color
-	 * for the overlay.
-	 *
-	 * See:
-	 *   - Issue with background color specificity: https://github.com/WordPress/gutenberg/issues/26545
-	 *   - Issue with alternative fix: https://github.com/WordPress/gutenberg/issues/26545
-	 */
-	&.has-background-dim:not([class*="-background-color"]) {
-		background-color: #000;
 	}
 
 	&__content {
@@ -73,14 +63,19 @@
 
 	&__gradient-background {
 		z-index: 1;
-		position: absolute 0 0 0 0;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
 		opacity: 0.5;
+		$i: 10;
 
-		@for $i from 10 to 100 by 10 {
-
-			.has-background-dim-$i & {
-				opacity: calc($(i) / 100);
+		@while $i <= 100 {
+			.has-background-dim-#{$i} & {
+				opacity: math.div($i, 100);
 			}
+			$i: $i + 10;
 		}
 	}
 
@@ -90,25 +85,45 @@
 
 	&.has-background-dim {
 
-		&:not(.has-background-gradient) {
-
-			&::before {
-				background-color: inherit;
-				z-index: 1;
-				position: absolute 0 0 0 0;
-				content: "";
-			}
+		/**
+        * Set a default background color for has-background-dim _unless_ it includes another
+        * background-color class (e.g. has-green-background-color). The presence of another
+        * background-color class implies that another style will provide the background color
+        * for the overlay.
+        *
+        * See:
+        *   - Issue with background color specificity: https://github.com/WordPress/gutenberg/issues/26545
+        *   - Issue with alternative fix: https://github.com/WordPress/gutenberg/issues/26545
+        */
+		&:not([class*="-background-color"]) {
+			background-color: #000;
 		}
 
 		&::before {
 			opacity: 0.5;
 		}
 
-		@for $i from 10 to 100 by 10 {
+		&:not(.has-background-gradient) {
 
-			&-$i::before {
-				opacity: calc($(i) / 100);
+			&::before {
+				background-color: inherit;
+				z-index: 1;
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				content: "";
 			}
+		}
+
+		$i: 10;
+
+		@while $i <= 100 {
+			&-#{$i}::before {
+				opacity: math.div($i, 100);
+			}
+			$i: $i + 10;
 		}
 	}
 
@@ -123,17 +138,12 @@
 		}
 	}
 
-}
+	@each $horizontal, $justify in (left, flex-start), (center, center), (right, flex-end) {
 
-@each $horizontal, $justify in (left, center, right), (flex-start, center, flex-end) {
-
-	@each $vertical, $align in (top, center, bottom), (flex-start, center, flex-end) {
-
-		.wp-block-[prefix]-container {
-
-			&.is-position-$(vertical)-$(horizontal) {
-				align-items: $(align);
-				justify-content: $(justify);
+		@each $vertical, $align in (top, flex-start), (center, center), (bottom, flex-end), {
+			&.is-position-#{$vertical}-#{$horizontal} {
+				align-items: #{$align};
+				justify-content: #{$justify};
 			}
 		}
 	}
