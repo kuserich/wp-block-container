@@ -13,12 +13,12 @@ import { __ } from '@wordpress/i18n';
  *
  * @see    https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
-import {
-	BlockControls,
-	MediaReplaceFlow,
-	__experimentalBlockAlignmentMatrixControl as BlockAlignmentMatrixControl,
-	__experimentalBlockFullHeightAligmentControl as FullHeightAlignmentControl,
-} from '@wordpress/block-editor';
+import { BlockControls, MediaReplaceFlow } from '@wordpress/block-editor';
+
+/**
+ * Helper React components specific for Sixa projects.
+ */
+import { BlockAlignmentMatrixControl, FullHeightAlignmentControl } from '@sixach/wp-block-components';
 
 /**
  * Upload selected media file/type.
@@ -28,7 +28,7 @@ import attributesFromMedia from './attributes-from-media';
 /**
  * The BlockToolbar component is used to render a toolbar that serves as a wrapper for number of options for each block.
  *
- * @see      https://github.com/WordPress/gutenberg/blob/trunk/packages/block-editor/src/components/block-toolbar/README.md
+ * @see       https://github.com/WordPress/gutenberg/blob/trunk/packages/block-editor/src/components/block-toolbar/README.md
  * @param     {Object}    	 props 					Block meta-data properties.
  * @param     {Object}    	 props.attributes 		Block attributes.
  * @param     {Function}  	 props.setAttributes 	Update block attributes.
