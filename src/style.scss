@@ -5,7 +5,9 @@
  * and in the editor.
  */
 
-.wp-block-sixa-container {
+$prefix: sixa;
+
+.wp-block-#{$prefix}-container {
 	position: relative;
 	background-size: cover;
 	background-position: center center;
@@ -50,9 +52,19 @@
 		}
 	}
 
+	&__title {
+		position: absolute;
+		left: var(--#{$prefix}-title-left, 15px);
+		writing-mode: vertical-lr;
+		z-index: 2;
+	}
+
 	&__video-background {
-		position: absolute 0;
-		size: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
 		object-fit: cover;
 		max-width: none;
 		max-height: none;
