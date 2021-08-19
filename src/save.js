@@ -53,6 +53,7 @@ export default function save( { attributes } ) {
 		customGradient,
 		backgroundSize,
 		minHeight,
+		title,
 	} = attributes;
 	const textColorClass = getColorClassName( 'color', textColor );
 	const overlayColorClass = getColorClassName( 'background-color', overlayColor );
@@ -120,6 +121,7 @@ export default function save( { attributes } ) {
 
 	return (
 		<div { ...blockProps }>
+			{ title && <span className={ `${ className }__title` }>{ title }</span> }
 			{ url && ( gradient || customGradient ) && ! isDimRatio && (
 				<span
 					aria-hidden="true"
