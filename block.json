@@ -17,23 +17,6 @@
 		"align": [ "wide", "full" ]
 	},
 	"attributes": {
-		"url": {
-			"type": "string"
-		},
-		"id": {
-			"type": "number"
-		},
-		"width": {
-			"type": "number"
-		},
-		"hasParallax": {
-			"type": "boolean",
-			"default": false
-		},
-		"isRepeated": {
-			"type": "boolean",
-			"default": false
-		},
 	    "backgroundSize": {
 		  	"type": "object",
 		  	"default": {
@@ -42,9 +25,21 @@
 			  "height": "0%"
 			}
 		},
-		"isFullHeight": {
-			"type": "boolean",
-			"default": false
+		"backgroundType": {
+			"type": "string",
+			"default": "image"
+		},
+		"customOverlayColor": {
+			"type": "string"
+		},
+		"customGradient": {
+			"type": "string"
+		},
+		"contentPosition": {
+			"type": "object"
+		},
+		"customTextColor": {
+			"type": "string"
 		},
 		"dimRatio": {
 			"type": "number",
@@ -53,32 +48,40 @@
 		"focalPoint": {
 			"type": "object"
 		},
-		"contentPosition": {
-			"type": "object"
-		},
-		"backgroundType": {
-			"type": "string",
-			"default": "image"
-		},
-		"textColor": {
+		"gradient": {
 			"type": "string"
 		},
-		"customTextColor": {
-			"type": "string"
+		"hasParallax": {
+			"type": "boolean",
+			"default": false
+		},
+		"id": {
+			"type": "number"
+		},
+		"isRepeated": {
+			"type": "boolean",
+			"default": false
+		},
+		"isFullHeight": {
+			"type": "boolean",
+			"default": false
+		},
+		"minHeight": {
+			"type": "number"
 		},
 		"overlayColor": {
 			"type": "string"
 		},
-		"customOverlayColor": {
+		"textColor": {
 			"type": "string"
 		},
-		"gradient": {
+		"title": {
 			"type": "string"
 		},
-		"customGradient": {
+		"url": {
 			"type": "string"
 		},
-		"minHeight": {
+		"width": {
 			"type": "number"
 		}
 	},
