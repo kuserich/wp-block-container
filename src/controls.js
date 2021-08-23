@@ -55,7 +55,6 @@ export default function Controls( { attributes, setAttributes } ) {
 					accept="image/*,video/*"
 					allowedTypes={ [ 'image', 'video' ] }
 					onSelect={ onSelectMedia }
-					allowedTypes={ [ 'image', 'video' ] }
 					name={ ! url ? __( 'Add Media', 'sixa' ) : __( 'Replace', 'sixa' ) }
 				/>
 			</BlockControls>

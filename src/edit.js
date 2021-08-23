@@ -88,7 +88,7 @@ function Edit( props ) {
 	const [ beforeContent, setBeforeContent ] = useState( null );
 	const [ afterContent, setAfterContent ] = useState( null );
 	const { clientId, getBlock, isSelected, attributes, textColor, overlayColor, useGradient, isImageBackground, isVideoBackground } = props;
-	const { url, width, hasParallax, isRepeated, isFullHeight, dimRatio, focalPoint, contentPosition, backgroundSize, minHeight } = attributes;
+	const { url, width, hasParallax, isRepeated, isFullHeight, dimRatio, focalPoint, contentPosition, backgroundSize, minHeight, title } = attributes;
 	const { gradientClass, gradientValue } = useGradient;
 	const textColorClass = get( textColor, 'class' );
 	const overlayColorClass = get( overlayColor, 'class' );
@@ -169,6 +169,7 @@ function Edit( props ) {
 		<>
 			<div { ...blockProps }>
 				{ applyFilters( 'sixa.containerBeforeContent', beforeContent, attributes ) }
+				{ title && <span className={ `${ className }__title` }>{ title }</span> }
 				{ url && gradientValue && ! isEqual( dimRatio, 0 ) && (
 					<span
 						aria-hidden="true"
