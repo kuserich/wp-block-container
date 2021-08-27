@@ -4,15 +4,15 @@ namespace Sixa;
 
 class ContainerBlock {
 
-	public function init(): void {
-		add_action( 'init', array( $this, 'register' ) );
+	public static function init(): void {
+		add_action( 'init', array( __CLASS__, 'register' ) );
 	}
 
-	public function register(): void {
+	public static function register(): void {
 		register_block_type_from_metadata(
 			dirname( __DIR__ ),
 			array(
-				'render_callback' => array( $this, 'render' ),
+				'render_callback' => array( __CLASS__, 'render' ),
 			)
 		);
 	}
@@ -25,7 +25,7 @@ class ContainerBlock {
 	 * @param     string $content           The block content.
 	 * @return    string
 	 */
-	public function render( array $attributes = array(), string $content ): string {
+	public static function render( array $attributes = array(), string $content ): string {
 		libxml_use_internal_errors( true );
 		$dom = new \DOMDocument();
 		$dom->loadHTML( $content, LIBXML_HTML_NODEFDTD | LIBXML_HTML_NOIMPLIED );

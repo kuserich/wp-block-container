@@ -20,5 +20,4 @@ use Sixa\ContainerBlock;
 
 require __DIR__ . '/vendor/autoload.php';
 
-$block = new ContainerBlock();
-$block->init();
+ContainerBlock::init();
