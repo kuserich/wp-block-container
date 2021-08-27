@@ -1,6 +1,6 @@
 {
 	"name": "sixach/wp-block-container",
-	"type": "wordpress-plugin",
+	"type": "wordpress-block",
 	"description": "Container block for WordPress editor.",
 	"keywords": [
 		"section",
