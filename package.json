@@ -43,7 +43,7 @@
 		],
 		"*.{js,ts,tsx}": [
 			"npm run lint:js",
-			"npm run format:js"
+			"npm run format"
 		],
 		"*.php": [
 			"npm run lint:wpcs"
