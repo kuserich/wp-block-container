@@ -1,6 +1,6 @@
 {
 	"name": "@sixach/wp-block-container",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Container block for WordPress editor.",
 	"keywords": [
 		"section",
