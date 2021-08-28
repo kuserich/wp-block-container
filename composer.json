@@ -31,8 +31,6 @@
 		"lint:php": "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor --exclude node_modules ."
 	},
 	"autoload": {
-		"psr-4": {
-			"Sixa\\": "block/"
-		}
+		"classmap": ["block"]
 	}
 }
