@@ -16,8 +16,11 @@
  * @package             sixa
  */
 
-use Sixa\ContainerBlock;
+use Sixa_Blocks\Container;
 
+// Composer autoload is needed in this package even if
+// it doesn't use any libraries to autoload the classes
+// from this package.
 require __DIR__ . '/vendor/autoload.php';
 
-ContainerBlock::init();
+Container::init();
