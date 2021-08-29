@@ -10,9 +10,17 @@ The Container block enables you to group other blocks together inside a single w
 
 ## Development
 
-You'll need [Node.js](https://nodejs.org/) installed on your computer in order to build this theme.
+You'll need [Node.js](https://nodejs.org/) and [Composer](https://getcomposer.org/) installed
+on your computer in order to build this theme.
 
 * Download or fork the repository.
-* Run `npm install` to install the dependencies within a `/node_modules/` folder.
+* Run `npm install` to install NPM dependencies
 * Run `npm run dev` command to compile and watch source files for changes while developing.
-* Run `npm run build` command to publish the source files for the production environment.
+* Run `composer install` to install composer dependencies
+
+## Production
+
+* Download or fork the repository
+* Run `npm install` to install NPM dependencies
+* Run `npm run build` to compile assets for production
+* Run `composer install --no-dev --optimize-autoloader` to install composer packages required in production
