@@ -51,8 +51,8 @@ class Container {
 	 * Modifies the `sixa/container` block output.
 	 *
 	 * @since     1.0.0
-	 * @param     array  $attributes        The block attributes.
-	 * @param     string $content           The block content.
+	 * @param     array  $attributes    The block attributes.
+	 * @param     string $content       The block content.
 	 * @return    string
 	 */
 	public static function render( array $attributes = array(), string $content ): string {
