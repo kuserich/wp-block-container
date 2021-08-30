@@ -1,6 +1,6 @@
 {
 	"name": "@sixach/wp-block-container",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Container block for WordPress editor.",
 	"keywords": [
 		"section",
@@ -43,7 +43,7 @@
 		],
 		"*.{js,ts,tsx}": [
 			"npm run lint:js",
-			"npm run format:js"
+			"npm run format"
 		],
 		"*.php": [
 			"npm run lint:wpcs"
@@ -52,20 +52,20 @@
 	"dependencies": {
 		"@sixach/wp-block-components": "^1.4.1",
 		"@wordpress/blob": "^3.2.1",
-		"@wordpress/block-editor": "^7.0.0",
-		"@wordpress/blocks": "^11.0.0",
-		"@wordpress/components": "^15.0.0",
-		"@wordpress/compose": "^5.0.0",
-		"@wordpress/data": "^6.0.0",
+		"@wordpress/block-editor": "^7.0.1",
+		"@wordpress/blocks": "^11.0.1",
+		"@wordpress/components": "^16.0.0",
+		"@wordpress/compose": "^5.0.1",
+		"@wordpress/data": "^6.0.1",
 		"@wordpress/element": "^4.0.0",
 		"@wordpress/hooks": "^3.2.0",
 		"@wordpress/i18n": "^4.2.1"
 	},
 	"devDependencies": {
 		"@sixach/wp-block-utils": "^1.0.2",
-		"@wordpress/scripts": "17.1.0",
+		"@wordpress/scripts": "18.0.0",
 		"classnames": "2.3.1",
-		"husky": "^7.0.1",
+		"husky": "^7.0.2",
 		"lint-staged": "11.1.2",
 		"lodash": "4.17.21"
 	}

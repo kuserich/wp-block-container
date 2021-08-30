@@ -1,6 +1,6 @@
 {
-	"name": "sixach/container",
-	"type": "wordpress-plugin",
+	"name": "sixach/wp-block-container",
+	"type": "wordpress-block",
 	"description": "Container block for WordPress editor.",
 	"keywords": [
 		"section",
@@ -29,5 +29,8 @@
 		"lint:wpcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
 		"lint:wpcbf": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf",
 		"lint:php": "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor --exclude node_modules ."
+	},
+	"autoload": {
+		"classmap": ["block"]
 	}
 }
