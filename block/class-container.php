@@ -58,7 +58,7 @@ class Container {
 	public static function render( array $attributes = array(), string $content ): string {
 		libxml_use_internal_errors( true );
 		$dom = new \DOMDocument();
-		$dom->loadHTML( $content, LIBXML_HTML_NODEFDTD | LIBXML_HTML_NOIMPLIED );
+		$dom->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NODEFDTD | LIBXML_HTML_NOIMPLIED );
 		$xpath = new \DomXPath( $dom );
 		$node  = $xpath->query( "//div[contains(@class, 'wp-block-sixa-container')]" );
 
