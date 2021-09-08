@@ -1,7 +1,7 @@
 /**
  * Utility for libraries from the `Lodash`.
  */
-import { gt, map, nth, get, noop, isEqual, reduce, indexOf } from 'lodash';
+import { isEqual, indexOf, gt, map, reduce } from 'lodash';
 
 /**
  * Given a block object, returns a copy of the block object.
@@ -22,22 +22,18 @@ const transforms = {
 			blocks: [ '*' ],
 			__experimentalConvert( blocks ) {
 				// Avoid transforming a single `sixa/container` Block
-				if ( isEqual( 1, blocks.length ) && isEqual( 'sixa/container', get( nth( blocks, 0 ), 'name' ) ) ) {
+				if ( isEqual( 1, blocks.length ) && isEqual( 'sixa/container', blocks[ 0 ]?.name ) ) {
 					return;
 				}
 
 				const alignments = [ 'wide', 'full' ];
 				const widestAlignment = reduce(
 					blocks,
-					( accumulator, block ) => {
-						const { align } = get( block, 'attributes' );
-						return gt( indexOf( alignments, align ), indexOf( alignments, accumulator ) ) ? align : accumulator;
-					},
-					noop()
+					( accumulator, { attributes: { align } } ) =>
+						gt( indexOf( alignments, align ), indexOf( alignments, accumulator ) ) ? align : accumulator,
+					undefined
 				);
-				const wrapInnerBlocks = map( blocks, ( block ) =>
-					createBlock( get( block, 'name' ), get( block, 'attributes' ), get( block, 'innerBlocks' ) )
-				);
+				const wrapInnerBlocks = map( blocks, ( { attributes, innerBlocks, name } ) => createBlock( name, attributes, innerBlocks ) );
 
 				return createBlock(
 					'sixa/container',
