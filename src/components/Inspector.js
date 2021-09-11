@@ -55,7 +55,7 @@ import Constants from '../constants';
  * @return    {JSX.Element}     						Inspector element to render.
  */
 function Inspector( { attributes, overlayColor, overlayGradient, setAttributes, textColor } ) {
-	const { backgroundSize, backgroundType, dimRatio, focalPoint, hasParallax, isRepeated, minHeight, title, url, width } = attributes;
+	const { backgroundSize, backgroundType, dimRatio, focalPoint, hasParallax, isFullHeight, isRepeated, minHeight, title, url, width } = attributes;
 	const { overlayColorValue, setOverlayColor } = overlayColor;
 	const { textColorValue, setTextColor } = textColor;
 	const { overlayGradientValue, setOverlayGradient } = overlayGradient;
@@ -76,15 +76,17 @@ function Inspector( { attributes, overlayColor, overlayGradient, setAttributes, 
 						onChange={ ( value ) => setAttributes( { width: value } ) }
 						value={ width }
 					/>
-					<RangeControl
-						allowReset
-						label={ __( 'Min. Height', 'sixa' ) }
-						help={ __( 'in pixels', 'sixa' ) }
-						min={ 10 }
-						max={ 500 }
-						onChange={ ( value ) => setAttributes( { minHeight: value } ) }
-						value={ minHeight }
-					/>
+					{ ! isFullHeight && (
+						<RangeControl
+							allowReset
+							label={ __( 'Min. Height', 'sixa' ) }
+							help={ __( 'in pixels', 'sixa' ) }
+							min={ 10 }
+							max={ 500 }
+							onChange={ ( value ) => setAttributes( { minHeight: value } ) }
+							value={ minHeight }
+						/>
+					) }
 				</PanelBody>
 				{ url && (
 					<PanelBody title={ __( 'Media Settings', 'sixa' ) } initialOpen>
