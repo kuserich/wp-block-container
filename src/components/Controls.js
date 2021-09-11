@@ -97,7 +97,10 @@ function Controls( { attributes, setAttributes } ) {
 					onChange={ ( value ) => setAttributes( { contentPosition: value } ) }
 					value={ contentPosition }
 				/>
-				<FullHeightAlignmentControl isActive={ Boolean( isFullHeight ) } onToggle={ () => setAttributes( { isFullHeight: ! isFullHeight } ) } />
+				<FullHeightAlignmentControl
+					isActive={ Boolean( isFullHeight ) }
+					onToggle={ () => setAttributes( { isFullHeight: ! isFullHeight, minHeight: undefined } ) }
+				/>
 			</BlockControls>
 			<BlockControls group="other">
 				<MediaReplaceFlow
