@@ -92,11 +92,10 @@ $prefix: sixa;
 	}
 
 	&.is-full-height {
-		height: 100vh;
+		min-height: 100vh;
 	}
 
 	&.has-background-dim {
-
 		/**
         * Set a default background color for has-background-dim _unless_ it includes another
         * background-color class (e.g. has-green-background-color). The presence of another
@@ -116,7 +115,6 @@ $prefix: sixa;
 		}
 
 		&:not(.has-background-gradient) {
-
 			&::before {
 				background-color: inherit;
 				z-index: 1;
@@ -140,7 +138,6 @@ $prefix: sixa;
 	}
 
 	&.has-background-size {
-
 		&-auto {
 			background-size: auto;
 		}
@@ -151,7 +148,6 @@ $prefix: sixa;
 	}
 
 	@each $horizontal, $justify in (left, flex-start), (center, center), (right, flex-end) {
-
 		@each $vertical, $align in (top, flex-start), (center, center), (bottom, flex-end), {
 			&.is-position-#{$vertical}-#{$horizontal} {
 				align-items: #{$align};
