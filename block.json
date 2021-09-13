@@ -6,9 +6,8 @@
 	"icon": "insert",
 	"description": "Container block for WordPress editor.",
 	"keywords": [
-		"sixa",
-		"section",
 		"group",
+		"section",
 		"wrapper"
 	],
 	"supports": {
@@ -29,10 +28,10 @@
 			"type": "string",
 			"default": "image"
 		},
-		"customOverlayColor": {
+		"customGradient": {
 			"type": "string"
 		},
-		"customGradient": {
+		"customOverlayColor": {
 			"type": "string"
 		},
 		"contentPosition": {

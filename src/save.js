@@ -3,7 +3,7 @@
 /**
  * Utility for libraries from the `Lodash`.
  */
-import { isEqual, noop, get, set } from 'lodash';
+import { isEqual, get, set } from 'lodash';
 
 /**
  * Utility for conditionally joining CSS class names together.
@@ -13,7 +13,7 @@ import classnames from 'classnames';
 /**
  * Utility helper methods specific for Sixa projects.
  */
-import { blockClassName, isPositionCenter, dimRatioClassName, positionToClassName, backgroundImageStyle, focalPointStyle } from '@sixach/wp-block-utils';
+import { blockClassName, backgroundImageStyle, dimRatioClassName, focalPointStyle, isPositionCenter, positionToClassName } from '@sixa/wp-block-utils';
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -24,65 +24,70 @@ import { blockClassName, isPositionCenter, dimRatioClassName, positionToClassNam
 import { useBlockProps, InnerBlocks, getColorClassName, __experimentalGetGradientClass } from '@wordpress/block-editor';
 
 /**
+ * Helper constants.
+ */
+import Constants from './constants';
+
+/**
  * The save function defines the way in which the different attributes should
  * be combined into the final markup, which is then serialized by the block
  * editor into `post_content`.
  *
  * @see 	  https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
- * @param     {Object}    	 props 				 Block meta-data properties.
- * @param     {Object}  	 props.attributes    Block attributes.
- * @return    {WPElement} 						 Element to render.
+ * @param 	  {Object} 		   props               Block meta-data properties.
+ * @param 	  {Object} 		   props.attributes    Block attributes.
+ * @return    {JSX.Element} 					   Container element to render.
  */
-export default function save( { attributes } ) {
-	let positionValue = noop;
+function save( { attributes } ) {
+	let positionValue;
 	const {
-		url,
-		width,
-		hasParallax,
-		isRepeated,
-		isFullHeight,
+		backgroundSize,
+		backgroundType,
+		customGradient: customOverlayGradient,
+		customOverlayColor,
+		contentPosition,
+		customTextColor,
 		dimRatio,
 		focalPoint,
-		contentPosition,
-		backgroundType,
-		textColor,
-		customTextColor,
-		overlayColor,
-		customOverlayColor,
-		gradient,
-		customGradient,
-		backgroundSize,
+		gradient: overlayGradient,
+		hasParallax,
+		isFullHeight,
+		isRepeated,
 		minHeight,
+		overlayColor,
+		textColor,
 		title,
+		url,
+		width,
 	} = attributes;
+	const backgroundSizeSelection = backgroundSize?.selection;
 	const textColorClass = getColorClassName( 'color', textColor );
 	const overlayColorClass = getColorClassName( 'background-color', overlayColor );
 	const isDimRatio = isEqual( dimRatio, 0 );
-	const backgroundSizeSelection = backgroundSize?.selection;
-	const gradientClass = __experimentalGetGradientClass( gradient );
-	const isImageBackground = isEqual( backgroundType, 'image' );
-	const isVideoBackground = isEqual( backgroundType, 'video' );
+	const overlayGradientClass = __experimentalGetGradientClass( overlayGradient );
+	const isImageBackground = isEqual( backgroundType, Constants.IMAGE_MEDIA_TYPE );
+	const isVideoBackground = isEqual( backgroundType, Constants.VIDEO_MEDIA_TYPE );
 	const styles = {
 		...( isImageBackground ? backgroundImageStyle( url ) : {} ),
 	};
 	const videoStyles = {};
 
-	if ( ! textColorClass ) {
-		set( styles, 'color', customTextColor );
-	}
-
 	if ( ! overlayColorClass ) {
 		set( styles, 'backgroundColor', customOverlayColor );
 	}
 
-	if ( customGradient && ! url ) {
-		set( styles, 'background', customGradient );
+	if ( ! textColorClass ) {
+		set( styles, 'color', customTextColor );
+	}
+
+	if ( customOverlayGradient && ! url ) {
+		set( styles, 'background', customOverlayGradient );
 	}
 
 	if ( focalPoint ) {
 		positionValue = focalPointStyle( focalPoint );
 
-		if ( isImageBackground && ! hasParallax ) {
+		if ( isImageBackground ) {
 			set( styles, 'backgroundPosition', positionValue );
 		}
 
@@ -91,7 +96,7 @@ export default function save( { attributes } ) {
 		}
 	}
 
-	if ( 'custom' === backgroundSizeSelection ) {
+	if ( isEqual( 'custom', backgroundSizeSelection ) ) {
 		set( styles, 'backgroundSize', `${ backgroundSize?.width } ${ backgroundSize?.height }` );
 	}
 
@@ -102,18 +107,18 @@ export default function save( { attributes } ) {
 	// Generated class names and styles for this block.
 	const blockProps = useBlockProps.save( {
 		className: classnames( dimRatioClassName( dimRatio ), positionToClassName( contentPosition ), {
-			'has-parallax': hasParallax,
 			'is-repeated': isRepeated,
 			'is-full-height': isFullHeight,
-			'has-text-color': textColorClass,
 			'has-background': overlayColorClass,
-			'has-background-dim': !! url && ! isDimRatio,
-			'has-background-gradient': gradient || customGradient,
+			'has-background-dim': url && ! Boolean( isDimRatio ),
+			'has-background-gradient': overlayGradient || customOverlayGradient,
+			[ `has-background-size-${ backgroundSizeSelection }` ]: url && backgroundSizeSelection,
 			'has-custom-content-position': ! isPositionCenter( contentPosition ),
-			[ `has-background-size-${ backgroundSizeSelection }` ]: backgroundSizeSelection,
+			'has-parallax': hasParallax,
+			'has-text-color': textColorClass,
 			[ textColorClass ]: textColorClass,
 			[ overlayColorClass ]: overlayColorClass,
-			[ gradientClass ]: ! url && gradientClass,
+			[ overlayGradientClass ]: ! url && overlayGradientClass,
 		} ),
 		style: { ...styles },
 	} );
@@ -122,19 +127,21 @@ export default function save( { attributes } ) {
 	return (
 		<div { ...blockProps }>
 			{ title && <span className={ `${ className }__title` }>{ title }</span> }
-			{ url && ( gradient || customGradient ) && ! isDimRatio && (
+			{ url && ( overlayGradient || customOverlayGradient ) && ! isDimRatio && (
 				<span
-					aria-hidden="true"
-					style={ customGradient ? { background: customGradient } : noop }
-					className={ classnames( `${ className }__gradient-background`, gradientClass ) }
+					aria-hidden
+					className={ classnames( `${ className }__gradient-background`, overlayGradientClass ) }
+					style={ customOverlayGradient ? { background: customOverlayGradient } : undefined }
 				/>
 			) }
 			{ isVideoBackground && url && (
-				<video loop muted autoPlay playsInline src={ url } style={ { ...videoStyles } } className={ `${ className }__video-background` } />
+				<video autoPlay className={ `${ className }__video-background` } loop muted playsInline src={ url } style={ { ...videoStyles } } />
 			) }
-			<div className={ `${ className }__content` } style={ { maxWidth: width ? `${ width }px` : noop() } }>
+			<div className={ `${ className }__content` } style={ { maxWidth: width ? `${ width }px` : undefined } }>
 				<InnerBlocks.Content />
 			</div>
 		</div>
 	);
 }
+
+export default save;

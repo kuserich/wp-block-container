@@ -17,8 +17,8 @@ import './style.scss';
 /**
  * Internal dependencies
  */
-import './enhancements';
-import Edit from './edit';
+import './extensions';
+import Edit from './Edit';
 import save from './save';
 import transforms from './transforms';
 
