@@ -3,17 +3,18 @@
 	"name": "sixa/container",
 	"title": "Container",
 	"category": "design",
-	"icon": "insert",
-	"description": "Container block for WordPress editor.",
+	"description": "Wrap several blocks in a parent wrapper and do more styling as well.",
 	"keywords": [
+		"block",
+		"container",
 		"group",
 		"section",
 		"wrapper"
 	],
 	"supports": {
-		"html": false,
+		"align": [ "wide", "full" ],
 		"anchor": true,
-		"align": [ "wide", "full" ]
+		"html": false
 	},
 	"attributes": {
 	    "backgroundSize": {
