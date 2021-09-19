@@ -1,10 +1,12 @@
 {
 	"name": "sixach/wp-block-container",
 	"type": "wordpress-block",
-	"description": "Container block for WordPress editor.",
+	"description": "Wrap several blocks in a parent wrapper and do more styling as well.",
 	"keywords": [
-		"section",
+		"block",
+		"container",
 		"group",
+		"section",
 		"wrapper"
 	],
 	"homepage": "https://www.sixa.ch",
@@ -16,8 +18,20 @@
 		}
 	],
 	"require": {
-		"php": ">=7.2"
+		"php": ">=7.3",
+		"sixach/wp-snippets": "^1.3.0",
+		"sixach/wp-block-api": "^1.0.0"
 	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "git@github.com:sixach/wp-block-api.git"
+		},
+		{
+		  "type": "vcs",
+		  "url": "git@github.com:sixach/wp-snippets.git"
+		}
+	],
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
 		"wp-coding-standards/wpcs": "^2.3.0",
@@ -31,6 +45,6 @@
 		"lint:php": "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor --exclude node_modules ."
 	},
 	"autoload": {
-		"classmap": ["block"]
+		"classmap": [ "block" ]
 	}
 }
