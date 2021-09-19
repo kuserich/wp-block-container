@@ -4,16 +4,17 @@
  *
  * @wordpress-plugin
  * Plugin Name:          Sixa - Container
- * Description:          Container block for WordPress editor.
- * Version:              1.0.0
+ * Description:          Wrap several blocks in a parent wrapper and do more styling as well.
+ * Version:              1.2.0
  * Requires at least:    5.7
- * Requires PHP:         7.2
+ * Requires PHP:         7.3
  * Author:               sixa AG
+ * Author URI:           https://sixa.ch
  * License:              GPL v3 or later
  * License URI:          https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:          sixa
  *
- * @package             sixa
+ * @package              Sixa_Blocks
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
@@ -30,7 +31,7 @@ use Sixa_Blocks\Container;
  *
  * @see    https://getcomposer.org/doc/01-basic-usage.md#autoloading
  */
-require __DIR__ . '/vendor/autoload.php';
+require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
 /**
  * Initialize your block.
