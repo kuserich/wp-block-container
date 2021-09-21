@@ -34,6 +34,7 @@
 		"lint:php": "composer lint:php",
 		"lint:wpcs": "composer lint:wpcs",
 		"lint:wpcs-fix": "composer lint:wpcbf",
+		"makepot": "composer make-pot",
 		"packages-update": "wp-scripts packages-update",
 		"prepare": "husky install"
 	},
