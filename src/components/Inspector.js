@@ -69,8 +69,8 @@ function Inspector( { attributes, overlayColor, overlayGradient, setAttributes, 
 				<PanelBody initialOpen>
 					<RangeControl
 						allowReset
-						help={ __( 'in pixels', 'sixa' ) }
-						label={ __( 'Width', 'sixa' ) }
+						help={ __( 'in pixels', 'sixa-container-block' ) }
+						label={ __( 'Width', 'sixa-container-block' ) }
 						min={ 400 }
 						max={ 1920 }
 						onChange={ ( value ) => setAttributes( { width: value } ) }
@@ -79,8 +79,8 @@ function Inspector( { attributes, overlayColor, overlayGradient, setAttributes, 
 					{ ! isFullHeight && (
 						<RangeControl
 							allowReset
-							label={ __( 'Min. Height', 'sixa' ) }
-							help={ __( 'in pixels', 'sixa' ) }
+							label={ __( 'Min. Height', 'sixa-container-block' ) }
+							help={ __( 'in pixels', 'sixa-container-block' ) }
 							min={ 10 }
 							max={ 500 }
 							onChange={ ( value ) => setAttributes( { minHeight: value } ) }
@@ -89,12 +89,12 @@ function Inspector( { attributes, overlayColor, overlayGradient, setAttributes, 
 					) }
 				</PanelBody>
 				{ url && (
-					<PanelBody title={ __( 'Media Settings', 'sixa' ) } initialOpen>
+					<PanelBody title={ __( 'Media Settings', 'sixa-container-block' ) } initialOpen>
 						{ isImageBackground && (
 							<>
 								<ToggleControl
 									checked={ Boolean( hasParallax ) }
-									label={ __( 'Fixed background', 'sixa' ) }
+									label={ __( 'Fixed background', 'sixa-container-block' ) }
 									onChange={ () =>
 										setAttributes( {
 											hasParallax: ! hasParallax,
@@ -104,11 +104,11 @@ function Inspector( { attributes, overlayColor, overlayGradient, setAttributes, 
 								/>
 								<ToggleControl
 									checked={ Boolean( isRepeated ) }
-									label={ __( 'Repeated background', 'sixa' ) }
+									label={ __( 'Repeated background', 'sixa-container-block' ) }
 									onChange={ () => setAttributes( { isRepeated: ! isRepeated } ) }
 								/>
 								<BackgroundSizeControl
-									label={ __( 'Background Size', 'sixa' ) }
+									label={ __( 'Background Size', 'sixa-container-block' ) }
 									value={ backgroundSize }
 									onChange={ ( value ) => setAttributes( { backgroundSize: value } ) }
 								/>
@@ -116,7 +116,7 @@ function Inspector( { attributes, overlayColor, overlayGradient, setAttributes, 
 						) }
 						{ showFocalPointPicker && (
 							<FocalPointPicker
-								label={ __( 'Focal point picker', 'sixa' ) }
+								label={ __( 'Focal point picker', 'sixa-container-block' ) }
 								onChange={ ( value ) => setAttributes( { focalPoint: value } ) }
 								url={ url }
 								value={ focalPoint }
@@ -140,7 +140,7 @@ function Inspector( { attributes, overlayColor, overlayGradient, setAttributes, 
 									} )
 								}
 							>
-								{ __( 'Clear Media', 'sixa' ) }
+								{ __( 'Clear Media', 'sixa-container-block' ) }
 							</Button>
 						</PanelRow>
 					</PanelBody>
@@ -150,23 +150,23 @@ function Inspector( { attributes, overlayColor, overlayGradient, setAttributes, 
 					settings={ [
 						{
 							colorValue: textColorValue,
-							label: __( 'Text', 'sixa' ),
+							label: __( 'Text', 'sixa-container-block' ),
 							onColorChange: setTextColor,
 						},
 						{
 							colorValue: overlayColorValue,
 							gradientValue: overlayGradientValue,
-							label: __( 'Overlay', 'sixa' ),
+							label: __( 'Overlay', 'sixa-container-block' ),
 							onColorChange: setOverlayColor,
 							onGradientChange: setOverlayGradient,
 						},
 					] }
-					title={ __( 'Color Settings', 'sixa' ) }
+					title={ __( 'Color Settings', 'sixa-container-block' ) }
 				>
 					{ url && (
 						<RangeControl
 							allowReset
-							label={ __( 'Opacity', 'sixa' ) }
+							label={ __( 'Opacity', 'sixa-container-block' ) }
 							min={ 0 }
 							max={ 100 }
 							onChange={ ( value ) => setAttributes( { dimRatio: value } ) }
@@ -186,8 +186,8 @@ function Inspector( { attributes, overlayColor, overlayGradient, setAttributes, 
 			</InspectorControls>
 			<InspectorAdvancedControls>
 				<TextControl
-					help={ __( 'Enter a title for this section to display on the left side of the container.', 'sixa' ) }
-					label={ __( 'Title', 'sixa' ) }
+					help={ __( 'Enter a title for this section to display on the left side of the container.', 'sixa-container-block' ) }
+					label={ __( 'Title', 'sixa-container-block' ) }
 					onChange={ ( value ) => setAttributes( { title: value } ) }
 					value={ title }
 				/>

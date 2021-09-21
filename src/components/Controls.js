@@ -93,7 +93,7 @@ function Controls( { attributes, setAttributes } ) {
 		<>
 			<BlockControls group="block">
 				<BlockAlignmentMatrixControl
-					label={ __( 'Change content position', 'sixa' ) }
+					label={ __( 'Change content position', 'sixa-container-block' ) }
 					onChange={ ( value ) => setAttributes( { contentPosition: value } ) }
 					value={ contentPosition }
 				/>
@@ -107,7 +107,7 @@ function Controls( { attributes, setAttributes } ) {
 					allowedTypes={ [ Constants.IMAGE_MEDIA_TYPE, Constants.VIDEO_MEDIA_TYPE ] }
 					mediaId={ id }
 					mediaURL={ url }
-					name={ ! url ? __( 'Add Media', 'sixa' ) : __( 'Replace', 'sixa' ) }
+					name={ ! url ? __( 'Add Media', 'sixa-container-block' ) : __( 'Replace', 'sixa-container-block' ) }
 					onSelect={ handleOnSelectMedia }
 				/>
 			</BlockControls>
