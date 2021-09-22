@@ -12,7 +12,7 @@
  * Author URI:           https://sixa.ch
  * License:              GPL v3 or later
  * License URI:          https://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain:          sixa-container-block
+ * Text Domain:          sixa-block-container
  *
  * @package              Sixa_Blocks
  */
