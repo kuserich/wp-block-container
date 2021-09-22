@@ -25,6 +25,7 @@
 		"analyze-bundles": "npm run build -- --webpack-bundle-analyzer",
 		"dev": "wp-scripts start",
 		"build": "wp-scripts build",
+		"bundle": "sixa-wp-scripts bundle sixa-block-container",
 		"format": "wp-scripts format",
 		"lint:css": "wp-scripts lint-style",
 		"lint:css-fix": "wp-scripts lint-style --fix",
@@ -36,7 +37,8 @@
 		"lint:wpcs-fix": "composer lint:wpcbf",
 		"makepot": "composer make-pot",
 		"packages-update": "wp-scripts packages-update",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"prepare-bundle": "npm i && npm run build && composer install --no-dev --optimize-autoloader"
 	},
 	"lint-staged": {
 		"*.{scss,css}": [
@@ -66,6 +68,7 @@
 	},
 	"devDependencies": {
 		"@sixa/wp-block-utils": "^1.0.3",
+		"@sixach/wp-scripts": "^1.0.0",
 		"@wordpress/scripts": "^18.0.1",
 		"classnames": "2.3.1",
 		"husky": "^7.0.2",
