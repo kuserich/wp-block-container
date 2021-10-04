@@ -1,5 +1,7 @@
 @use "sass:math";
 
+@import "@sixach/wp-style-utils/src/flexbox";
+
 /**
  * The following styles get applied both on the front of your site
  * and in the editor.
@@ -8,12 +10,10 @@
 $prefix: sixa;
 
 .wp-block-#{$prefix}-container {
-	align-items: center;
+	@include box(center, middle);
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	display: flex;
-	justify-content: center;
 	position: relative;
 
 	/* This block has customizable padding, border-box makes that more predictable. */
