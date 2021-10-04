@@ -1,5 +1,7 @@
+$prefix: sixa;
+
 .editor-styles-wrapper {
-	.wp-block-sixa-container {
+	.wp-block-#{$prefix}-container {
 		.wp-block {
 			max-width: 100%;
 		}
