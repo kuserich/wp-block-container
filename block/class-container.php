@@ -7,7 +7,7 @@
  *
  * @since         1.2.0
  * @package       Sixa_Blocks
- * @subpackage    Sixa_Blocks\Recent_Posts
+ * @subpackage    Sixa_Blocks\Container
  */
 
 namespace Sixa_Blocks;
