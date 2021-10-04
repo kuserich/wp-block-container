@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "08b4c49c894ea0ae7bd5c9b368ff1177",
+    "content-hash": "93cf4956345927ed8c05819833b191da",
     "packages": [
         {
             "name": "sixach/wp-block-api",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "git@github.com:sixach/wp-block-api.git",
-                "reference": "431918c3bc46f1c729c69c3a2874cb80bd251ad9"
+                "reference": "173f6b4500c4aa15d926bc0623282b02cb9cf0df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sixach/wp-block-api/zipball/431918c3bc46f1c729c69c3a2874cb80bd251ad9",
-                "reference": "431918c3bc46f1c729c69c3a2874cb80bd251ad9",
+                "url": "https://api.github.com/repos/sixach/wp-block-api/zipball/173f6b4500c4aa15d926bc0623282b02cb9cf0df",
+                "reference": "173f6b4500c4aa15d926bc0623282b02cb9cf0df",
                 "shasum": ""
             },
             "require": {
@@ -65,10 +65,10 @@
                 "wordpress"
             ],
             "support": {
-                "source": "https://github.com/sixach/wp-block-api/tree/v1.0.0",
+                "source": "https://github.com/sixach/wp-block-api/tree/v1.0.1",
                 "issues": "https://github.com/sixach/wp-block-api/issues"
             },
-            "time": "2021-09-14T15:32:23+00:00"
+            "time": "2021-09-23T12:34:20+00:00"
         },
         {
             "name": "sixach/wp-snippets",
