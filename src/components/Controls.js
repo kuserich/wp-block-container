@@ -34,7 +34,7 @@ import { BlockControls, MediaReplaceFlow } from '@wordpress/block-editor';
 /**
  * Helper React components specific for Sixa projects.
  */
-import { BlockAlignmentMatrixControl, FullHeightAlignmentControl } from '@sixach/wp-block-components';
+import { BlockAlignmentMatrixControl, FullHeightAlignmentControl } from '@sixa/wp-block-components';
 
 /**
  * Helper constants.
@@ -93,7 +93,7 @@ function Controls( { attributes, setAttributes } ) {
 		<>
 			<BlockControls group="block">
 				<BlockAlignmentMatrixControl
-					label={ __( 'Change content position', 'sixa' ) }
+					label={ __( 'Change content position', 'sixa-block-container' ) }
 					onChange={ ( value ) => setAttributes( { contentPosition: value } ) }
 					value={ contentPosition }
 				/>
@@ -107,7 +107,7 @@ function Controls( { attributes, setAttributes } ) {
 					allowedTypes={ [ Constants.IMAGE_MEDIA_TYPE, Constants.VIDEO_MEDIA_TYPE ] }
 					mediaId={ id }
 					mediaURL={ url }
-					name={ ! url ? __( 'Add Media', 'sixa' ) : __( 'Replace', 'sixa' ) }
+					name={ ! url ? __( 'Add Media', 'sixa-block-container' ) : __( 'Replace', 'sixa-block-container' ) }
 					onSelect={ handleOnSelectMedia }
 				/>
 			</BlockControls>

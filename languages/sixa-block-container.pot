@@ -1,0 +1,139 @@
+# Copyright (C) 2021 sixa AG
+# This file is distributed under the GPL v3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Sixa - Container 1.2.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-block-container\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-09-22T21:23:23+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
+"X-Domain: sixa-block-container\n"
+
+#. Plugin Name of the plugin
+msgid "Sixa - Container"
+msgstr ""
+
+#. Description of the plugin
+msgid "Wrap several blocks in a parent wrapper and do more styling as well."
+msgstr ""
+
+#. Author of the plugin
+msgid "sixa AG"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://sixa.ch"
+msgstr ""
+
+#: src/components/Controls.js:96
+msgid "Change content position"
+msgstr ""
+
+#: src/components/Controls.js:110
+msgid "Add Media"
+msgstr ""
+
+#: src/components/Controls.js:110
+msgid "Replace"
+msgstr ""
+
+#: src/components/Inspector.js:72
+#: src/components/Inspector.js:83
+msgid "in pixels"
+msgstr ""
+
+#: src/components/Inspector.js:73
+msgid "Width"
+msgstr ""
+
+#: src/components/Inspector.js:82
+msgid "Min. Height"
+msgstr ""
+
+#: src/components/Inspector.js:92
+msgid "Media Settings"
+msgstr ""
+
+#: src/components/Inspector.js:97
+msgid "Fixed background"
+msgstr ""
+
+#: src/components/Inspector.js:107
+msgid "Repeated background"
+msgstr ""
+
+#: src/components/Inspector.js:111
+msgid "Background Size"
+msgstr ""
+
+#: src/components/Inspector.js:119
+msgid "Focal point picker"
+msgstr ""
+
+#: src/components/Inspector.js:143
+msgid "Clear Media"
+msgstr ""
+
+#: src/components/Inspector.js:153
+msgid "Text"
+msgstr ""
+
+#: src/components/Inspector.js:159
+msgid "Overlay"
+msgstr ""
+
+#: src/components/Inspector.js:164
+msgid "Color Settings"
+msgstr ""
+
+#: src/components/Inspector.js:169
+msgid "Opacity"
+msgstr ""
+
+#: src/components/Inspector.js:189
+msgid "Enter a title for this section to display on the left side of the container."
+msgstr ""
+
+#: src/components/Inspector.js:190
+msgid "Title"
+msgstr ""
+
+#: block.json
+msgctxt "block title"
+msgid "Container"
+msgstr ""
+
+#: block.json
+msgctxt "block description"
+msgid "Wrap several blocks in a parent wrapper and do more styling as well."
+msgstr ""
+
+#: block.json
+msgctxt "block keyword"
+msgid "block"
+msgstr ""
+
+#: block.json
+msgctxt "block keyword"
+msgid "container"
+msgstr ""
+
+#: block.json
+msgctxt "block keyword"
+msgid "group"
+msgstr ""
+
+#: block.json
+msgctxt "block keyword"
+msgid "section"
+msgstr ""
+
+#: block.json
+msgctxt "block keyword"
+msgid "wrapper"
+msgstr ""

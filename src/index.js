@@ -19,6 +19,7 @@ import './style.scss';
  */
 import './extensions';
 import Edit from './Edit';
+import Icon from './Icon';
 import save from './save';
 import transforms from './transforms';
 
@@ -34,17 +35,22 @@ registerBlockType( 'sixa/container', {
 	apiVersion: 2,
 
 	/**
-	 * @see    ./transforms.js
-	 */
-	transforms,
-
-	/**
 	 * @see    ./edit.js
 	 */
 	edit: Edit,
 
 	/**
+	 * @see    ./Icon.js
+	 */
+	icon: Icon,
+
+	/**
 	 * @see    ./save.js
 	 */
 	save,
+
+	/**
+	 * @see    ./transforms.js
+	 */
+	transforms,
 } );
