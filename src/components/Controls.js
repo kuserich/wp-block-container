@@ -34,7 +34,7 @@ import { BlockControls, MediaReplaceFlow } from '@wordpress/block-editor';
 /**
  * Helper React components specific for Sixa projects.
  */
-import { BlockAlignmentMatrixControl, FullHeightAlignmentControl } from '@sixach/wp-block-components';
+import { BlockAlignmentMatrixControl, FullHeightAlignmentControl } from '@sixa/wp-block-components';
 
 /**
  * Helper constants.

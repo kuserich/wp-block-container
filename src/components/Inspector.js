@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 /**
  * Helper React components specific for Sixa projects.
  */
-import { BackgroundSizeControl } from '@sixach/wp-block-components';
+import { BackgroundSizeControl } from '@sixa/wp-block-components';
 
 /**
  * Internationalization utilities for client-side localization.
