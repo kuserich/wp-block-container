@@ -1,7 +1,7 @@
 @use "sass:math";
 
-@import "@sixach/wp-style-utils/src/flexbox";
-@import "@sixach/wp-style-utils/src/dim-background";
+@import "@sixa/wp-style-utils/src/flexbox";
+@import "@sixa/wp-style-utils/src/dim-background";
 
 /**
  * The following styles get applied both on the front of your site
@@ -45,12 +45,7 @@ $prefix: sixa;
 
 	&__content {
 		position: relative;
-		width: 100%;
 		z-index: 1;
-
-		> .block-list-appender {
-			max-width: 100%;
-		}
 	}
 
 	&__title {
