@@ -187,7 +187,7 @@ function Edit( { attributes, clientId, overlayColor, setAttributes, setOverlayCo
 	const innerBlocksProps = __experimentalUseInnerBlocksProps(
 		{
 			className: `${ className }__content`,
-			style: { maxWidth: width ? `${ width }px` : undefined },
+			style: { width: width ? `min(${ width }px, 100%)` : undefined },
 		},
 		{
 			renderAppender: ! hasInnerBlocks && InnerBlocks.ButtonBlockAppender,

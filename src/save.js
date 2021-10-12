@@ -137,7 +137,7 @@ function save( { attributes } ) {
 			{ isVideoBackground && url && (
 				<video autoPlay className={ `${ className }__video-background` } loop muted playsInline src={ url } style={ { ...videoStyles } } />
 			) }
-			<div className={ `${ className }__content` } style={ { maxWidth: width ? `${ width }px` : undefined } }>
+			<div className={ `${ className }__content` } style={ { width: width ? `min(${ width }px, 100%)` : undefined } }>
 				<InnerBlocks.Content />
 			</div>
 		</div>
