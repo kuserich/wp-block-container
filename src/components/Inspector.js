@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 /**
  * Helper React components specific for Sixa projects.
  */
-import { BackgroundSizeControl } from '@sixach/wp-block-components';
+import { BackgroundSizeControl } from '@sixa/wp-block-components';
 
 /**
  * Internationalization utilities for client-side localization.
@@ -82,7 +82,7 @@ function Inspector( { attributes, overlayColor, overlayGradient, setAttributes, 
 							label={ __( 'Min. Height', 'sixa-block-container' ) }
 							help={ __( 'in pixels', 'sixa-block-container' ) }
 							min={ 10 }
-							max={ 500 }
+							max={ 1000 }
 							onChange={ ( value ) => setAttributes( { minHeight: value } ) }
 							value={ minHeight }
 						/>

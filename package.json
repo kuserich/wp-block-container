@@ -53,8 +53,8 @@
 		]
 	},
 	"dependencies": {
-		"@sixach/icon-library": "^1.1.0",
-		"@sixach/wp-block-components": "^1.5.0",
+		"@sixa/icon-library": "^1.1.1",
+		"@sixa/wp-block-components": "^1.6.2",
 		"@wordpress/blob": "^3.2.1",
 		"@wordpress/block-editor": "^7.0.2",
 		"@wordpress/blocks": "^11.1.0",
@@ -67,13 +67,13 @@
 		"prop-types": "^15.7.2"
 	},
 	"devDependencies": {
-		"@sixa/wp-block-utils": "^1.0.3",
-		"@sixa/wp-style-utils": "^1.1.1",
-		"@sixach/wp-scripts": "^1.0.0",
+		"@sixa/wp-block-utils": "^1.0.4",
+		"@sixa/wp-scripts": "^1.0.0",
+		"@sixach/wp-style-utils": "^1.0.0",
 		"@wordpress/scripts": "^18.0.1",
 		"classnames": "2.3.1",
 		"husky": "^7.0.2",
-		"lint-staged": "11.1.2",
+		"lint-staged": "^11.2.0",
 		"lodash": "4.17.21"
 	}
 }
