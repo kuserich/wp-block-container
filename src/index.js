@@ -18,6 +18,7 @@ import './style.scss';
  * Internal dependencies
  */
 import './extensions';
+import deprecated from './deprecated';
 import Edit from './Edit';
 import Icon from './Icon';
 import save from './save';
@@ -53,4 +54,9 @@ registerBlockType( 'sixa/container', {
 	 * @see    ./transforms.js
 	 */
 	transforms,
+
+	/**
+	 * @see    ./deprecated.js
+	 */
+	deprecated,
 } );
