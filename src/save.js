@@ -101,7 +101,7 @@ function save( { attributes } ) {
 	}
 
 	if ( minHeight ) {
-		set( styles, 'minHeight', `${ minHeight }px` );
+		set( styles, 'minHeight', `${ minHeight }` );
 	}
 
 	// Generated class names and styles for this block.
@@ -137,7 +137,7 @@ function save( { attributes } ) {
 			{ isVideoBackground && url && (
 				<video autoPlay className={ `${ className }__video-background` } loop muted playsInline src={ url } style={ { ...videoStyles } } />
 			) }
-			<div className={ `${ className }__content` } style={ { width: width ? `min(${ width }px, 100%)` : undefined } }>
+			<div className={ `${ className }__content` } style={ { width: width ? `min(${ width }, 100%)` : undefined } }>
 				<InnerBlocks.Content />
 			</div>
 		</div>
