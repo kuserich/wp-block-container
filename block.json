@@ -67,7 +67,7 @@
 			"default": false
 		},
 		"minHeight": {
-			"type": "number"
+			"type": "string"
 		},
 		"overlayColor": {
 			"type": "string"
@@ -82,7 +82,7 @@
 			"type": "string"
 		},
 		"width": {
-			"type": "number"
+			"type": "string"
 		}
 	},
 	"textdomain": "sixa-block-container",
