@@ -35,7 +35,16 @@ import { ContrastChecker, InspectorAdvancedControls, InspectorControls, __experi
  *
  * @see    https://developer.wordpress.org/block-editor/reference-guides/packages/packages-components/
  */
-import { Button, FocalPointPicker, PanelBody, PanelRow, RangeControl, TextControl, ToggleControl } from '@wordpress/components';
+import {
+	Button,
+	FocalPointPicker,
+	PanelBody,
+	PanelRow,
+	RangeControl,
+	TextControl,
+	ToggleControl,
+	__experimentalUnitControl as UnitControl,
+} from '@wordpress/components';
 
 /**
  * Helper constants.
@@ -67,24 +76,18 @@ function Inspector( { attributes, overlayColor, overlayGradient, setAttributes, 
 		<>
 			<InspectorControls>
 				<PanelBody initialOpen>
-					<RangeControl
-						allowReset
-						help={ __( 'in pixels', 'sixa-block-container' ) }
+					<UnitControl
 						label={ __( 'Width', 'sixa-block-container' ) }
-						min={ 400 }
-						max={ 1920 }
 						onChange={ ( value ) => setAttributes( { width: value } ) }
 						value={ width }
+						style={ { marginRight: '4%', width: '48%', display: 'inline-block' } }
 					/>
 					{ ! isFullHeight && (
-						<RangeControl
-							allowReset
+						<UnitControl
 							label={ __( 'Min. Height', 'sixa-block-container' ) }
-							help={ __( 'in pixels', 'sixa-block-container' ) }
-							min={ 10 }
-							max={ 1000 }
 							onChange={ ( value ) => setAttributes( { minHeight: value } ) }
 							value={ minHeight }
+							style={ { width: '48%', display: 'inline-block' } }
 						/>
 					) }
 				</PanelBody>
