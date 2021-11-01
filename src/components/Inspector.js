@@ -38,6 +38,7 @@ import { ContrastChecker, InspectorAdvancedControls, InspectorControls, __experi
 import {
 	Button,
 	FocalPointPicker,
+	Flex,
 	PanelBody,
 	PanelRow,
 	RangeControl,
@@ -76,20 +77,28 @@ function Inspector( { attributes, overlayColor, overlayGradient, setAttributes, 
 		<>
 			<InspectorControls>
 				<PanelBody initialOpen>
-					<UnitControl
-						label={ __( 'Width', 'sixa-block-container' ) }
-						onChange={ ( value ) => setAttributes( { width: value } ) }
-						value={ width }
-						style={ { marginRight: '4%', width: '48%', display: 'inline-block' } }
-					/>
-					{ ! isFullHeight && (
+					<Flex
+						css={ {
+							'> div': {
+								width: '100%',
+							},
+						} }
+					>
 						<UnitControl
-							label={ __( 'Min. Height', 'sixa-block-container' ) }
-							onChange={ ( value ) => setAttributes( { minHeight: value } ) }
-							value={ minHeight }
-							style={ { width: '48%', display: 'inline-block' } }
+							dragDirection="e"
+							label={ __( 'Width', 'sixa-block-container' ) }
+							onChange={ ( value ) => setAttributes( { width: value } ) }
+							value={ width }
 						/>
-					) }
+						{ ! isFullHeight && (
+							<UnitControl
+								dragDirection="s"
+								label={ __( 'Min. Height', 'sixa-block-container' ) }
+								onChange={ ( value ) => setAttributes( { minHeight: value } ) }
+								value={ minHeight }
+							/>
+						) }
+					</Flex>
 				</PanelBody>
 				{ url && (
 					<PanelBody title={ __( 'Media Settings', 'sixa-block-container' ) } initialOpen>
