@@ -162,7 +162,7 @@ function Edit( { attributes, clientId, overlayColor, setAttributes, setOverlayCo
 	}
 
 	if ( minHeight ) {
-		set( styles, 'minHeight', `${ minHeight }` );
+		set( styles, 'minHeight', minHeight );
 	}
 
 	// To render the block element wrapper for the block’s `Edit` implementation.

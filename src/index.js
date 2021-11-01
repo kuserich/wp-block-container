@@ -36,6 +36,11 @@ registerBlockType( 'sixa/container', {
 	apiVersion: 2,
 
 	/**
+	 * @see    ./deprecated.js
+	 */
+	deprecated,
+
+	/**
 	 * @see    ./edit.js
 	 */
 	edit: Edit,
@@ -54,9 +59,4 @@ registerBlockType( 'sixa/container', {
 	 * @see    ./transforms.js
 	 */
 	transforms,
-
-	/**
-	 * @see    ./deprecated.js
-	 */
-	deprecated,
 } );

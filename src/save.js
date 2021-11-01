@@ -101,7 +101,7 @@ function save( { attributes } ) {
 	}
 
 	if ( minHeight ) {
-		set( styles, 'minHeight', `${ minHeight }` );
+		set( styles, 'minHeight', minHeight );
 	}
 
 	// Generated class names and styles for this block.
