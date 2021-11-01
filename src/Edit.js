@@ -162,7 +162,7 @@ function Edit( { attributes, clientId, overlayColor, setAttributes, setOverlayCo
 	}
 
 	if ( minHeight ) {
-		set( styles, 'minHeight', `${ minHeight }px` );
+		set( styles, 'minHeight', minHeight );
 	}
 
 	// To render the block element wrapper for the block’s `Edit` implementation.
@@ -187,7 +187,7 @@ function Edit( { attributes, clientId, overlayColor, setAttributes, setOverlayCo
 	const innerBlocksProps = __experimentalUseInnerBlocksProps(
 		{
 			className: `${ className }__content`,
-			style: { width: width ? `min(${ width }px, 100%)` : undefined },
+			style: { width: width ? `min(${ width }, 100%)` : undefined },
 		},
 		{
 			renderAppender: ! hasInnerBlocks && InnerBlocks.ButtonBlockAppender,

@@ -35,7 +35,17 @@ import { ContrastChecker, InspectorAdvancedControls, InspectorControls, __experi
  *
  * @see    https://developer.wordpress.org/block-editor/reference-guides/packages/packages-components/
  */
-import { Button, FocalPointPicker, PanelBody, PanelRow, RangeControl, TextControl, ToggleControl } from '@wordpress/components';
+import {
+	Button,
+	FocalPointPicker,
+	Flex,
+	PanelBody,
+	PanelRow,
+	RangeControl,
+	TextControl,
+	ToggleControl,
+	__experimentalUnitControl as UnitControl,
+} from '@wordpress/components';
 
 /**
  * Helper constants.
@@ -67,26 +77,28 @@ function Inspector( { attributes, overlayColor, overlayGradient, setAttributes, 
 		<>
 			<InspectorControls>
 				<PanelBody initialOpen>
-					<RangeControl
-						allowReset
-						help={ __( 'in pixels', 'sixa-block-container' ) }
-						label={ __( 'Width', 'sixa-block-container' ) }
-						min={ 400 }
-						max={ 1920 }
-						onChange={ ( value ) => setAttributes( { width: value } ) }
-						value={ width }
-					/>
-					{ ! isFullHeight && (
-						<RangeControl
-							allowReset
-							label={ __( 'Min. Height', 'sixa-block-container' ) }
-							help={ __( 'in pixels', 'sixa-block-container' ) }
-							min={ 10 }
-							max={ 1000 }
-							onChange={ ( value ) => setAttributes( { minHeight: value } ) }
-							value={ minHeight }
+					<Flex
+						css={ {
+							'> div': {
+								width: '100%',
+							},
+						} }
+					>
+						<UnitControl
+							dragDirection="e"
+							label={ __( 'Width', 'sixa-block-container' ) }
+							onChange={ ( value ) => setAttributes( { width: value } ) }
+							value={ width }
 						/>
-					) }
+						{ ! isFullHeight && (
+							<UnitControl
+								dragDirection="s"
+								label={ __( 'Min. Height', 'sixa-block-container' ) }
+								onChange={ ( value ) => setAttributes( { minHeight: value } ) }
+								value={ minHeight }
+							/>
+						) }
+					</Flex>
 				</PanelBody>
 				{ url && (
 					<PanelBody title={ __( 'Media Settings', 'sixa-block-container' ) } initialOpen>

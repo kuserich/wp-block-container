@@ -18,6 +18,7 @@ import './style.scss';
  * Internal dependencies
  */
 import './extensions';
+import deprecated from './deprecated';
 import Edit from './Edit';
 import Icon from './Icon';
 import save from './save';
@@ -33,6 +34,11 @@ registerBlockType( 'sixa/container', {
 	 * @see    https://make.wordpress.org/core/2020/11/18/block-api-version-2/
 	 */
 	apiVersion: 2,
+
+	/**
+	 * @see    ./deprecated.js
+	 */
+	deprecated,
 
 	/**
 	 * @see    ./edit.js
