@@ -53,31 +53,31 @@
 		]
 	},
 	"dependencies": {
-		"@sixa/icon-library": "^1.2.0",
+		"@sixa/icon-library": "1.2.0",
 		"@sixa/wp-block-components": "1.10.1",
-		"@sixa/wp-block-utils": "^1.0.4",
+		"@sixa/wp-block-utils": "1.0.4",
 		"@sixa/wp-style-utils": "1.2.0",
-		"@wordpress/blob": "^3.2.1",
+		"@wordpress/blob": "3.2.2",
 		"@wordpress/block-editor": "8.0.5",
-		"@wordpress/blocks": "^11.1.2",
-		"@wordpress/components": "^19.0.0",
-		"@wordpress/compose": "^5.0.4",
-		"@wordpress/data": "^6.1.2",
-		"@wordpress/element": "^4.0.3",
-		"@wordpress/hooks": "^3.2.1",
-		"@wordpress/i18n": "^4.2.3",
+		"@wordpress/blocks": "11.1.4",
+		"@wordpress/components": "19.0.5",
+		"@wordpress/compose": "5.0.6",
+		"@wordpress/data": "6.1.4",
+		"@wordpress/element": "4.0.4",
+		"@wordpress/hooks": "3.2.2",
+		"@wordpress/i18n": "4.2.4",
 		"classnames": "2.3.1",
 		"lodash": "4.17.21",
-		"prop-types": "^15.7.2"
+		"prop-types": "15.7.2"
 	},
 	"devDependencies": {
-		"@emotion/babel-plugin-jsx-pragmatic": "^0.1.5",
-		"@emotion/babel-preset-css-prop": "^11.2.0",
+		"@emotion/babel-plugin-jsx-pragmatic": "0.1.5",
+		"@emotion/babel-preset-css-prop": "11.2.0",
 		"@emotion/react": "11.6.0",
-		"@sixa/wp-scripts": "^1.0.0",
-		"@wordpress/scripts": "^19.0.0",
+		"@sixa/wp-scripts": "1.0.0",
+		"@wordpress/scripts": "19.2.2",
 		"husky": "^7.0.4",
 		"lint-staged": "12.1.2",
-		"prettier": "npm:wp-prettier@^2.2.1-beta-1"
+		"prettier": "npm:wp-prettier@2.2.1-beta-1"
 	}
 }
