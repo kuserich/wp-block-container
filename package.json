@@ -58,7 +58,7 @@
 		"@sixa/wp-block-utils": "^1.0.4",
 		"@sixa/wp-style-utils": "1.2.0",
 		"@wordpress/blob": "^3.2.1",
-		"@wordpress/block-editor": "^7.0.4",
+		"@wordpress/block-editor": "8.0.5",
 		"@wordpress/blocks": "^11.1.2",
 		"@wordpress/components": "^19.0.0",
 		"@wordpress/compose": "^5.0.4",
