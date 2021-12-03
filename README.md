@@ -7,7 +7,7 @@ Create more sophisticated designs with more space, colors, gradients, background
 
 * Full-height toggle to automatically stretch Container to full viewport height
 * Content alignment inside container
-    * Top left
+	* Top left
 	* Top center
 	* Top right
 	* Center left
@@ -22,6 +22,16 @@ Create more sophisticated designs with more space, colors, gradients, background
 * Text color
 * Gutenberg alignment (Full-width and wide-width)
 * Background image
+	* Custom background size
+		* Auto
+		* Cover
+		* Contain
+		* Custom (width and height)
+	* Fixed Background
+	* Repeated Background
+	* Focal Point Picker to adjust background position
+	* Background overlay color
+	* Background overlay opacity
 * Background video
 
 ## Requirements
