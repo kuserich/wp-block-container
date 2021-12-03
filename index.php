@@ -3,7 +3,7 @@
  * Container Block.
  *
  * @wordpress-plugin
- * Plugin Name:          Sixa - Container
+ * Plugin Name:          Sixa - Container Block
  * Description:          Wrap several blocks in a parent wrapper and do more styling.
  * Version:              1.0.0
  * Requires at least:    5.7
