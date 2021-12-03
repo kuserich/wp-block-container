@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "29729fc8047c71beab8a899f0bd2ff94",
+    "content-hash": "f11ea5c015dc7b5d61e4efb300b8b5d8",
     "packages": [
         {
             "name": "sixach/wp-block-api",
@@ -37,17 +37,7 @@
                     "src"
                 ]
             },
-            "scripts": {
-                "lint:wpcs": [
-                    "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs"
-                ],
-                "lint:wpcbf": [
-                    "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf"
-                ],
-                "lint:php": [
-                    "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor --exclude node_modules ."
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0"
             ],
@@ -65,8 +55,8 @@
                 "wordpress"
             ],
             "support": {
-                "source": "https://github.com/sixach/wp-block-api/tree/v1.0.2",
-                "issues": "https://github.com/sixach/wp-block-api/issues"
+                "issues": "https://github.com/sixach/wp-block-api/issues",
+                "source": "https://github.com/sixach/wp-block-api/tree/v1.0.2"
             },
             "time": "2021-10-17T17:16:51+00:00"
         },
@@ -103,20 +93,7 @@
                     "src"
                 ]
             },
-            "scripts": {
-                "lint:wpcs": [
-                    "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs"
-                ],
-                "lint:wpcbf": [
-                    "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf"
-                ],
-                "lint:php": [
-                    "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor --exclude node_modules ."
-                ],
-                "make-pot": [
-                    "wp i18n make-pot . languages/sixa-snippets.pot --exclude=build"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0"
             ],
@@ -129,12 +106,12 @@
             "description": "A plugin containing factory classes or methods for the Sixa projects.",
             "homepage": "https://www.sixa.ch",
             "keywords": [
-                "Plugin",
-                "WordPress"
+                "plugin",
+                "wordpress"
             ],
             "support": {
-                "source": "https://github.com/sixach/wp-snippets/tree/v1.4.3",
-                "issues": "https://github.com/sixach/wp-snippets/issues"
+                "issues": "https://github.com/sixach/wp-snippets/issues",
+                "source": "https://github.com/sixach/wp-snippets/tree/v1.4.3"
             },
             "time": "2021-11-24T09:27:22+00:00"
         }
@@ -1293,16 +1270,16 @@
         },
         {
             "name": "phpunit/php-file-iterator",
-            "version": "3.0.5",
+            "version": "3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
-                "reference": "aa4be8575f26070b100fccb67faabb28f21f66f8"
+                "reference": "cf1c2e7c203ac650e352f4cc675a7021e7d1b3cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/aa4be8575f26070b100fccb67faabb28f21f66f8",
-                "reference": "aa4be8575f26070b100fccb67faabb28f21f66f8",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/cf1c2e7c203ac650e352f4cc675a7021e7d1b3cf",
+                "reference": "cf1c2e7c203ac650e352f4cc675a7021e7d1b3cf",
                 "shasum": ""
             },
             "require": {
@@ -1341,7 +1318,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-file-iterator/issues",
-                "source": "https://github.com/sebastianbergmann/php-file-iterator/tree/3.0.5"
+                "source": "https://github.com/sebastianbergmann/php-file-iterator/tree/3.0.6"
             },
             "funding": [
                 {
@@ -1349,7 +1326,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-28T05:57:25+00:00"
+            "time": "2021-12-02T12:48:52+00:00"
         },
         {
             "name": "phpunit/php-invoker",
