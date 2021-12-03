@@ -1,14 +1,17 @@
 .bundleignore
-.git
-.DS_Store
 .editorconfig
+.git
 .gitattributes
+.github
 .gitignore
-.husky
 .idea
+.husky
 .prettierrc.js
 .stylelintignore
 .stylelintrc.js
+.wordpress-org
+.DS_Store
+babel.config.js
 composer.json
 composer.lock
 docs
@@ -19,3 +22,4 @@ phpcs.xml.dist
 renovate.json
 /src
 *.zip
+/README.md
