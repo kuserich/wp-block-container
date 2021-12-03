@@ -3,7 +3,7 @@
 	"name": "sixa/container",
 	"title": "Container",
 	"category": "design",
-	"description": "Wrap several blocks in a parent wrapper and do more styling as well.",
+	"description": "Wrap several blocks in a parent wrapper and do more styling",
 	"keywords": [
 		"block",
 		"container",
