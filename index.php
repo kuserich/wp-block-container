@@ -9,7 +9,7 @@
  * Requires at least:    5.7
  * Requires PHP:         7.3
  * Author:               sixa AG
- * Author URI:           https://sixa.ch
+ * Author URI:           https://sixa.com
  * License:              GPL v3 or later
  * License URI:          https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:          sixa-block-container
