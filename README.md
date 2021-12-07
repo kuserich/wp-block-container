@@ -3,7 +3,7 @@
 ![Sixa Container Block](https://ps.w.org/sixa-container-block/assets/banner-772x250.jpg?rev=2632168)
 
 A fully customizable wrapper block to group other blocks together.
-Create more sophisticated designs with more space, colors, gradients, background images, videos and much more.
+Create more sophisticated designs with more space, colors, gradients, background images, videos, and much more.
 
 ## Features
 
