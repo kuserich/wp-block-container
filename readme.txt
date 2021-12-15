@@ -9,8 +9,7 @@ Requires PHP: 7.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-A fully customizable wrapper block to group other blocks together.
-Create more sophisticated designs with more space, colors, gradients, background images, videos and much more.
+A fully customizable wrapper block to group other blocks together. Create more sophisticated designs with more space, colors, gradients, background images, videos, and much more.
 
 == Description ==
 
