@@ -22,3 +22,4 @@ function addExtensionsSupport( allowedBlocks ) {
 }
 addFilter( 'sixa.extensionSpacingAllowedBlocks', 'sixa/addSpacingSupport', addExtensionsSupport );
 addFilter( 'sixa.extensionEmbedBackgroundVideoAllowedBlocks', 'sixa/addEmbedBackgroundVideoSupport', addExtensionsSupport );
+addFilter( 'sixa.extensionBoxShadowAllowedBlocks', 'sixa/addBoxShadowSupport', addExtensionsSupport );
