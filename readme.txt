@@ -109,14 +109,14 @@ If you need professional support for this or any other WordPress project, please
 
 == Changelog ==
 = 1.1.0 =
-* Add support for sixa Box Shadow Extension
+* Add support for sixa Box Shadow and sixa Border extensions
 
 = 1.0.0 =
 * Initial release
 
 == Upgrade Notice ==
 = 1.1.0 =
-Upgrade to add support for the sixa Box Shadow Extension.
+Upgrade to add support for the sixa Box Shadow and sixa Border extensions.
 
 = 1.0.0 =
 Initial version of sixa Container Block.
