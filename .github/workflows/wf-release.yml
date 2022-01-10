@@ -1,0 +1,323 @@
+name: Publish the Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      # The semantic version of the release
+      version:
+        description: 'The semver of the release'
+        required: true
+        default: 'patch'
+
+jobs:
+  release-prerequisites:
+    if: contains(github.event.inputs.version, 'major') || 
+        contains(github.event.inputs.version, 'minor') ||
+        contains(github.event.inputs.version, 'patch')
+    name: Prepare the Build Action
+    runs-on: ubuntu-latest
+    outputs:
+      bump: ${{ github.event.inputs.version }}
+      next_version: ${{ steps.next_version.outputs.version }}
+      package: ${{ steps.workflow.outputs.package }}
+
+    steps:
+      - name: Validate CD branch
+        if: ${{ github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/master' && !startsWith(github.ref, 'refs/heads/hotfix/') }}
+        run: |
+          echo "It's not allowed to run CD on other branch except master and hotfix."
+          exit 1
+
+      - name: Setup Workflow Context
+        id: workflow
+        env:
+          REPO: ${{ github.repository }}
+        run: echo ::set-output name=package::${REPO##*/}
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: 🔖 Calculate the next version
+        uses: zwaldowski/semver-release-action@v2
+        id: next_version
+        with:
+          dry_run: true
+          bump: ${{ github.event.inputs.version }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 📢 Print current version of plugin
+        run: |
+          echo "New version about to be pushed to repository: ${{ steps.next_version.outputs.version }}"
+
+  php-version-bump:
+    name: PHP File Version Bump
+    needs: release-prerequisites
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: master
+
+      # Only if index.php/plugin-name.php file exists in root directory
+      - name: Detect plugin/theme PHP file
+        id: php-file
+        run: |
+          FILE=index.php
+          if [[ -f "$FILE" ]]; then
+            echo ::set-output name=file::${FILE}
+          elif [[ -f "${{ needs.release-prerequisites.outputs.package }}.php" ]]; then
+            echo ::set-output name=file::${{ needs.release-prerequisites.outputs.package }}.php
+          fi
+
+      - name: PHP File SemVer Update
+        if: ${{ steps.php-file.outputs.file }}
+        uses: r007/gh-action-wordpress-version-update@v1.0.5
+        with:
+          version: ${{ needs.release-prerequisites.outputs.next_version }}
+          file_path: ${{ steps.php-file.outputs.file }}
+
+      - name: Commit Changes
+        if: ${{ steps.php-file.outputs.file }}
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          # Optional branch name where commit should be pushed to.
+          # Defaults to the current branch.
+          branch: master
+          commit_message: Update Version in PHP file
+          file_pattern: ${{ steps.php-file.outputs.file }}
+
+  package-json-version-bump:
+    name: Package.json Version Bump
+    needs: [release-prerequisites, php-version-bump]
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: master
+
+      - name: Check if project has package.json
+        id: packagejson
+        run: test -e ./package.json && echo "::set-output name=exists::true" || echo "::set-output name=exists::false"
+
+      - name: Package.json SemVer Update
+        if: steps.packagejson.outputs.exists == 'true'
+        uses: reedyuk/npm-version@1.1.1
+        with:
+          version: ${{ needs.release-prerequisites.outputs.next_version }}
+          # The location of the package.json file, defaults to current directory.
+          package: ./
+
+      - name: Commit Changes
+        if: steps.packagejson.outputs.exists == 'true'  
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          # Optional branch name where commit should be pushed to.
+          # Defaults to the current branch.
+          branch: master
+          commit_message: Update Package.json Version
+          file_pattern: "package.json package-lock.json"
+
+  changelog-update:
+    name: Update Changelog For Release
+    needs: [release-prerequisites, package-json-version-bump, php-version-bump]
+    runs-on: ubuntu-latest
+    outputs:
+      releaseSha: ${{ steps.sha.outputs.releaseSha }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: master
+
+      - name: Update Changelog
+        uses: heinrichreimer/action-github-changelog-generator@v2.3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issues: true
+          issuesWoLabels: true
+          pullRequests: true
+          prWoLabels: true
+          unreleased: true
+          filterByMilestone: true
+          stripGeneratorNotice: true
+          verbose: true
+          unreleasedLabel: "Latest Release (${{ needs.release-prerequisites.outputs.next_version }})"
+          breakingLabel: '**💥 Breaking Changes:**'
+          deprecatedLabel: '**⚠️ Deprecations:**'
+          deprecatedLabels: deferred,deprecated
+          enhancementLabel: '**🚀 Enhancements:**'
+          enhancementLabels: 'feature'
+          bugsLabel: '**🐛 Bug Fixes:**'
+          bugLabels: bug,bugfix,hotfix
+          removedLabel: '**🔥 Removals:**'
+          removedLabels: 'removed'
+          excludeLabels: duplicate,question,invalid,wontfix,skip-changelog
+          addSections: '{"documentation":{"prefix":"**📄 Documentation:**","labels":["documentation"]},"feature":{"prefix":"**✨ Enhancements:**","labels":["feature"]},"bugfix":{"prefix":"**🛠️ Fixes:**","labels":["bugfix","fix"]},"removals":{"prefix":"**❌ Removals:**","labels":["removal"]}}'
+
+      - name: Commit Changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: master
+          commit_message: Update Changelog for PR
+          file_pattern: CHANGELOG.md
+
+      - name: Get commit sha
+        shell: bash
+        id: sha
+        run: |
+          RELEASE_SHA="$(git rev-parse HEAD)"
+          echo "::set-output name=releaseSha::$RELEASE_SHA"
+
+      # After php file and package.json bumps it's time to push a new tag
+      - name: Bump version and push tag
+        uses: zwaldowski/semver-release-action@v2
+        with:
+          bump: ${{ needs.release-prerequisites.outputs.bump }}
+          sha: ${{ steps.sha.outputs.releaseSha }}
+          github_token: ${{ secrets.REPO_PUBLISH_TOKEN }}
+
+  # Builds the package and uploads artifact with dist files
+  build:
+    name: Build the Release
+    needs: [release-prerequisites, package-json-version-bump, php-version-bump, changelog-update]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.changelog-update.outputs.releaseSha }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          coverage: none
+          tools: composer, cs2pr
+
+      - name: Setup Workflow Context
+        id: workflow
+        working-directory: ${{ runner.temp }}
+        run: |
+          mkdir dist
+          echo ::set-output name=dist::${PWD}/dist
+
+      - name: PHP version
+        run: php --version
+
+      - name: Set Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Install latest NPM version
+        run: npm i -g npm@latest
+
+      - name: Node version
+        run: node --version
+
+      - name: NPM version
+        run: npm --version
+
+      - name: Get npm cache directory
+        id: npm-cache
+        run: echo "::set-output name=dir::$(npm config get cache)"
+
+      - name: Restore .npm cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+            ${{ runner.os }}-node-
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Build JavaScript
+        run: npm run build
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache Composer vendor directory
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+            ${{ runner.os }}-composer-
+
+      - name: Install PHP Dependencies
+        run: composer install --no-progress --no-dev --optimize-autoloader
+
+      - name: Generate readme.txt file
+        uses: sixach/wp-readme-generator-action@v1
+        with:
+          replace: true
+
+      - name: Prepare files
+        run: rsync -r --exclude-from=.bundleignore . ${{ steps.workflow.outputs.dist }}/${{ needs.release-prerequisites.outputs.package }}
+
+      - name: Create ZIP archive
+        working-directory: ${{ steps.workflow.outputs.dist }}
+        run: zip -r ${{ needs.release-prerequisites.outputs.package }}.zip .
+
+      - name: Upload ZIP arfifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ needs.release-prerequisites.outputs.package }}
+          path: ${{ steps.workflow.outputs.dist }}/${{ needs.release-prerequisites.outputs.package }}.zip
+
+  # It will download artifact with and publish an update to Github
+  github-release:
+    name: Publish release on Github
+    needs: [release-prerequisites, build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Setup Workflow Context
+        id: workflow
+        working-directory: ${{ runner.temp }}
+        run: |
+          mkdir dist
+          echo ::set-output name=dist::${PWD}/dist
+
+      - name: Download ZIP artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ needs.release-prerequisites.outputs.package }}
+          path: ${{ steps.workflow.outputs.dist }}
+
+      - name: Create Changelog
+        id: changelog
+        uses: mikepenz/release-changelog-builder-action@v2.4.1
+        with:
+          configuration: .github/configs/changelog-config.json
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ needs.release-prerequisites.outputs.next_version }}
+          artifacts: ${{ steps.workflow.outputs.dist }}/${{ needs.release-prerequisites.outputs.package }}.zip
+          artifactContentType: application/zip
+          token: ${{ secrets.REPO_PUBLISH_TOKEN }}
+          name: "Version ${{ needs.release-prerequisites.outputs.next_version }}"
+          body: ${{ steps.changelog.outputs.changelog }}
+          draft: false

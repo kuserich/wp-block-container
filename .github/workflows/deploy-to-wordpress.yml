@@ -1,0 +1,59 @@
+name: Deploy to WordPress.org
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  wordpress-release:
+    name: Send to Wordpress
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Workflow Context
+        id: workflow
+        env:
+          REPO: ${{ github.repository }}
+        run: echo ::set-output name=package::${REPO##*/}
+
+      - name: Validate presense of both SVN_USERNAME and SVN_PASSWORD
+        run: |
+          if [ "${{ secrets.SVN_USERNAME }}" == "" ]; then
+            echo "SVN_USERNAME secret does not exist or empty"
+            echo "Please verify it in https://github.com/$GITHUB_REPOSITORY/settings/secrets/actions"
+            exit 1
+          fi
+          if [ "${{ secrets.SVN_PASSWORD }}" == "" ]; then
+            echo "SVN_PASSWORD secret does not exist or empty"
+            echo "Please verify it in https://github.com/$GITHUB_REPOSITORY/settings/secrets/actions"
+            exit 1
+          fi
+
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: wf-release.yml
+          workflow_conclusion: success
+          name: ${{ steps.workflow.outputs.package }}
+
+      - name: Prepare directory
+        id: unzip
+        shell: bash
+        run: |
+          shopt -s dotglob nullglob
+          unzip ${{ steps.workflow.outputs.package }}.zip
+          rm ${{ steps.workflow.outputs.package }}.zip
+          mv ${{ steps.workflow.outputs.package }}/* .
+          rmdir ${{ steps.workflow.outputs.package }}
+
+      - name: WordPress.org Plugin Deploy
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+
+      - name: WordPress.org Plugin Asset/Readme Update
+        uses: 10up/action-wordpress-plugin-asset-update@stable
+        env:
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}

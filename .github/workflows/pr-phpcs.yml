@@ -1,0 +1,64 @@
+name: PHP Coding Standards
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  # Violations are reported inline with annotations.
+  #
+  # Performs the following steps:
+  # - Checks out the repository.
+  # - Configures caching for Composer.
+  # - Sets up PHP.
+  # - Logs debug information.
+  # - Installs Composer dependencies (from cache if possible).
+  # - Logs PHP_CodeSniffer debug information.
+  # - Runs WPCS on the full codebase with warnings suppressed.
+  phpcs:
+    name: PHP CodeSniffer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Check if project has PHP CodeSniffer config
+        id: phpcs-config
+        run: ( test -e ./phpcs.xml.dist || test -e ./phpcs.xml ) && echo "::set-output name=exists::true" || echo "::set-output name=exists::false"
+      
+      - name: Restore "vendor" folder
+        if: steps.phpcs-config.outputs.exists == 'true'
+        uses: actions/cache@v2
+        id: vendor-cache
+        with:
+          path: vendor
+          key: ${{ runner.os }}-vendor-cache-${{ hashFiles('composer.lock') }}
+
+      - name: Get Composer Cache Directory
+        if: steps.phpcs-config.outputs.exists == 'true' &&
+            steps.vendor-cache.outputs.cache-hit != 'true'
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache Composer vendor directory
+        if: steps.phpcs-config.outputs.exists == 'true' &&
+            steps.vendor-cache.outputs.cache-hit != 'true'
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+            ${{ runner.os }}-composer-
+
+      - name: Install PHP Dependencies
+        if: steps.phpcs-config.outputs.exists == 'true' &&
+            steps.vendor-cache.outputs.cache-hit != 'true'
+        uses: php-actions/composer@v6
+
+      - name: PHP Code Style (phpcs)
+        if: steps.phpcs-config.outputs.exists == 'true'
+        uses: chekalsky/phpcs-action@v1
+        with:
+          phpcs_bin_path: './vendor/bin/phpcs'
