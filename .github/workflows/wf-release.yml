@@ -318,6 +318,6 @@ jobs:
           artifacts: ${{ steps.workflow.outputs.dist }}/${{ needs.release-prerequisites.outputs.package }}.zip
           artifactContentType: application/zip
           token: ${{ secrets.REPO_PUBLISH_TOKEN }}
-          name: "Version ${{ needs.release-prerequisites.outputs.next_version }}"
+          name: "Version v${{ needs.release-prerequisites.outputs.next_version }}"
           body: ${{ steps.changelog.outputs.changelog }}
           draft: false
