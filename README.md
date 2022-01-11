@@ -28,14 +28,14 @@ on your computer in order to build this plugin.
 * Full-height toggle to automatically stretch Container to full viewport height
 * Content alignment inside container
   * Top left
-	* Top center
-	* Top right
-	* Center left
-	* Center center
-	* Center right
-	* Bottom left
-	* Bottom center
-	* Bottom right
+  * Top center
+  * Top right
+  * Center left
+  * Center center
+  * Center right
+  * Bottom left
+  * Bottom center
+  * Bottom right
 * Minimum height in px, %, em, rem, vw, and vh
 * Maximum content width in px, %, em, rem, vw, and vh
 * Background color including gradients directly from your theme
