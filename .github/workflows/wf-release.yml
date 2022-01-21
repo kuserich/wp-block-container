@@ -262,7 +262,7 @@ jobs:
         run: composer install --no-progress --no-dev --optimize-autoloader
 
       - name: Generate readme.txt file
-        uses: sixach/wp-readme-generator-action@v1
+        uses: sixach/wp-readme-generator-action@v1.1
         with:
           replace: true
 
