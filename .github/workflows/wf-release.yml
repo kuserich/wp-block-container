@@ -73,7 +73,7 @@ jobs:
 
       - name: PHP File SemVer Update
         if: ${{ steps.php-file.outputs.file }}
-        uses: sixach/wp-version-bump-action@v1
+        uses: sixach/wp-version-bump-action@v1.1
         with:
           version: ${{ needs.release-prerequisites.outputs.next_version }}
           file_path: ${{ steps.php-file.outputs.file }}
