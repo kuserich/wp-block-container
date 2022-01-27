@@ -62,16 +62,16 @@ if ( ! class_exists( Container::class ) ) :
 		 * @since     1.0.0
 		 * @param     array  $attributes    The block attributes.
 		 * @param     string $content       The block content.
-		 * @return    string
+		 * @return    null|string
 		 */
-		public static function render( array $attributes = array(), string $content ): string {
+		public static function render( array $attributes = array(), string $content ): ?string {
 			libxml_use_internal_errors( true );
 			$dom = new \DOMDocument();
 			$dom->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NODEFDTD | LIBXML_HTML_NOIMPLIED );
 			$xpath = new \DomXPath( $dom );
 			$node  = $xpath->query( "//div[contains(@class, '" . self::CLASSNAME . "')]" );
 
-			if ( $node ) {
+			if ( $node && $node->length ) {
 				$before_content = apply_filters( 'sixa_container_block_before_content', __return_empty_string(), $attributes );
 				$after_content  = apply_filters( 'sixa_container_block_after_content', __return_empty_string(), $attributes );
 
@@ -88,10 +88,15 @@ if ( ! class_exists( Container::class ) ) :
 				}
 
 				libxml_clear_errors();
-				$content = $dom->saveHTML();
+				$content = utf8_decode( $dom->saveHTML( $dom->documentElement ) ); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 			}
 
-			return $content;
+			/**
+			 * Allow third-party resources to extend the block content.
+			 */
+			do_action( 'sixa_container_block_render_content', $attributes );
+
+			return apply_filters( 'sixa_container_block_content', $content, $attributes );
 		}
 
 	}
