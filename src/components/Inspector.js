@@ -6,21 +6,9 @@
 import isEqual from 'lodash/isEqual';
 
 /**
- * Runtime type checking for React props and similar objects.
- */
-import PropTypes from 'prop-types';
-
-/**
  * Helper React components specific for Sixa projects.
  */
 import { BackgroundSizeControl } from '@sixa/wp-block-components';
-
-/**
- * Internationalization utilities for client-side localization.
- *
- * @see    https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
-import { __ } from '@wordpress/i18n';
 
 /**
  * This module allows you to create and use standalone block-editor element and components.
@@ -46,6 +34,18 @@ import {
 	ToggleControl,
 	__experimentalUnitControl as UnitControl,
 } from '@wordpress/components';
+
+/**
+ * Internationalization utilities for client-side localization.
+ *
+ * @see    https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
+ */
+import { __ } from '@wordpress/i18n';
+
+/**
+ * Runtime type checking for React props and similar objects.
+ */
+import PropTypes from 'prop-types';
 
 /**
  * Helper constants.
