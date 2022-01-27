@@ -64,8 +64,6 @@ import Controls from './components/Controls';
  */
 import Inspector from './components/Inspector';
 
-import useGetMediaType from './hooks/useGetMediaType';
-
 /**
  * Utility for conditionally joining CSS class names together.
  */
