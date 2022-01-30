@@ -7,7 +7,7 @@
  * Description:          Wrap several blocks in a parent wrapper and do more styling.
  * Version:              1.1.0
  * Requires at least:    5.7
- * Requires PHP:         7.3
+ * Requires PHP:         7.4
  * Author:               sixa AG
  * Author URI:           https://sixa.com
  * License:              GPL v3 or later

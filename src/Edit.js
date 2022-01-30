@@ -6,11 +6,6 @@
 import { isEqual, set } from 'lodash';
 
 /**
- * Utility for conditionally joining CSS class names together.
- */
-import classnames from 'classnames';
-
-/**
  * Utility helper methods specific for Sixa projects.
  */
 import {
@@ -22,6 +17,11 @@ import {
 	isPositionCenter,
 	positionToClassName,
 } from '@sixa/wp-block-utils';
+
+/**
+ * Helper React hooks specific for Sixa projects.
+ */
+import { useInnerBlocksProps } from '@sixa/wp-react-hooks';
 
 /**
  * Data module to manage application state for both plugins and WordPress itself.
@@ -52,7 +52,7 @@ import { doAction, applyFilters } from '@wordpress/hooks';
  *
  * @see    https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/
  */
-import { useBlockProps, InnerBlocks, withColors, __experimentalUseGradient, __experimentalUseInnerBlocksProps } from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks, withColors, __experimentalUseGradient } from '@wordpress/block-editor';
 
 /**
  * Block Toolbar controls settings.
@@ -63,6 +63,11 @@ import Controls from './components/Controls';
  * Inspector Controls sidebar settings.
  */
 import Inspector from './components/Inspector';
+
+/**
+ * Utility for conditionally joining CSS class names together.
+ */
+import classnames from 'classnames';
 
 /**
  * Helper constants.
@@ -101,6 +106,7 @@ function Edit( { attributes, clientId, overlayColor, setAttributes, setOverlayCo
 		dimRatio,
 		focalPoint,
 		hasParallax,
+		id,
 		isFullHeight,
 		isRepeated,
 		minHeight,
@@ -184,7 +190,7 @@ function Edit( { attributes, clientId, overlayColor, setAttributes, setOverlayCo
 		style: styles,
 	} );
 	const className = blockClassName( blockProps?.className );
-	const innerBlocksProps = __experimentalUseInnerBlocksProps(
+	const innerBlocksProps = useInnerBlocksProps(
 		{
 			className: `${ className }__content`,
 			style: { width: width ? `min(${ width }, 100%)` : undefined },
