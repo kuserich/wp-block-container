@@ -128,7 +128,7 @@ function Inspector( { attributes, overlayColor, overlayGradient, setAttributes, 
 						) }
 						{ showFocalPointPicker && (
 							<FocalPointPicker
-								label={ __( 'Focal point picker', 'sixa-block-container' ) }
+								label={ __( 'Background Position', 'sixa-block-container' ) }
 								onChange={ ( value ) => setAttributes( { focalPoint: value } ) }
 								url={ url }
 								value={ focalPoint }
