@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3fc191d5c19374839e0a6f04570e76ab",
+    "content-hash": "179a65418cd98d594a3c2575d783e762",
     "packages": [
         {
             "name": "sixach/wp-block-api",
@@ -62,16 +62,16 @@
         },
         {
             "name": "sixach/wp-snippets",
-            "version": "v1.5.0",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sixach/wp-snippets.git",
-                "reference": "f695666035e7d7d1315cd200759540e9f7e18fa3"
+                "reference": "3970b9f6c72c446603a60f87c9b4b0d621e9848a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sixach/wp-snippets/zipball/f695666035e7d7d1315cd200759540e9f7e18fa3",
-                "reference": "f695666035e7d7d1315cd200759540e9f7e18fa3",
+                "url": "https://api.github.com/repos/sixach/wp-snippets/zipball/3970b9f6c72c446603a60f87c9b4b0d621e9848a",
+                "reference": "3970b9f6c72c446603a60f87c9b4b0d621e9848a",
                 "shasum": ""
             },
             "require": {
@@ -111,9 +111,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sixach/wp-snippets/issues",
-                "source": "https://github.com/sixach/wp-snippets/tree/v1.5.0"
+                "source": "https://github.com/sixach/wp-snippets/tree/v1.6.0"
             },
-            "time": "2022-01-24T21:51:53+00:00"
+            "time": "2022-01-31T15:40:21+00:00"
         }
     ],
     "packages-dev": [
@@ -3397,5 +3397,5 @@
         "php": ">=7.3"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.2.0"
 }
