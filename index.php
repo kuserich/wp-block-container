@@ -5,7 +5,7 @@
  * @wordpress-plugin
  * Plugin Name:          Sixa - Container Block
  * Description:          Wrap several blocks in a parent wrapper and do more styling.
- * Version:              1.1.0
+ * Version:              1.1.1
  * Requires at least:    5.7
  * Requires PHP:         7.4
  * Author:               sixa AG
