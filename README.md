@@ -39,7 +39,7 @@ Create more sophisticated designs with more space, colors, gradients, background
 ## Requirements
 
 * WordPress version 5.7 or greater.
-* PHP version 7.3 or greater.
+* PHP version 7.4 or greater.
 
 ## Development
 
