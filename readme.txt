@@ -1,4 +1,4 @@
-=== Sixa Container Block ===
+=== sixa Container Block ===
 Contributors: sixa, mahdiyazdani, gookaani, kuserich
 Donate link: https://sixa.com/
 Tags: container, group, section, wrapper, block, gutenberg, sixa
