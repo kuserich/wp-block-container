@@ -4,7 +4,7 @@ Donate link: https://sixa.com/
 Tags: container, group, section, wrapper, block, gutenberg, sixa
 Requires at least: 5.7
 Tested up to: 5.9
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 Requires PHP: 7.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -108,6 +108,9 @@ If you need professional support for this or any other WordPress project, please
 2. Container as hero section with a background image and a title
 
 == Changelog ==
+= 1.1.1 =
+* Added compatibility with WordPress 5.9
+
 = 1.1.0 =
 * Add support for sixa Box Shadow and sixa Border extensions
 
@@ -115,6 +118,9 @@ If you need professional support for this or any other WordPress project, please
 * Initial release
 
 == Upgrade Notice ==
+= 1.1.1 =
+Upgrade for compatibility with WordPress 5.9.
+
 = 1.1.0 =
 Upgrade to add support for the sixa Box Shadow and sixa Border extensions.
 
