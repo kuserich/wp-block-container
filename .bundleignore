@@ -1,5 +1,6 @@
 .bundleignore
 .editorconfig
+.eslintrc.js
 .git
 .gitattributes
 .github
@@ -21,5 +22,6 @@ package-lock.json
 phpcs.xml.dist
 renovate.json
 /src
+/svn
 *.zip
 /README.md
