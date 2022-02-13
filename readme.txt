@@ -121,7 +121,7 @@ If you need professional support for this or any other WordPress project, please
 * Initial release
 
 == Upgrade Notice ==
-= 1.1.1 =
+= 1.1.2 =
 Upgrade to fix a bug with incorrectly encoded block content.
 
 = 1.1.1 =
