@@ -88,7 +88,7 @@ if ( ! class_exists( Container::class ) ) :
 				}
 
 				libxml_clear_errors();
-				$content = utf8_decode( $dom->saveHTML( $dom->documentElement ) ); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+				$content = $dom->saveHTML( $dom->documentElement ); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 			}
 
 			/**
