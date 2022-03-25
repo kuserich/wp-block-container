@@ -108,6 +108,9 @@ If you need professional support for this or any other WordPress project, please
 2. Container as hero section with a background image and a title
 
 == Changelog ==
+= 1.1.3 =
+* Updated sixa libraries to ensure compatibility with other blocks
+
 = 1.1.2 =
 * Fixed incorrect character encoding in block content
 
@@ -121,6 +124,9 @@ If you need professional support for this or any other WordPress project, please
 * Initial release
 
 == Upgrade Notice ==
+= 1.1.3 =
+Upgrade to ensure compatibility with other blocks.
+
 = 1.1.2 =
 Upgrade to fix a bug with incorrectly encoded block content.
 
