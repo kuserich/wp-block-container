@@ -2,12 +2,10 @@ $prefix: sixa;
 
 .editor-styles-wrapper {
 	.wp-block-#{$prefix}-container {
-		.wp-block {
-			max-width: 100%;
-		}
 
 		&__content {
 
+			> .wp-block,
 			> .block-list-appender {
 				max-width: 100%;
 			}
