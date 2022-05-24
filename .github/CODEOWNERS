@@ -1,8 +1,6 @@
-This CODEOWNERS file is valid.
 # Define @wp-devs, as the code owners of the repo so the team is
 # tagged to review new PRs automatically.
 *       @sixach/wp-devs
-
 
 # Unassign renovate generated pull requests from "wp-devs" group. (Unowned)
 /.github
